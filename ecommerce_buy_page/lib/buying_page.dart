@@ -1,6 +1,7 @@
 
 import 'package:ecommerce_buy_page/AppColors.dart';
 import 'package:ecommerce_buy_page/add_remove.dart';
+import 'package:ecommerce_buy_page/star_icon.dart';
 import 'package:flutter/material.dart';
 
 class Buy extends StatelessWidget {
@@ -105,6 +106,9 @@ class Buy extends StatelessWidget {
                 Row(
 
                   children: [
+                    const SizedBox(
+                      width: 17,
+                    ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [  
@@ -119,7 +123,10 @@ class Buy extends StatelessWidget {
                       ],
                     ),
                     const Spacer(),
-                    IconButton(onPressed: (){}, icon: const Icon(Icons.keyboard_arrow_up_rounded),style: IconButton.styleFrom(iconSize: 32),)
+                    IconButton(onPressed: (){}, icon: const Icon(Icons.keyboard_arrow_up_rounded),style: IconButton.styleFrom(iconSize: 32),),
+                    const SizedBox(
+                      width: 5,
+                    ),
                   ],
                 ),
                   ],
@@ -146,7 +153,35 @@ class Buy extends StatelessWidget {
                   )),
                 ),
                 //rating
-                
+                Row(
+                  children: [
+                    star(),
+                    star(),
+                    star(),
+                    star(),
+                    star(),
+                    Spacer(),
+                    Container(
+                      child: Center(
+                        child: Text(
+                          
+                          'SEND',
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.w500,
+                            color: AppColors.lB
+                          ),
+                        ),
+                      ),
+                      decoration: BoxDecoration(
+                        color: AppColors.dB,
+                        borderRadius: BorderRadius.circular(7)
+                      ),
+                      height: 40,
+                      width: 70,
+                    )
+                  ],
+                )
               ],
             ),
           ),
