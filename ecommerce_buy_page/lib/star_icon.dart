@@ -7,11 +7,28 @@ class star extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return IconButton(      
-      onPressed: (){}, 
+      onPressed: (){
+        
+      }, 
       iconSize: 30,
       icon: Icon(
         Icons.star_border
         ,color: AppColors.dB,
         ));
+  }
+}
+
+class stars extends StatelessWidget {
+  const stars({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return const Row(children: [
+                    star(),
+                    star(),
+                    star(),
+                    star(),
+                    star(),
+    ],);
   }
 }

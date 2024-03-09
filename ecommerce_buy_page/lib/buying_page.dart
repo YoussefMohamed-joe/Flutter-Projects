@@ -152,19 +152,23 @@ class Buy extends StatelessWidget {
                       hintStyle: TextStyle(color: AppColors.orange)
                   )),
                 ),
+                const SizedBox(
+                  height: 15,
+                ),
                 //rating
                 Row(
                   children: [
-                    star(),
-                    star(),
-                    star(),
-                    star(),
-                    star(),
-                    Spacer(),
+                    stars(),
+                    const Spacer(),
                     Container(
+                      decoration: BoxDecoration(
+                        color: AppColors.dB,
+                        borderRadius: BorderRadius.circular(7)
+                      ),
+                      height: 40,
+                      width: 70,
                       child: Center(
-                        child: Text(
-                          
+                        child: Text(                          
                           'SEND',
                           style: TextStyle(
                             fontSize: 15,
@@ -173,12 +177,6 @@ class Buy extends StatelessWidget {
                           ),
                         ),
                       ),
-                      decoration: BoxDecoration(
-                        color: AppColors.dB,
-                        borderRadius: BorderRadius.circular(7)
-                      ),
-                      height: 40,
-                      width: 70,
                     )
                   ],
                 )
