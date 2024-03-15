@@ -1,0 +1,1 @@
+ D:\\projects\\kimit\ flutter\\Flutter\ Projects\\ecommerce_buy_page\\.dart_tool\\flutter_build\\c2b15ef0a894cb2c123371a0376bc579\\native_assets.yaml: 
