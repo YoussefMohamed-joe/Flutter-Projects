@@ -6,4 +6,5 @@ class AppColors{
   static Color lb = const Color(0xff1d1e33);
   static Color white = const Color(0xffffffff);
   static Color green = const Color(0xff1bbd71);
+  static Color grey = const Color(0xff4c4f60);
 }
