@@ -207,7 +207,7 @@ class _FirstPage extends State<FirstPage> {
                               children: [
                                 IconButton(onPressed: (){
                                   setState(() {
-                                    if (age>5){
+                                    if (age>20){
                                       age--;
                                     }
                                     

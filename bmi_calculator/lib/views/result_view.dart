@@ -1,6 +1,7 @@
 import 'package:bmi_calculator/core/colors.dart';
 import 'package:bmi_calculator/views/first_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 
 class ResultPage extends StatelessWidget {
   const ResultPage({super.key, required this.res});
@@ -13,7 +14,7 @@ class ResultPage extends StatelessWidget {
       return 'Moderate Thinness';
     }
     else if (res>17 && res<=18.5){
-      return 'Moderate Thinness';
+      return 'Mild Thinness';
     }
     else if (res>18.5 && res<=25){
       return 'Normal';
@@ -29,6 +30,33 @@ class ResultPage extends StatelessWidget {
     }
     else if (res>40){
       return 'Obese Class III';
+    }
+    return 'rip';
+  }
+   String findMessage(){
+    if(res<=16){
+      return 'You need to seek a doctor';
+    }
+    else if (res>16 && res<=17){
+      return 'try taking more carb and you will be fine :>';
+    }
+    else if (res>17 && res<=18.5){
+      return 'try going to the gym and increase the carb in your diet gl ;)';
+    }
+    else if (res>18.5 && res<=25){
+      return 'you are fine but try to be better than yourself';
+    }
+    else if (res>25 && res<=30){
+      return 'try going to the gym and decrease the carb in your diet gl ;)';
+    }
+    else if (res>30 && res<=35){
+      return 'you need to decrease your weight for your health and try working out :D';
+    }
+    else if (res>35 && res<=40){
+      return 'you need to decrease your weight for your health :>';
+    }
+    else if (res>40){
+      return 'You need to seek a doctor';
     }
     return 'rip';
   }
@@ -86,19 +114,24 @@ class ResultPage extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(
-                      height: 50,
+                      height: 60,
                     ),
                     Padding(
                       padding: const EdgeInsets.only(left: 30),
                       child: Row(
                         children: [
-                          Text(
-                            res.toStringAsFixed(2),
-                            style: TextStyle(
-                              color: AppColors.white,
-                              fontSize: 25
+                          Expanded(
+                            child: Text(
+                              findMessage(),
+                              style: TextStyle(
+                                color: AppColors.white,
+                                fontSize: 20
+                              ),
                             ),
                           ),
+                          const SizedBox(
+                            width: 15,
+                          )
                         ],
                       ),
                     ),
