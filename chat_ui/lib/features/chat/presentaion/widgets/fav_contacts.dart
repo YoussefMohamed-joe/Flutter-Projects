@@ -1,5 +1,6 @@
 import 'package:chat_ui/core/colors.dart';
 import 'package:chat_ui/core/text_styles.dart';
+import 'package:chat_ui/features/chat/presentaion/model/user_model.dart';
 import 'package:flutter/material.dart';
 
 class FavouriteContacts extends StatelessWidget {
@@ -23,16 +24,19 @@ class FavouriteContacts extends StatelessWidget {
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemBuilder: (context, index) {
-                return Column( 
-                  children: [
-                    const CircleAvatar(
-                      radius: 28,
-                      backgroundImage: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBYck0SnkWo0du3ug-Fhxea5oPf9FGh7ePI_Bt214ZUQ&s'),
-                    ),
-                    const SizedBox(height: 10,),
-                    Text('Salah',style: getSmallTextStyle(color: AppColors.white),)
-                  ],
-                  
+                return SizedBox(
+                  width: 65,
+                  child: Column( 
+                    children: [
+                       CircleAvatar(
+                        radius: 28,
+                        backgroundImage: NetworkImage(users[index].image),
+                      ),
+                      const SizedBox(height: 10,),
+                      Text(users[index].name.split(' ')[0],maxLines: 1 ,overflow: TextOverflow.ellipsis,style: getSmallTextStyle(color: AppColors.white),)
+                    ],
+                    
+                  ),
                 );
               }, 
               separatorBuilder: (context, index) {
@@ -40,7 +44,7 @@ class FavouriteContacts extends StatelessWidget {
                   width: 10,
                 );
               }, 
-              itemCount: 11),
+              itemCount: users.length),
           ),
         ],
       ),

@@ -1,5 +1,6 @@
 import 'package:chat_ui/core/colors.dart';
 import 'package:chat_ui/core/text_styles.dart';
+import 'package:chat_ui/features/chat/presentaion/model/user_model.dart';
 import 'package:chat_ui/features/chat/presentaion/widgets/fav_contacts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -32,13 +33,13 @@ class HomeView extends StatelessWidget {
               child: ListView.separated(
                 itemBuilder: (context, index) {
                   return  ListTile(
-                    leading: const CircleAvatar(
+                    leading: CircleAvatar(
                       radius: 28,
-                      backgroundImage: NetworkImage('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBYck0SnkWo0du3ug-Fhxea5oPf9FGh7ePI_Bt214ZUQ&s'),
+                      backgroundImage: NetworkImage(users[index].image),
                     ),
-                    title: Text('saleh meow',maxLines: 1,overflow: TextOverflow.ellipsis,style: getTextStyleBold(size: 20,color: AppColors.black),),
-                    subtitle: Text('hi Saleh!!',maxLines: 1,overflow: TextOverflow.ellipsis,style: gettitleTextStyle(color: AppColors.black),),
-                    trailing: Text('10 : 00 PM',style: getSmallTextStyle(),),
+                    title: Text(users[index].name,maxLines: 1,overflow: TextOverflow.ellipsis,style: getTextStyleBold(size: 20,color: AppColors.black),),
+                    subtitle: Text(users[index].message,maxLines: 1,overflow: TextOverflow.ellipsis,style: gettitleTextStyle(color: AppColors.black),),
+                    trailing: Text(users[index].time,style: getSmallTextStyle(),),
                   );
                 }, 
                 separatorBuilder: (context, index) {
@@ -46,11 +47,12 @@ class HomeView extends StatelessWidget {
                     height: 10,
                   );
                 }, 
-                itemCount: 10),
+                itemCount: users.length),
             ),
           )
         ],
       ),
+      
     );
   }
 }
