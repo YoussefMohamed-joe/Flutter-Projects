@@ -1,6 +1,7 @@
 import 'package:chat_ui/core/colors.dart';
 import 'package:chat_ui/core/text_styles.dart';
 import 'package:chat_ui/features/chat/presentaion/model/user_model.dart';
+import 'package:chat_ui/features/chat/presentaion/view/chat_view.dart';
 import 'package:chat_ui/features/chat/presentaion/widgets/fav_contacts.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -17,6 +18,11 @@ class HomeView extends StatelessWidget {
         title: Text('Chats',style: getTextStyleBold(size: 25),),
         actions: [IconButton(onPressed: () {},icon: const Icon(Icons.settings),color: AppColors.white,)],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: (){},
+        backgroundColor: AppColors.bl,
+        child: Icon(Icons.add,color: AppColors.white,),
+        ),
       body: Column(
         
         children: [
@@ -33,6 +39,9 @@ class HomeView extends StatelessWidget {
               child: ListView.separated(
                 itemBuilder: (context, index) {
                   return  ListTile(
+                    onTap: (){
+                      Navigator.of(context).push(MaterialPageRoute(builder: (context) => ChatView(user: users[index],),));
+                    },
                     leading: CircleAvatar(
                       radius: 28,
                       backgroundImage: NetworkImage(users[index].image),

@@ -32,7 +32,8 @@ TextStyle getSmallTextStyle({double? size,Color? color}){
 
 TextStyle getSignTextStyle({double? size,Color? color}){
   return TextStyle(
-    fontSize: size ?? 20,
+    fontSize: size ?? 25,
     color: color ?? AppColors.lb,
+    fontWeight: FontWeight.bold
   );
 }
