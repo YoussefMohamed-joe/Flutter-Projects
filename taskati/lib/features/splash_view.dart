@@ -17,7 +17,7 @@ class _SplashViewState extends State<SplashView> {
   @override
   void initState() {
     
-    Future.delayed(const Duration(seconds: 5),(){
+    Future.delayed(const Duration(seconds: 5,microseconds: 40),(){
       navigateTo(context, const UploadView());
     });
     super.initState();

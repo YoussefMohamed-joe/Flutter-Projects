@@ -10,6 +10,8 @@ class UploadView extends StatefulWidget {
 class _UploadViewState extends State<UploadView> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Scaffold(
+      
+    );
   }
 }
