@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:lottie/lottie.dart';
 import 'package:taskati/core/constants/assets_images.dart';
-import 'package:taskati/core/constants/navigator.dart';
+import 'package:taskati/core/functions/navigator.dart';
 import 'package:taskati/core/utils/text_styles.dart';
-import 'package:taskati/features/upoald_view.dart';
+import 'package:taskati/features/upload_view/upload_view.dart';
 
 class SplashView extends StatefulWidget {
   const SplashView({super.key});
@@ -18,7 +18,7 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     
     Future.delayed(const Duration(seconds: 5,microseconds: 40),(){
-      navigateTo(context, const UploadView());
+      navigateTowithReplacment(context, const UploadView());
     });
     super.initState();
   }

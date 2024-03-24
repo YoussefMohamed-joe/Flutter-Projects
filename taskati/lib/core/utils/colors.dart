@@ -7,6 +7,7 @@ class AppColors {
   static Color black =const Color(0xff000000);
   static Color white =const Color(0xffffffff);
   static Color grey =const Color(0xffB4AAAA);
+  static Color red = Colors.red;
 
   //dark theme
   static Color darkth =const Color(0xff121212);
