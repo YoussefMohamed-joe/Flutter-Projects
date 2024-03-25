@@ -5,6 +5,7 @@ import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:taskati/core/constants/assets_images.dart';
 import 'package:taskati/core/functions/navigator.dart';
+import 'package:taskati/core/services/local_storage.dart';
 import 'package:taskati/core/utils/colors.dart';
 import 'package:taskati/core/utils/text_styles.dart';
 import 'package:taskati/features/home_view/home_view.dart';
@@ -13,6 +14,7 @@ import 'package:taskati/features/widgets/custom_button.dart';
 
 String? path;
 String name='';
+bool registerd = false;
 
 class UploadView extends StatefulWidget {
   const UploadView({super.key});
@@ -30,7 +32,12 @@ class _UploadViewState extends State<UploadView> {
         actions: [
           TextButton(onPressed: (){
             if(path !=null && name.isNotEmpty){
+              registerd = true;
+              AppLocalStorage.cashUserData('name', name);
+              AppLocalStorage.cashUserData('path', path);
+              AppLocalStorage.cashUserData('Reg', registerd);
               navigateTo(context, const HomeView());
+              
             }else if (path !=null && name.isEmpty){
               scaffoldErrorMessage(context,'please Enter you name');
             }else if (path ==null && name.isNotEmpty){

@@ -3,7 +3,9 @@ import 'package:gap/gap.dart';
 import 'package:lottie/lottie.dart';
 import 'package:taskati/core/constants/assets_images.dart';
 import 'package:taskati/core/functions/navigator.dart';
+import 'package:taskati/core/services/local_storage.dart';
 import 'package:taskati/core/utils/text_styles.dart';
+import 'package:taskati/features/home_view/home_view.dart';
 import 'package:taskati/features/upload_view/upload_view.dart';
 
 class SplashView extends StatefulWidget {
@@ -18,7 +20,11 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     
     Future.delayed(const Duration(seconds: 5,microseconds: 40),(){
+      if(AppLocalStorage.getcasUserhData('Reg')?? false){
+        navigateTowithReplacment(context, const HomeView());
+      }else{
       navigateTowithReplacment(context, const UploadView());
+      }
     });
     super.initState();
   }
