@@ -3,8 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:taskati/core/constants/assets_images.dart';
+import 'package:taskati/core/functions/navigator.dart';
 import 'package:taskati/core/services/local_storage.dart';
 import 'package:taskati/core/utils/text_styles.dart';
+import 'package:taskati/features/home_view/account_change.dart';
 
 import '../../core/utils/colors.dart';
 
@@ -37,10 +39,15 @@ class HomeHeader extends StatelessWidget {
         //      },
         //   ),
         // )
-        CircleAvatar(
-          radius: 30,
-          backgroundColor: AppColors.violet,
-          backgroundImage: (AppLocalStorage.getcasUserhData('path').isNotEmpty)? FileImage(File(AppLocalStorage.getcasUserhData('path'))) as ImageProvider: AssetImage(AssetsImage.user),
+        InkWell(
+          onTap: (){
+            navigateTo(context, const AccountChange());
+          },
+          child: CircleAvatar(
+            radius: 30,
+            backgroundColor: AppColors.violet,
+            backgroundImage: (AppLocalStorage.getcasUserhData('path').isNotEmpty)? FileImage(File(AppLocalStorage.getcasUserhData('path'))) as ImageProvider: AssetImage(AssetsImage.user),
+          ),
         )
       ],
     );

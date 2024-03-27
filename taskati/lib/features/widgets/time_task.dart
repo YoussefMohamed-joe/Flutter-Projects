@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
+import 'package:taskati/core/functions/navigator.dart';
 import 'package:taskati/core/utils/colors.dart';
 import 'package:taskati/core/utils/text_styles.dart';
+import 'package:taskati/features/home_view/add_task.dart';
 
 class TimeTask extends StatelessWidget {
   const TimeTask({
@@ -24,7 +26,7 @@ class TimeTask extends StatelessWidget {
         const Spacer(),
         InkWell(
           onTap: (){
-    
+            navigateTo(context, const AddTask());
           },
           child: Container(
           width: 110,
