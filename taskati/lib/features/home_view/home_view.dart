@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:intl/intl.dart';
 import 'package:taskati/core/constants/assets_images.dart';
@@ -51,7 +50,7 @@ class _HomeViewState extends State<HomeView> {
                         color: AppColors.violet,
                         borderRadius: BorderRadius.circular(15)
                       ),
-                      margin: EdgeInsets.only(top: 10),
+                      margin: const EdgeInsets.only(top: 10),
                       child: Row(
                         children: [
                           Padding(

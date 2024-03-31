@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:taskati/core/services/local_storage.dart';
+import 'package:taskati/core/utils/colors.dart';
+import 'package:taskati/core/utils/text_styles.dart';
 import 'package:taskati/features/splash_view.dart';
 
 Future<void> main() async {
@@ -16,9 +18,29 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return  MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: SplashView(),
+      theme: ThemeData(
+        inputDecorationTheme: InputDecorationTheme(
+                    hintStyle: getSmallStyle(),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: AppColors.violet)
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: AppColors.violet)
+                    ),
+                    errorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: AppColors.red)
+                    ),
+                    focusedErrorBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: AppColors.red)
+                    ),
+      ),),
+      home: const SplashView(),
     );
   }
 }
