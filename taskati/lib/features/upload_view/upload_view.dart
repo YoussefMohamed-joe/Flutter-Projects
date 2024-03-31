@@ -45,7 +45,7 @@ class _UploadViewState extends State<UploadView> {
             }else if (path ==null && name.isEmpty){
               scaffoldErrorMessage(context,'Please Pick Your Picture and Name');
             }
-          }, child: Text('Done',style: getTitleStyle(color: AppColors.violet),))
+          }, child: Text('Done',style: getTitleStyle(color: AppColors.white),))
         ],
       ),
       body:  Center(
