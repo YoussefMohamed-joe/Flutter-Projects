@@ -21,6 +21,11 @@ class MyApp extends StatelessWidget {
     return  MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
+        appBarTheme: AppBarTheme(
+          foregroundColor: AppColors.white,
+          backgroundColor: AppColors.violet,
+          centerTitle: true
+        ),
         inputDecorationTheme: InputDecorationTheme(
                     hintStyle: getSmallStyle(),
                     enabledBorder: OutlineInputBorder(
