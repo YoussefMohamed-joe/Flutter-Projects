@@ -4,7 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:taskati/core/functions/navigator.dart';
 import 'package:taskati/core/utils/colors.dart';
 import 'package:taskati/core/utils/text_styles.dart';
-import 'package:taskati/features/home_view/add_task.dart';
+import 'package:taskati/features/add-task/views/add_task.dart';
 
 class TimeTask extends StatelessWidget {
   const TimeTask({

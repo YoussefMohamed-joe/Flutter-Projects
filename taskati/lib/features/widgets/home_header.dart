@@ -28,26 +28,25 @@ class HomeHeader extends StatelessWidget {
           ],
         ),
         const Spacer(),
-        // ClipOval(
-        //   clipBehavior: ,
-        //   child: Image.file(
-        //      File(AppLocalStorage.getcasUserhData('path')),
-        //      width: 50,
-             
-        //      errorBuilder: (context, error, stackTrace) {
-        //        return Image.asset(AssetsImage.user,width: 50,color: AppColors.violet,);
-        //      },
-        //   ),
-        // )
+        
         InkWell(
           onTap: (){
             navigateTo(context, const AccountChange());
           },
-          child: CircleAvatar(
-            radius: 30,
-            backgroundColor: AppColors.violet,
-            backgroundImage: (AppLocalStorage.getcasUserhData('path').isNotEmpty)? FileImage(File(AppLocalStorage.getcasUserhData('path'))) as ImageProvider: AssetImage(AssetsImage.user),
-          ),
+          child:  ClipRRect(
+           borderRadius: BorderRadius.circular(360),
+           child: Image.file(
+              File(AppLocalStorage.getcasUserhData('path')),
+             width: 60,
+             height: 60,
+             fit: BoxFit.cover,
+             
+             
+              errorBuilder: (context, error, stackTrace) {
+                return Image.asset(AssetsImage.user,width: 50,color: AppColors.violet,);
+              },
+           ),
+         )
         )
       ],
     );

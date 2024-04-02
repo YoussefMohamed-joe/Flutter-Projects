@@ -3,11 +3,14 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:taskati/core/services/local_storage.dart';
 import 'package:taskati/core/utils/colors.dart';
 import 'package:taskati/core/utils/text_styles.dart';
+import 'package:taskati/features/add-task/model/task_model.dart';
 import 'package:taskati/features/splash_view.dart';
 
 Future<void> main() async {
   await Hive.initFlutter();
+  Hive.registerAdapter(TaskModelAdapter());
   await Hive.openBox('UserBox');
+  await Hive.openBox<TaskModel>('TaskBox');
   AppLocalStorage().init();
   runApp(const MyApp());
 }

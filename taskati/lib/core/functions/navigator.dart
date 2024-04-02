@@ -7,3 +7,6 @@ navigateTo(context,Widget nextScreen){
 navigateTowithReplacment(context,Widget nextScreen){
   Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (context) => nextScreen));
 }
+  navigateToPop(context){
+  Navigator.of(context).pop();
+}
