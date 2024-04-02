@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
@@ -14,7 +15,6 @@ import 'package:taskati/features/widgets/task_items.dart';
 import 'package:taskati/features/widgets/time_task.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 
-
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
@@ -23,7 +23,7 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
-
+  String selectedDate = DateFormat('dd/MM/yyyy').format(DateTime.now());
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,7 +35,7 @@ class _HomeViewState extends State<HomeView> {
               const HomeHeader(),
               const Gap(10),
               const TimeTask(),
-               const Gap(10),
+              const Gap(10),
               DatePicker(
                 DateTime.now(),
                 initialSelectedDate: DateTime.now(),
@@ -43,20 +43,116 @@ class _HomeViewState extends State<HomeView> {
                 selectedTextColor: Colors.white,
                 width: 80,
                 height: 100,
+                onDateChange: (date) {
+                  setState(() {
+                    selectedDate = DateFormat('dd/MM/yyyy').format(date);
+                  });
+                },
               ),
               Expanded(
-                child: ValueListenableBuilder<Box<TaskModel>>(
-                valueListenable: Hive.box<TaskModel>('taskBox').listenable(), 
-                builder: (BuildContext context,dynamic value,Widget? child) {
-                  List<TaskModel> task = value.values.toList();
-                  return ListView.builder(
-                  itemBuilder: (BuildContext context,int index) {
-                    return  taskItem(model: task[index],);
-                  },
-                  itemCount: task.length,
-                  );
-                })
-              )
+                  child: ValueListenableBuilder<Box<TaskModel>>(
+                      valueListenable:
+                          Hive.box<TaskModel>('taskBox').listenable(),
+                      builder:
+                          (BuildContext context, dynamic value, Widget? child) {
+                        List<TaskModel> task = value.values
+                            .where((element) => element.date == selectedDate)
+                            .toList();
+                        return task.isEmpty
+                            ? Container(
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(15)),
+                                child: Column(
+                                  children: [
+                                    const Gap(15),
+                                    Image.asset(
+                                      AssetsImage.noTask,
+                                      height: 200,
+                                    ),
+                                    const Gap(15),
+                                    Text(
+                                      'No Tasks Found!',
+                                      style:
+                                          getBodyStyle(color: AppColors.black),
+                                    )
+                                  ],
+                                ),
+                              )
+                            : ListView.builder(
+                                itemBuilder: (BuildContext context, int index) {
+                                  return Dismissible(
+                                      onDismissed: (direction) {
+                                        if (direction ==
+                                            DismissDirection.startToEnd) {                                          
+                                          value.put(
+                                              task[index].id,
+                                              TaskModel(
+                                                  id: task[index].id,
+                                                  title: task[index].title,
+                                                  note: task[index].note,
+                                                  date: task[index].date,
+                                                  startTime: task[index].startTime,
+                                                  endTime: task[index].endTime,
+                                                  color: task[index].color,
+                                                  isCompleted: true));
+                                        } else {
+                                          value.delete(task[index].id);
+                                        }
+                                      },
+                                      key: UniqueKey(),
+                                      background: Container(
+                                        margin: const EdgeInsets.all(5),
+                                        decoration: BoxDecoration(
+                                            color: AppColors.green,
+                                            borderRadius:
+                                                BorderRadius.circular(15)),
+                                        child: Row(
+                                          children: [
+                                            const Gap(10),
+                                            Icon(
+                                              Icons.check,
+                                              color: AppColors.white,
+                                            ),
+                                            const Gap(5),
+                                            Text('Complete',
+                                                style: getBodyStyle(
+                                                    color: AppColors.white)),
+                                          ],
+                                        ),
+                                      ),
+                                      secondaryBackground: Container(
+                                        margin: const EdgeInsets.all(5),
+                                        decoration: BoxDecoration(
+                                            color: AppColors.red,
+                                            borderRadius:
+                                                BorderRadius.circular(15)),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.end,
+                                          children: [
+                                            Icon(
+                                              Icons.delete,
+                                              color: AppColors.white,
+                                            ),
+                                            const Gap(5),
+                                            Text('delete',
+                                                style: getBodyStyle(
+                                                    color: AppColors.white)),
+                                            const Gap(10),
+                                          ],
+                                        ),
+                                      ),
+                                      child: Padding(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 5),
+                                        child: taskItem(
+                                          model: task[index],
+                                        ),
+                                      ));
+                                },
+                                itemCount: task.length,
+                              );
+                      }))
             ],
           ),
         ),
@@ -64,4 +160,3 @@ class _HomeViewState extends State<HomeView> {
     );
   }
 }
-
