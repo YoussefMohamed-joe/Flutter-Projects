@@ -1,9 +1,6 @@
 import 'dart:io';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:taskati/core/constants/assets_images.dart';
@@ -11,8 +8,7 @@ import 'package:taskati/core/functions/navigator.dart';
 import 'package:taskati/core/services/local_storage.dart';
 import 'package:taskati/core/utils/colors.dart';
 import 'package:taskati/core/utils/text_styles.dart';
-import 'package:taskati/features/home_view/home_view.dart';
-import 'package:taskati/core/functions/error_message.dart';
+
 import 'package:taskati/features/widgets/custom_button.dart';
 
 bool isLighTheme = AppLocalStorage.getcasUserhData('theme') ?? true;
@@ -26,8 +22,9 @@ class AccountChange extends StatefulWidget {
 }
 
 class _AccountChange extends State<AccountChange> {
+    var keyForm= GlobalKey<FormState>();
   @override
-  var keyForm= GlobalKey<FormState>();
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(

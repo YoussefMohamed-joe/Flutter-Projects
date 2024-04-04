@@ -1,14 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:gap/gap.dart';
-import 'package:taskati/core/functions/error_message.dart';
 import 'package:taskati/core/functions/navigator.dart';
 import 'package:taskati/core/services/local_storage.dart';
 import 'package:taskati/core/utils/colors.dart';
 import 'package:taskati/core/utils/text_styles.dart';
 import 'package:taskati/features/add-task/model/task_model.dart';
-import 'package:taskati/features/home_view/account_change.dart';
-import 'package:taskati/features/home_view/home_view.dart';
 
 class AddTask extends StatefulWidget {
   const AddTask({super.key});

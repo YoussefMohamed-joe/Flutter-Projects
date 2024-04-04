@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:taskati/core/services/local_storage.dart';
 import 'package:taskati/core/themes/app_themes.dart';
-import 'package:taskati/core/utils/colors.dart';
-import 'package:taskati/core/utils/text_styles.dart';
 import 'package:taskati/features/add-task/model/task_model.dart';
 import 'package:taskati/features/splash_view.dart';
 

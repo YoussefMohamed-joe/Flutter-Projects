@@ -1,13 +1,10 @@
 import 'dart:io';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
-import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:taskati/core/constants/assets_images.dart';
 import 'package:taskati/core/functions/navigator.dart';
-import 'package:taskati/core/services/local_storage.dart';
 import 'package:taskati/core/utils/text_styles.dart';
 import 'package:taskati/features/home_view/account_change.dart';
 

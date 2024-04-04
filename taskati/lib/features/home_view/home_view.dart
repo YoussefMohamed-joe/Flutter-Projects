@@ -1,16 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import 'package:taskati/core/constants/assets_images.dart';
-import 'package:taskati/core/services/local_storage.dart';
 import 'package:taskati/core/utils/colors.dart';
 import 'package:taskati/core/utils/text_styles.dart';
 import 'package:taskati/features/add-task/model/task_model.dart';
-import 'package:taskati/features/widgets/custom_button.dart';
 import 'package:taskati/features/widgets/home_header.dart';
 import 'package:taskati/features/widgets/task_items.dart';
 import 'package:taskati/features/widgets/time_task.dart';
