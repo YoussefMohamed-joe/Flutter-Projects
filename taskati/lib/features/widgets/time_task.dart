@@ -18,9 +18,9 @@ class TimeTask extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(DateFormat.yMMMEd().format(DateTime.now()),style: getTitleStyle(fontSize: 20,color: AppColors.black),),
+            Text(DateFormat.yMMMEd().format(DateTime.now()),style: getTitleStyle(context,fontSize: 20),),
             const Gap(3),
-            Text('Today',style: getTitleStyle(fontSize: 20,color: AppColors.black),)
+            Text('Today',style: getTitleStyle(context,fontSize: 20),)
           ],
         ),
         const Spacer(),
@@ -36,7 +36,7 @@ class TimeTask extends StatelessWidget {
             color: AppColors.violet,
             borderRadius: BorderRadius.circular(15)
           ),
-          child: Center(child: Text('+ Add Task',style: getBodyStyle(color: AppColors.white),)),
+          child: Center(child: Text('+ Add Task',style: getBodyStyle(context,color: AppColors.white),)),
           ),
         )
       ],

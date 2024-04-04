@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:taskati/core/services/local_storage.dart';
+import 'package:taskati/core/themes/app_themes.dart';
 import 'package:taskati/core/utils/colors.dart';
 import 'package:taskati/core/utils/text_styles.dart';
 import 'package:taskati/features/add-task/model/task_model.dart';
@@ -21,34 +22,17 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          foregroundColor: AppColors.white,
-          backgroundColor: AppColors.violet,
-          centerTitle: true
-        ),
-        inputDecorationTheme: InputDecorationTheme(
-                    hintStyle: getSmallStyle(),
-                    enabledBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: AppColors.violet)
-                    ),
-                    focusedBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: AppColors.violet)
-                    ),
-                    errorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: AppColors.red)
-                    ),
-                    focusedErrorBorder: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      borderSide: BorderSide(color: AppColors.red)
-                    ),
-      ),),
-      home: const SplashView(),
+    return  ValueListenableBuilder(
+      valueListenable: Hive.box('UserBox').listenable(),
+      builder: (context, box, child) {
+        final isLighTheme = box.get('theme')?? true;
+        return MaterialApp(
+          debugShowCheckedModeBanner: false,
+          theme: isLighTheme? AppThemes.lightTheme:AppThemes.darkTheme,
+          home: const SplashView(),
+        );     
+      },
+       
     );
   }
 }

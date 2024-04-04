@@ -38,9 +38,9 @@ class _SplashViewState extends State<SplashView> {
           children:[
             Lottie.asset(AssetsImage.logo),
             const Gap(20),
-            Text('Taskati',style: getTitleStyle(fontSize: 24,fontWeight: FontWeight.normal),),
+            Text('Taskati',style: getTitleStyle(context,fontSize: 24,fontWeight: FontWeight.normal),),
             const Gap(10),
-            Text('It\'s Time To Get Organised',style: getBodyStyle(fontWeight:  FontWeight.w100),)
+            Text('It\'s Time To Get Organised',style: getBodyStyle(context,fontWeight:  FontWeight.w100),)
             ]
         ),
       ),

@@ -26,11 +26,11 @@ class taskItem extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(model.title,style: getTitleStyle(color: AppColors.white),),
+                Text(model.title,style: getTitleStyle(context,color: AppColors.white),),
                 const Gap(10),
                 Row(children: [Icon(Icons.schedule,color: AppColors.white,),const Gap(5),Text('${model.startTime} : ${model.endTime}',style: getSmallStyle(color: AppColors.white),),],),
                 const Gap(10),
-                Text(model.note,style: getBodyStyle(color: AppColors.white),maxLines: 1,overflow: TextOverflow.ellipsis,),
+                Text(model.note,style: getBodyStyle(context,color: AppColors.white),maxLines: 1,overflow: TextOverflow.ellipsis,),
                 const Gap(10),
               ],
             ),
@@ -44,7 +44,7 @@ class taskItem extends StatelessWidget {
           const Gap(5),
           RotatedBox(
             quarterTurns: 3,
-            child: Text(model.isCompleted?'COMPLETED':'TODO',style: getTitleStyle(fontSize: 14,color: AppColors.white,))),
+            child: Text(model.isCompleted?'COMPLETED':'TODO',style: getTitleStyle(context,fontSize: 14,color: AppColors.white,))),
             const Gap(5),
         ],
       ),

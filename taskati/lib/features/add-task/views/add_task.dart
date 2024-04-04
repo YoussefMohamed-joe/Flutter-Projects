@@ -30,7 +30,7 @@ class _AddTaskState extends State<AddTask> {
     return Scaffold(
       appBar: AppBar(
         
-        title: Text('Add Task',style: getTitleStyle(color: AppColors.white),),
+        title: Text('Add Task',style: getTitleStyle(context,color: AppColors.white),),
       ),
       body: Padding(
         padding: const EdgeInsets.all(15),
@@ -38,7 +38,7 @@ class _AddTaskState extends State<AddTask> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('Title',style: getTitleStyle(color: AppColors.black),),
+              Text('Title',style: getTitleStyle(context),),
               const Gap(5),
               TextField(
                 controller: titleController,
@@ -48,7 +48,7 @@ class _AddTaskState extends State<AddTask> {
                     
               ),
               const Gap(10),
-              Text('Note',style: getTitleStyle(color: AppColors.black),),
+              Text('Note',style: getTitleStyle(context,),),
               const Gap(5),
               TextField(
                 controller: noteController,
@@ -59,7 +59,7 @@ class _AddTaskState extends State<AddTask> {
                     
               ),
               const Gap(10),
-              Text('Date',style: getTitleStyle(color: AppColors.black),),
+              Text('Date',style: getTitleStyle(context,),),
               const Gap(5),
               TextField(
                 onTap: (){
@@ -83,8 +83,8 @@ class _AddTaskState extends State<AddTask> {
               const Gap(10),
               Row(
                 children: [
-                  Expanded(child: Text('Start Time',style: getTitleStyle(color: AppColors.black),)),
-                  Expanded(child: Text('End Time',style: getTitleStyle(color: AppColors.black),))
+                  Expanded(child: Text('Start Time',style: getTitleStyle(context),)),
+                  Expanded(child: Text('End Time',style: getTitleStyle(context,),))
                 ],
               ),
               const Gap(5),
@@ -143,7 +143,7 @@ class _AddTaskState extends State<AddTask> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Colors',style: getTitleStyle(),),
+                    Text('Colors',style: getTitleStyle(context,),),
                     const Gap(5),
                     Row(children: List.generate(3, (index) {
                       return Padding(
@@ -193,7 +193,7 @@ class _AddTaskState extends State<AddTask> {
               color: AppColors.violet,
               borderRadius: BorderRadius.circular(15)
             ),
-            child: Center(child: Text('Create Task',style: getBodyStyle(color: AppColors.white),)),
+            child: Center(child: Text('Create Task',style: getBodyStyle(context,color: AppColors.white),)),
             ),
           )
               ],),

@@ -4,6 +4,7 @@ import 'package:gap/gap.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:taskati/core/constants/assets_images.dart';
 import 'package:taskati/core/services/local_storage.dart';
 import 'package:taskati/core/utils/colors.dart';
@@ -41,6 +42,10 @@ class _HomeViewState extends State<HomeView> {
                 initialSelectedDate: DateTime.now(),
                 selectionColor: AppColors.violet,
                 selectedTextColor: Colors.white,
+                
+                dateTextStyle: getBodyStyle(context,fontSize: 22),
+                dayTextStyle: getBodyStyle(context,fontSize: 12),
+                monthTextStyle: getBodyStyle(context,fontSize: 12),
                 width: 80,
                 height: 100,
                 onDateChange: (date) {
@@ -65,15 +70,12 @@ class _HomeViewState extends State<HomeView> {
                                 child: Column(
                                   children: [
                                     const Gap(15),
-                                    Image.asset(
-                                      AssetsImage.noTask,
-                                      height: 200,
-                                    ),
+                                    Lottie.asset(AssetsImage.noTask),
                                     const Gap(15),
                                     Text(
                                       'No Tasks Found!',
                                       style:
-                                          getBodyStyle(color: AppColors.black),
+                                          getBodyStyle(context),
                                     )
                                   ],
                                 ),
@@ -115,7 +117,7 @@ class _HomeViewState extends State<HomeView> {
                                             ),
                                             const Gap(5),
                                             Text('Complete',
-                                                style: getBodyStyle(
+                                                style: getBodyStyle(context,
                                                     color: AppColors.white)),
                                           ],
                                         ),
@@ -136,7 +138,7 @@ class _HomeViewState extends State<HomeView> {
                                             ),
                                             const Gap(5),
                                             Text('delete',
-                                                style: getBodyStyle(
+                                                style: getBodyStyle(context,
                                                     color: AppColors.white)),
                                             const Gap(10),
                                           ],

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:taskati/core/constants/assets_images.dart';
@@ -22,14 +23,14 @@ class HomeHeader extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Hello, ${AppLocalStorage.getcasUserhData('name')}',style: getTitleStyle(fontSize: 22,color: AppColors.violet),),
+            Text('Hello, ${AppLocalStorage.getcasUserhData('name')}',style: getTitleStyle(context,fontSize: 22,color: AppColors.violet),),
             const Gap(3),
-            Text('Have A Nice Day',style: getBodyStyle(),)
+            Text('Have A Nice Day',style: getBodyStyle(context,),)
           ],
         ),
         const Spacer(),
         
-        InkWell(
+        GestureDetector(
           onTap: (){
             navigateTo(context, const AccountChange());
           },

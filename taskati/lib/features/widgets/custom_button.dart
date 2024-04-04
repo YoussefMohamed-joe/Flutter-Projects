@@ -20,7 +20,7 @@ class CustomButton extends StatelessWidget {
         backgroundColor: AppColors.violet,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15))
       ),
-      child: Text(text,style: getBodyStyle(color: AppColors.white),)),
+      child: Text(text,style: getBodyStyle(context,color: AppColors.white),)),
     );
   }
 }

@@ -7,6 +7,6 @@ scaffoldErrorMessage(context,String text){
                 SnackBar(behavior: SnackBarBehavior.floating,
                 shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                 backgroundColor: AppColors.red,
-                content: Center(child: Text(text,style: getBodyStyle(color: AppColors.white),)))
+                content: Center(child: Text(text,style: getBodyStyle(context,color: AppColors.white),)))
               );
 }
