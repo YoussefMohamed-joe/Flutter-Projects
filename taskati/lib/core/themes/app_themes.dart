@@ -5,6 +5,7 @@ import 'package:taskati/core/utils/text_styles.dart';
 class AppThemes {
   static ThemeData lightTheme = ThemeData(
         scaffoldBackgroundColor: AppColors.white,
+        
         datePickerTheme: DatePickerThemeData(
           backgroundColor: AppColors.white,         
           headerForegroundColor: AppColors.violet
@@ -40,6 +41,13 @@ class AppThemes {
   );
   static ThemeData darkTheme = ThemeData(
     scaffoldBackgroundColor: AppColors.darkth,
+    timePickerTheme: TimePickerThemeData(
+      backgroundColor: AppColors.darkth,
+      dialBackgroundColor: AppColors.darkth,
+      hourMinuteColor: AppColors.violet,
+      hourMinuteTextColor: AppColors.white,
+      dayPeriodColor: AppColors.white,
+    ),
     datePickerTheme: DatePickerThemeData(
           backgroundColor: AppColors.darkth,         
           headerForegroundColor: AppColors.violet

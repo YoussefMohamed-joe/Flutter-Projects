@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:hive/hive.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:taskati/core/constants/assets_images.dart';
 import 'package:taskati/core/functions/navigator.dart';
 import 'package:taskati/core/services/local_storage.dart';
@@ -18,38 +20,43 @@ class HomeHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text('Hello, ${AppLocalStorage.getcasUserhData('name')}',style: getTitleStyle(context,fontSize: 22,color: AppColors.violet),),
-            const Gap(3),
-            Text('Have A Nice Day',style: getBodyStyle(context,),)
-          ],
-        ),
-        const Spacer(),
-        
-        GestureDetector(
-          onTap: (){
-            navigateTo(context, const AccountChange());
-          },
-          child:  ClipRRect(
-           borderRadius: BorderRadius.circular(360),
-           child: Image.file(
-              File(AppLocalStorage.getcasUserhData('path')),
-             width: 60,
-             height: 60,
-             fit: BoxFit.cover,
-             
-             
-              errorBuilder: (context, error, stackTrace) {
-                return Image.asset(AssetsImage.user,width: 50,color: AppColors.violet,);
-              },
-           ),
-         )
-        )
-      ],
+    return ValueListenableBuilder(
+      valueListenable: Hive.box('UserBox').listenable(),
+      builder: (BuildContext context, dynamic box, Widget? child) {
+        return  Row(
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('Hello, ${box.get('name')}',style: getTitleStyle(context,fontSize: 22,color: AppColors.violet),),
+              const Gap(3),
+              Text('Have A Nice Day',style: getBodyStyle(context,),)
+            ],
+          ),
+          const Spacer(),
+          
+          GestureDetector(
+            onTap: (){
+              navigateTo(context, const AccountChange());
+            },
+            child:  ClipRRect(
+             borderRadius: BorderRadius.circular(360),
+             child: Image.file(
+                File(box.get('path')),
+               width: 60,
+               height: 60,
+               fit: BoxFit.cover,
+               
+               
+                errorBuilder: (context, error, stackTrace) {
+                  return Image.asset(AssetsImage.user,width: 50,color: AppColors.violet,);
+                },
+             ),
+           )
+          )
+        ],
+      );
+      },      
     );
   }
 }

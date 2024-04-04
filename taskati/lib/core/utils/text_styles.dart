@@ -31,7 +31,7 @@ TextStyle getSmallStyle(
 ){
 return TextStyle(
   fontFamily: GoogleFonts.poppins().fontFamily,
-  color: color ?? (AppLocalStorage.getcasUserhData('theme')?? false ? AppColors.black : AppColors.white),
+  color: color ?? (AppLocalStorage.getcasUserhData('theme')?? true ? AppColors.black : AppColors.white),
   fontSize: fontSize?? 14,
   fontWeight: fontWeight ?? FontWeight.normal,
 );
