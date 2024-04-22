@@ -1,1 +1,0 @@
- D:\\projects\\kimit\ flutter\\Flutter-Projects\\posts_app\\.dart_tool\\flutter_build\\28a5872b6dc5ee356316dc1dc78f3eb7\\native_assets.yaml: 
