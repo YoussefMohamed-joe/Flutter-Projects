@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 class ApiServices {
   
 
-  Future<List<PostsModel>> getPosts() async {
+  static Future<List<PostsModel>> getPosts() async {
     final url = Uri.parse(ApiConstants.baseUrl+ApiConstants.post);
     var response = await http.get(url);
     if (response.statusCode == 200) {
