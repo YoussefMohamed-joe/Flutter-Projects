@@ -1,3 +1,4 @@
+import 'package:charity_app/features/splash/main_splash.dart';
 import 'package:charity_app/features/splash/splach0.dart';
 import 'package:flutter/material.dart';
 
@@ -12,7 +13,7 @@ class MainApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Splash0(),
+      home: MainSplash(),
     );
   }
 }
