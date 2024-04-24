@@ -2,11 +2,18 @@ import 'package:charity_app/core/constants/assets_images.dart';
 import 'package:charity_app/core/functions/navigator.dart';
 import 'package:charity_app/core/utils/colors.dart';
 import 'package:charity_app/core/utils/text_styles.dart';
+import 'package:charity_app/features/upload/uploadview.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-class Splash2 extends StatelessWidget {
+class Splash2 extends StatefulWidget {
   const Splash2({super.key});
+
+  @override
+  State<Splash2> createState() => _Splash2State();
+}
+
+class _Splash2State extends State<Splash2> {
 
   @override
   Widget build(BuildContext context) {
@@ -37,7 +44,7 @@ class Splash2 extends StatelessWidget {
                     SizedBox(                      
                       height: 50,
                       child: ElevatedButton(onPressed: (){
-                        navigateTowithReplacment(context, const Splash2());
+                        navigateTowithReplacment(context, const UploadView());
                       },                      
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.green,

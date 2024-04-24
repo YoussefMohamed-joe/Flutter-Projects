@@ -8,6 +8,7 @@ class AppColors {
   static Color mgrey =const Color(0xff9B9FA4);
   static Color lgrey =const Color(0xffDEE2E6);
   static Color red =const Color(0xffCE3636);
+  static Color semigreen =const Color(0xffCDEFDF);
 
 
   static Color boneWhite =const Color(0xffF2F0EB);

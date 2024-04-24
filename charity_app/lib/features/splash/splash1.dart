@@ -6,8 +6,14 @@ import 'package:charity_app/features/splash/splash2.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-class Splash1 extends StatelessWidget {
+class Splash1 extends StatefulWidget {
   const Splash1({super.key});
+
+  @override
+  State<Splash1> createState() => _Splash1State();
+}
+
+class _Splash1State extends State<Splash1> {
 
   @override
   Widget build(BuildContext context) {

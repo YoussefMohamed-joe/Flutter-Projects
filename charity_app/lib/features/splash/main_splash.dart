@@ -1,11 +1,9 @@
 import 'package:charity_app/core/constants/assets_images.dart';
 import 'package:charity_app/core/functions/navigator.dart';
 import 'package:charity_app/core/utils/colors.dart';
-import 'package:charity_app/core/utils/text_styles.dart';
 import 'package:charity_app/features/splash/splach0.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:gap/gap.dart';
+
 
 
 class MainSplash extends StatefulWidget {
