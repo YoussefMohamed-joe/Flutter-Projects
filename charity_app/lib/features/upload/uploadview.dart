@@ -1,5 +1,8 @@
+import 'package:charity_app/core/constants/assets_images.dart';
+import 'package:charity_app/core/functions/navigator.dart';
 import 'package:charity_app/core/utils/colors.dart';
 import 'package:charity_app/core/utils/text_styles.dart';
+import 'package:charity_app/features/upload/SignupView.dart';
 import 'package:charity_app/features/widgets/custom_button.dart';
 import 'package:charity_app/features/widgets/custon_textfield.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +25,7 @@ class _UploadViewState extends State<UploadView> {
       body: Center(
           child: Column(
         children: [
-          const Gap(50),
+          const Gap(40),
           Text('إحسان', style: getehsan()),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -38,7 +41,7 @@ class _UploadViewState extends State<UploadView> {
               ),
             ],
           ),
-          const Gap(30),
+          const Gap(25),
           Expanded(
             child: Container(
               width: double.infinity,
@@ -50,7 +53,7 @@ class _UploadViewState extends State<UploadView> {
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      const Gap(5),
+                      
                       Text(
                         'Welcome Back!',
                         style: getheadline(fontSize: 36),
@@ -127,6 +130,85 @@ class _UploadViewState extends State<UploadView> {
                             height: 1.5,
                             color: AppColors.dgrey,
                           ),
+                        ],
+                      ),
+                      const Gap(10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          InkWell(
+                            onTap: () {
+                              
+                            },
+                            child: Container(
+                              width: 60,
+                              height: 60,
+                              decoration: BoxDecoration(
+                                color: AppColors.white,
+                                borderRadius: BorderRadius.circular(10)
+                              ),
+                              child: Image.asset(AssetsImage.google),
+                            ),
+                          ),
+                          const Gap(20),
+                          InkWell(
+                            onTap: () {
+                              
+                            },
+                            child: Container(
+                              width: 60,
+                              height: 60,
+                              decoration: BoxDecoration(
+                                color: const Color(0xff4460A0),
+                                borderRadius: BorderRadius.circular(10)
+                              ),
+                              child: Image.asset(AssetsImage.facebook),
+                            ),
+                          ),
+                      ],),
+                      const Gap(15),
+                      Row(
+                        children: [
+                          const Gap(90),
+                          Text('New User?',style: getbody(color: AppColors.dgrey),),
+                          const Gap(10),
+                          Column(
+                            children: [
+                              InkWell(
+                            onTap: () {
+                              navigateTowithReplacment(context, const SignupView());
+                            },
+                            child: Text('Create Account',style: getbody(color: AppColors.green),)), 
+                              Container(
+                                width: 100,
+                                height: 1,
+                                color: AppColors.green,
+                              )   
+                            ],
+                          )                                              
+                        ],
+                      ),
+                      const Gap(10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          
+                          Text('Open as a',style: getbody(color: AppColors.dgrey),),
+                          const Gap(10),
+                          Column(
+                            children: [
+                              InkWell(
+                            onTap: () {
+                              navigateTowithReplacment(context, const SignupView());
+                            },
+                            child: Text('Guest',style: getbody(color: AppColors.green),)), 
+                              Container(
+                                width: 40,
+                                height: 1,
+                                color: AppColors.green,
+                              )   
+                            ],
+                          )                                        
                         ],
                       )
                     ],

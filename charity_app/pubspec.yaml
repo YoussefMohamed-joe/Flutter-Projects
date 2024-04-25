@@ -24,6 +24,8 @@ flutter:
     - assets/image 3.png
     - assets/image 4.png
     - assets/image 5.png
+    - assets/google.png
+    - assets/facebook.png
   fonts:
     - family: arslan
       fonts:

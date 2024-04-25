@@ -6,15 +6,17 @@ class CustomTextField extends StatelessWidget {
   final String label;
   final IconData prefix;
   final IconData? suffix;
+  final Function(String)? onPressed;
   final Function()? suffixOnPress;
    final bool? obsecure ;
     const CustomTextField({
-    super.key, required this.label, required this.prefix, this.suffix, this.suffixOnPress,  this.obsecure,
+    super.key, required this.label, required this.prefix, this.suffix, this.suffixOnPress,  this.obsecure, this.onPressed,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      onChanged: onPressed ?? (value){},
       obscureText: obsecure ?? false,
       decoration: InputDecoration(
         fillColor: Colors.white,
