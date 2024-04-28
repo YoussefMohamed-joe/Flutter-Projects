@@ -4,7 +4,8 @@ import 'package:insights_news/core/functions/routing.dart';
 import 'package:insights_news/core/services/local_storage.dart';
 import 'package:insights_news/core/utils/colors.dart';
 import 'package:insights_news/core/utils/text_styles.dart';
-import 'package:insights_news/features/home/home_view.dart';
+import 'package:insights_news/core/widgets/nav_bar_view.dart';
+
 import 'package:insights_news/features/upload/upload_view.dart';
 
 class SplashView extends StatefulWidget {
@@ -20,7 +21,7 @@ class _SplashViewState extends State<SplashView> {
   void initState() {
     
     Future.delayed(const Duration(seconds: 3,microseconds: 40),(){  
-      navigateToWithReplacment(context,registerd ? const HomeView(): const UploadView());
+      navigateToWithReplacment(context,registerd ? const NavBar(): const UploadView());
     });
     super.initState();
   }
