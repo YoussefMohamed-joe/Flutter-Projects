@@ -2,6 +2,7 @@ import 'package:charity_app/core/constants/assets_images.dart';
 import 'package:charity_app/core/functions/navigator.dart';
 import 'package:charity_app/core/utils/colors.dart';
 import 'package:charity_app/core/utils/text_styles.dart';
+import 'package:charity_app/core/widgets/nav_bar_view.dart';
 import 'package:charity_app/features/upload/uploadview.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -44,7 +45,7 @@ class _Splash2State extends State<Splash2> {
                     SizedBox(                      
                       height: 50,
                       child: ElevatedButton(onPressed: (){
-                        navigateTowithReplacment(context, const UploadView());
+                        navigateTowithReplacment(context, const NavBar());
                       },                      
                         style: ElevatedButton.styleFrom(
                           backgroundColor: AppColors.green,
