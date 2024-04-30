@@ -19,28 +19,30 @@ class _SplashViewState extends State<SplashView> {
   bool registerd = AppLocalStorage.getData('Reg') ?? false;
   @override
   void initState() {
-    
-    Future.delayed(const Duration(seconds: 3,microseconds: 40),(){  
-      navigateToWithReplacment(context,registerd ? const NavBar(): const UploadView());
+    Future.delayed(const Duration(seconds: 3, microseconds: 40), () {
+      navigateToWithReplacment(
+          context, registerd ? const NavBar() : const UploadView());
     });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-
-          children:[
-            Image.asset('assets/logo.png'),
-            const Gap(20),
-            Text('Insights News',style: getTitleStyle(fontSize: 24),),
-            const Gap(20),
-            Text('Stay Informed, Anytime, Anywhere.',style: getBodyStyle(color: Appcolors.grey),)
-            ]
-        ),
+        child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+          Image.asset('assets/logo.png'),
+          const Gap(20),
+          Text(
+            'Insights News',
+            style: getTitleStyle(fontSize: 24),
+          ),
+          const Gap(20),
+          Text(
+            'Stay Informed, Anytime, Anywhere.',
+            style: getBodyStyle(color: Appcolors.grey),
+          )
+        ]),
       ),
     );
   }

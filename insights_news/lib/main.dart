@@ -3,9 +3,9 @@ import 'package:insights_news/core/services/local_storage.dart';
 import 'package:insights_news/core/utils/colors.dart';
 import 'package:insights_news/features/splash_view.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await AppLocalStorage().init() ;
+  await AppLocalStorage().init();
   runApp(const MainApp());
 }
 
@@ -14,10 +14,8 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-      theme: ThemeData(
-        scaffoldBackgroundColor: Appcolors.blackbg
-      ),
+    return MaterialApp(
+      theme: ThemeData(scaffoldBackgroundColor: Appcolors.blackbg),
       debugShowCheckedModeBanner: false,
       home: const SplashView(),
     );
