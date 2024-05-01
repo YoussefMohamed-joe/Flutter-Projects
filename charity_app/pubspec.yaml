@@ -28,6 +28,7 @@ flutter:
 
   assets:
     - assets/image 3.png
+    - assets/pp.png
     - assets/image 4.png
     - assets/image 5.png
     - assets/google.png
@@ -38,6 +39,13 @@ flutter:
     - assets/cart.svg
     - assets/location.svg
     - assets/Bell.svg
+    - assets/logout.svg
+    - assets/support.svg
+    - assets/setting.svg
+    - assets/wallet.svg
+    - assets/list.svg
+    - assets/password.svg
+    - assets/lang.svg
   fonts:
     - family: arslan
       fonts:

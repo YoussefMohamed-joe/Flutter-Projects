@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 TextStyle getheadline(
-  {Color? color, double? fontSize, FontWeight? fontWeight}
+  {Color? color, double? fontSize, FontWeight? fontWeight,bool? decoration}
 ){
 return TextStyle(
+  decoration: decoration?? false ? TextDecoration.underline : TextDecoration.none,
   fontFamily: GoogleFonts.sourceSans3().fontFamily,
   color: color ?? AppColors.black,
   fontSize: fontSize?? 24,
@@ -15,9 +16,10 @@ return TextStyle(
 }
 
 TextStyle getsubheadline(
-  {Color? color, double? fontSize, FontWeight? fontWeight}
+  {Color? color, double? fontSize, FontWeight? fontWeight,bool? decoration}
 ){
 return TextStyle(
+  decoration: decoration?? false ? TextDecoration.underline : TextDecoration.none,
   fontFamily: GoogleFonts.sourceSans3().fontFamily,
   color: color ?? AppColors.black,
   fontSize: fontSize?? 20,
@@ -27,9 +29,10 @@ return TextStyle(
 }
 
 TextStyle getbody(
-  {Color? color, double? fontSize, FontWeight? fontWeight}
+  {Color? color, double? fontSize, FontWeight? fontWeight,bool? decoration}
 ){
 return TextStyle(
+  decoration: decoration?? false ? TextDecoration.underline : TextDecoration.none,
   fontFamily: GoogleFonts.sourceSans3().fontFamily,
   color: color ?? AppColors.black,
   fontSize: fontSize?? 16,
@@ -39,9 +42,10 @@ return TextStyle(
 }
 
 TextStyle getbodysmall(
-  {Color? color, double? fontSize, FontWeight? fontWeight}
+  {Color? color, double? fontSize, FontWeight? fontWeight,bool? decoration}
 ){
 return TextStyle(
+  decoration: decoration?? false ? TextDecoration.underline : TextDecoration.none,
   fontFamily: GoogleFonts.sourceSans3().fontFamily,
   color: color ?? AppColors.black,
   fontSize: fontSize?? 12,

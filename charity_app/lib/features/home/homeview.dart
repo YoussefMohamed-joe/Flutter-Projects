@@ -19,7 +19,7 @@ String? search;
   'Cairo',
   'Helwan',
   'Giza',
-  'Alexandria',
+  'Alex',
 ];
 String? selectedValue;
   @override
@@ -93,71 +93,86 @@ String? selectedValue;
       const Spacer(),
       SvgPicture.asset('assets/Bell.svg',width: 25,height: 25,colorFilter:ColorFilter.mode(AppColors.green, BlendMode.srcIn)),
               ],),
-               DropdownButtonHideUnderline(
-        child: DropdownButton2<String>(
-          isExpanded: true,
-          hint:  Row(
-            children: [
-              Icon(
-                Icons.menu,
-                size: 22,
-                color: AppColors.dgrey,
-              ),
-              const Gap(15),
-              Expanded(
-                child: Text(
-                  'Search',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+               Row(
+                 children: [
+                   DropdownButtonHideUnderline(
+                           child: DropdownButton2<String>(
+                             isExpanded: true,
+                             hint:  Row(
+                               children: [
+                                 Icon(
+                    Icons.menu,
+                    size: 22,
                     color: AppColors.dgrey,
-                  ),
-                  overflow: TextOverflow.ellipsis,
-                ),
-              ),
-            ],
-          ),
-          items: searchItems
-              .map((String item) => DropdownMenuItem<String>(
-                    value: item,
+                                 ),
+                                 const Gap(15),
+                                 Expanded(
                     child: Text(
-                      item,
-                      style: const TextStyle(
-                        fontSize: 14,
+                      'Search',
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: AppColors.dgrey,
                       ),
+                      overflow: TextOverflow.ellipsis,
                     ),
-                  ))
-              .toList(),
-          value: selectedValue,
-          onChanged: (String? value) {
-            setState(() {
-              search = value;
-            });
-          },
-          iconStyleData:  IconStyleData(
-            icon: Icon(
-              Icons.search,
-            ),
-            iconSize: 25,
-            iconEnabledColor: AppColors.dgrey,
-          ),
-           dropdownStyleData: DropdownStyleData(
-            maxHeight: 200,
-            width: double.infinity,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(14),
-              color: AppColors.boneWhite,
-            ),),
-          buttonStyleData: const ButtonStyleData(
-            padding: EdgeInsets.symmetric(horizontal: 16),
-            height: 70,
-            width: 350,
-          ),
-          menuItemStyleData: const MenuItemStyleData(
-            height: 40,
-          ),
-        ),
-      ),
+                                 ),
+                               ],
+                             ),
+                             items: searchItems
+                                 .map((String item) => DropdownMenuItem<String>(
+                        value: item,
+                        child: Text(
+                          item,
+                          style: const TextStyle(
+                            fontSize: 14,
+                          ),
+                        ),
+                      ))
+                                 .toList(),
+                             value: search,
+                             onChanged: (String? value) {
+                               setState(() {
+                                 search = value;
+                               });
+                             },
+                             iconStyleData:  IconStyleData(
+                               icon: const Icon(
+                                 Icons.search,
+                               ),
+                               iconSize: 25,
+                               iconEnabledColor: AppColors.dgrey,
+                             ),
+                              dropdownStyleData: DropdownStyleData(
+                               maxHeight: 200,
+                               width: double.infinity,
+                               decoration: BoxDecoration(
+                                 borderRadius: BorderRadius.circular(14),
+                                 color: AppColors.boneWhite,
+                               ),),
+                             buttonStyleData: const ButtonStyleData(
+                               padding: EdgeInsets.symmetric(horizontal: 16),
+                               height: 70,
+                               width: 335,
+                             ),
+                             menuItemStyleData: const MenuItemStyleData(
+                               height: 40,
+                             ),
+                           ),
+                         ),
+                         const Spacer(),
+                         const CircleAvatar(
+                           radius: 15,
+                           backgroundImage: AssetImage('assets/pp.png'),
+                         )
+                 ],
+               ),
+               const Gap(10),
+               Row(children: [
+                Text('Nearby charities',style: getheadline(fontSize: 20),),
+                const Spacer(),
+                Text('See all',style: getsubheadline(fontSize: 14),),
+               ],)
             ],
           ),
         )
