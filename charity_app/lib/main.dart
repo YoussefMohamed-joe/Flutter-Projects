@@ -1,5 +1,5 @@
 import 'package:charity_app/features/splash/main_splash.dart';
-import 'package:charity_app/features/splash/splach0.dart';
+
 import 'package:flutter/material.dart';
 
 void main() {

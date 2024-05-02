@@ -2,7 +2,7 @@ import 'package:charity_app/core/constants/assets_images.dart';
 import 'package:charity_app/core/functions/navigator.dart';
 import 'package:charity_app/core/utils/colors.dart';
 import 'package:charity_app/core/utils/text_styles.dart';
-import 'package:charity_app/features/upload/SignupView.dart';
+import 'package:charity_app/features/upload/signupView.dart';
 import 'package:charity_app/features/widgets/custom_button.dart';
 import 'package:charity_app/features/widgets/custon_textfield.dart';
 import 'package:flutter/material.dart';
