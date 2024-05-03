@@ -2,6 +2,7 @@ import 'package:charity_app/core/constants/assets_images.dart';
 import 'package:charity_app/core/functions/navigator.dart';
 import 'package:charity_app/core/services/local_storage.dart';
 import 'package:charity_app/core/utils/colors.dart';
+import 'package:charity_app/core/widgets/nav_bar_view.dart';
 import 'package:charity_app/features/home/homeview.dart';
 import 'package:charity_app/features/splash/splach0.dart';
 import 'package:charity_app/features/upload/uploadview.dart';
@@ -21,7 +22,12 @@ class _MainSplashState extends State<MainSplash> {
   void initState() {
     Future.delayed(const Duration(seconds: 1), () {
       navigateTowithReplacment(
-          context,isLogin? const HomeView(): splashDone ? const UploadView() : const Splash0());
+          context,
+          isLogin
+              ? const NavBar()
+              : splashDone
+                  ? const UploadView()
+                  : const Splash0());
     });
     super.initState();
   }

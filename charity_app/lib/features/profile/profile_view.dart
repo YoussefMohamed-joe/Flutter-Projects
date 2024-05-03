@@ -1,8 +1,11 @@
 import 'package:charity_app/core/functions/navigator.dart';
+import 'package:charity_app/core/services/local_storage.dart';
 import 'package:charity_app/core/utils/colors.dart';
 import 'package:charity_app/core/utils/text_styles.dart';
 import 'package:charity_app/features/profile/Help%20and%20support/help_support.dart';
 import 'package:charity_app/features/profile/settings/settings.dart';
+import 'package:charity_app/features/upload/uploadview.dart';
+import 'package:charity_app/features/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
@@ -30,8 +33,10 @@ class _ProfileViewState extends State<ProfileView> {
                     width: 100,
                     height: 100,
                     decoration: BoxDecoration(
+                        color: AppColors.boneWhite,
                         borderRadius: BorderRadius.circular(10),
                         image: const DecorationImage(
+                            
                             image: AssetImage('assets/pp.png'),
                             fit: BoxFit.fill)),
                   ),
@@ -39,7 +44,8 @@ class _ProfileViewState extends State<ProfileView> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Gharam Mohamed', style: getheadline()),
+                      Text(AppLocalStorage.getData('name'),
+                          style: getheadline()),
                       Text('View and edit profile',
                           style: getsubheadline(
                             fontSize: 14,
@@ -164,7 +170,36 @@ class _ProfileViewState extends State<ProfileView> {
               ),
               const Gap(10),
               InkWell(
-                onTap: () {},
+                onTap: () {
+                  showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                            backgroundColor: AppColors.boneWhite,
+                            title: Text(
+                                      'Are you sure you want to log out?',style: getbody(fontSize: 18),),
+                            content: Row(children: [
+                                    Expanded(
+                                      child: CustomButton(
+                                          onpressed: () {
+                                            AppLocalStorage.removeData('token');
+                                            AppLocalStorage.removeData('name');
+                                            AppLocalStorage.removeData('login');
+                                            navigateTowithReplacment(context, const UploadView());
+                                          },
+                                          text: 'Yes',
+                                    ),),
+                                    const Gap(10),
+                                    Expanded(
+                                      child: CustomButton(
+                                          onpressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          text: 'Cancel'),
+                                    ),
+                                  ]));
+                      });
+                },
                 child: SizedBox(
                   width: double.infinity,
                   height: 50,

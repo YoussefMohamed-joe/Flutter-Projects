@@ -23,4 +23,8 @@ class AppLocalStorage {
   static getData(String key) {
     return prefs.get(key);
   }
+
+  static removeData(String key) {
+    prefs.remove(key);
+  }
 }

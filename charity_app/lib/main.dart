@@ -16,10 +16,13 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => RegisterModelCubit(),
-      child: const MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: MainSplash(),
+      create: (context) => LogCubit(),
+      child: BlocProvider(
+        create: (context) => RegisterModelCubit(),
+        child: const MaterialApp(
+          debugShowCheckedModeBanner: false,
+          home: MainSplash(),
+        ),
       ),
     );
   }
