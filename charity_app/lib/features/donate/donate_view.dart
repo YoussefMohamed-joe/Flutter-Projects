@@ -15,7 +15,7 @@ class _DonateViewState extends State<DonateView> {
     return Scaffold(
       backgroundColor: AppColors.green,
       body: Center(
-        child: Text('إحسان',style: getehsan()),
+        child: Text('إحسان', style: getehsan()),
       ),
     );
   }

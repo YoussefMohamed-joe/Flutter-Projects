@@ -16,8 +16,10 @@ class UploadView extends StatefulWidget {
 }
 
 class _UploadViewState extends State<UploadView> {
-  bool passvis=true;
-  bool isChecked=true;
+  bool passvis = true;
+  bool isChecked = true;
+  String email = '';
+  String password = '';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,13 +49,14 @@ class _UploadViewState extends State<UploadView> {
               width: double.infinity,
               decoration: BoxDecoration(
                   color: AppColors.boneWhite,
-                  borderRadius: const BorderRadius.only(topLeft: Radius.circular(35),topRight: Radius.circular(35))),
+                  borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(35),
+                      topRight: Radius.circular(35))),
               child: Padding(
                 padding: const EdgeInsets.all(12),
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
-                      
                       Text(
                         'Welcome Back!',
                         style: getheadline(fontSize: 36),
@@ -78,7 +81,8 @@ class _UploadViewState extends State<UploadView> {
                         label: 'Password',
                         obsecure: passvis,
                         prefix: Icons.lock,
-                        suffix: passvis ? Icons.visibility_off : Icons.visibility,
+                        suffix:
+                            passvis ? Icons.visibility_off : Icons.visibility,
                         suffixOnPress: () {
                           setState(() {
                             passvis = !passvis;
@@ -100,19 +104,38 @@ class _UploadViewState extends State<UploadView> {
                               decoration: BoxDecoration(
                                 border: Border.all(color: AppColors.black),
                               ),
-                              child: isChecked?SizedBox():Icon(Icons.done,color: AppColors.black,size: 18,),
+                              child: isChecked
+                                  ? SizedBox()
+                                  : Icon(
+                                      Icons.done,
+                                      color: AppColors.black,
+                                      size: 18,
+                                    ),
                             ),
                           ),
                           const Gap(10),
-                          Text('Remember me',style: getbody(color: AppColors.dgrey),),
+                          Text(
+                            'Remember me',
+                            style: getbody(color: AppColors.dgrey),
+                          ),
                           const Spacer(),
-                          InkWell(onTap: (){},child: Text('Forgot Password?',style: getbody(color: AppColors.dgrey),)),
+                          InkWell(
+                              onTap: () {},
+                              child: Text(
+                                'Forgot Password?',
+                                style: getbody(color: AppColors.dgrey),
+                              )),
                         ],
                       ),
                       const Gap(10),
-                      CustomButton(text: 'LOG IN',onpressed: (){
-                        //////////////
-                      },height: 47,width: double.infinity, ),
+                      CustomButton(
+                        text: 'LOG IN',
+                        onpressed: () {
+                          //////////////
+                        },
+                        height: 47,
+                        width: double.infinity,
+                      ),
                       const Gap(10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -123,7 +146,10 @@ class _UploadViewState extends State<UploadView> {
                             color: AppColors.dgrey,
                           ),
                           const Gap(10),
-                          Text('Or Continue With',style: getbody(color: AppColors.dgrey),),
+                          Text(
+                            'Or Continue With',
+                            style: getbody(color: AppColors.dgrey),
+                          ),
                           const Gap(10),
                           Container(
                             width: 30,
@@ -137,78 +163,86 @@ class _UploadViewState extends State<UploadView> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           InkWell(
-                            onTap: () {
-                              
-                            },
+                            onTap: () {},
                             child: Container(
                               width: 60,
                               height: 60,
                               decoration: BoxDecoration(
-                                color: AppColors.white,
-                                borderRadius: BorderRadius.circular(10)
-                              ),
+                                  color: AppColors.white,
+                                  borderRadius: BorderRadius.circular(10)),
                               child: Image.asset(AssetsImage.google),
                             ),
                           ),
                           const Gap(20),
                           InkWell(
-                            onTap: () {
-                              
-                            },
+                            onTap: () {},
                             child: Container(
                               width: 60,
                               height: 60,
                               decoration: BoxDecoration(
-                                color: const Color(0xff4460A0),
-                                borderRadius: BorderRadius.circular(10)
-                              ),
+                                  color: const Color(0xff4460A0),
+                                  borderRadius: BorderRadius.circular(10)),
                               child: Image.asset(AssetsImage.facebook),
                             ),
                           ),
-                      ],),
+                        ],
+                      ),
                       const Gap(15),
                       Row(
                         children: [
                           const Gap(90),
-                          Text('New User?',style: getbody(color: AppColors.dgrey),),
+                          Text(
+                            'New User?',
+                            style: getbody(color: AppColors.dgrey),
+                          ),
                           const Gap(10),
                           Column(
                             children: [
                               InkWell(
-                            onTap: () {
-                              navigateTowithReplacment(context, const SignupView());
-                            },
-                            child: Text('Create Account',style: getbody(color: AppColors.green),)), 
+                                  onTap: () {
+                                    navigateTowithReplacment(
+                                        context, const SignupView());
+                                  },
+                                  child: Text(
+                                    'Create Account',
+                                    style: getbody(color: AppColors.green),
+                                  )),
                               Container(
                                 width: 100,
                                 height: 1,
                                 color: AppColors.green,
-                              )   
+                              )
                             ],
-                          )                                              
+                          )
                         ],
                       ),
                       const Gap(10),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          
-                          Text('Open as a',style: getbody(color: AppColors.dgrey),),
+                          Text(
+                            'Open as a',
+                            style: getbody(color: AppColors.dgrey),
+                          ),
                           const Gap(10),
                           Column(
                             children: [
                               InkWell(
-                            onTap: () {
-                              navigateTowithReplacment(context, const SignupView());
-                            },
-                            child: Text('Guest',style: getbody(color: AppColors.green),)), 
+                                  onTap: () {
+                                    navigateTowithReplacment(
+                                        context, const SignupView());
+                                  },
+                                  child: Text(
+                                    'Guest',
+                                    style: getbody(color: AppColors.green),
+                                  )),
                               Container(
                                 width: 40,
                                 height: 1,
                                 color: AppColors.green,
-                              )   
+                              )
                             ],
-                          )                                        
+                          )
                         ],
                       )
                     ],

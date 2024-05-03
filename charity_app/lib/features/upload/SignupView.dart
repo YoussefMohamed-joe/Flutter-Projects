@@ -2,10 +2,14 @@ import 'package:charity_app/core/constants/assets_images.dart';
 import 'package:charity_app/core/functions/navigator.dart';
 import 'package:charity_app/core/utils/colors.dart';
 import 'package:charity_app/core/utils/text_styles.dart';
+import 'package:charity_app/features/home/homeview.dart';
+import 'package:charity_app/features/manager/User/user_cubit.dart';
+import 'package:charity_app/features/manager/User/user_state.dart';
 import 'package:charity_app/features/upload/uploadview.dart';
 import 'package:charity_app/features/widgets/custom_button.dart';
 import 'package:charity_app/features/widgets/custon_textfield.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
 class SignupView extends StatefulWidget {
@@ -16,17 +20,39 @@ class SignupView extends StatefulWidget {
 }
 
 class _SignupViewState extends State<SignupView> {
+  String email='';
+  String password='';
+  String name='';
+  String phoneNumber='';
+  String confirmPassword='';
   bool passvis = true;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return BlocConsumer<RegisterModelCubit,RegStates>(listener: (context, state) {
+        if (state is RegSuccessState) {
+          navigateToPop(context);
+          navigateTowithReplacment(context, const HomeView());
+        }else if (state is RegErrorState) {
+          showDialog(context: context, builder: (context) {
+            return AlertDialog(
+              content: Text(state.error),
+            );
+          });
+        }else if (state is RegLoadingState) {
+          showDialog(context: context, builder: (context) {
+            return  Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(AppColors.green),));
+          });
+        }
+    }, 
+    builder: (context, state) {
+      return Scaffold(
       backgroundColor: AppColors.boneWhite,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(12),
           child: SingleChildScrollView(
             child: Column(children: [
-              const Gap(40),
+              const Gap(20),
               Text('Getting started!',
                   style: getheadline(color: AppColors.green, fontSize: 36)),
               Text(
@@ -38,38 +64,59 @@ class _SignupViewState extends State<SignupView> {
                 'Create an account for great donation experience',
                 style: getheadline(fontSize: 16, color: AppColors.dgrey),
               ),
-              const Gap(20),
-              const CustomTextField(
+              const Gap(10),
+               CustomTextField(
                 label: 'UserName',
                 prefix: Icons.person,
+                onChanged: (value) {
+                  name = value;
+                },
               ),
-              const Gap(20),
-              const CustomTextField(
+              const Gap(10),
+               CustomTextField(
                 label: 'Phone Number',
                 prefix: Icons.phone,
+                onChanged: (value) {
+                  phoneNumber = value;
+                },
               ),
-              const Gap(20),
-              const CustomTextField(
+              const Gap(10),
+               CustomTextField(
                 label: 'Email',
                 prefix: Icons.email,
+                onChanged: (value) {
+                  email = value;
+                },
               ),
-              const Gap(20),
+               const Gap(10),
               CustomTextField(
                 label: 'Password',
                 obsecure: passvis,
                 prefix: Icons.lock,
                 suffix: passvis ? Icons.visibility_off : Icons.visibility,
+                onChanged: (value) {
+                  password = value;
+                },
                 suffixOnPress: () {
                   setState(() {
                     passvis = !passvis;
                   });
                 },
               ),
+              const Gap(10),
+              CustomTextField(
+                label: 'Confirm Password',
+                obsecure: passvis,
+                prefix: Icons.lock,
+                onChanged: (value) {
+                  confirmPassword = value;
+                },
+              ),
               const Gap(30),
               CustomButton(
                 text: 'SIGN UP',
                 onpressed: () {
-                  //////////////
+                  context.read<RegisterModelCubit>().postMovies(email, password, name, phoneNumber, confirmPassword);
                 },
                 height: 47,
                 width: double.infinity,
@@ -138,17 +185,14 @@ class _SignupViewState extends State<SignupView> {
                     children: [
                       InkWell(
                           onTap: () {
-                            navigateTowithReplacment(context, const UploadView());
+                            navigateTowithReplacment(
+                                context, const UploadView());
                           },
                           child: Text(
                             'LOGIN',
-                            style: getbody(color: AppColors.green),
+                            style: getbody(color: AppColors.green,decoration: true),
                           )),
-                      Container(
-                        width: 47,
-                        height: 1,
-                        color: AppColors.green,
-                      )
+                      
                     ],
                   )
                 ],
@@ -158,5 +202,6 @@ class _SignupViewState extends State<SignupView> {
         ),
       ),
     );
+    });
   }
 }

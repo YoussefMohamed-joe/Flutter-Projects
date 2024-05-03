@@ -25,7 +25,6 @@ class _NavBarState extends State<NavBar> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: views[currenindex],
-      
       bottomNavigationBar: Container(
         color: AppColors.boneWhite,
         child: ClipRRect(
@@ -34,7 +33,6 @@ class _NavBarState extends State<NavBar> {
             topLeft: Radius.circular(24),
           ),
           child: BottomNavigationBar(
-            
               currentIndex: currenindex,
               onTap: (value) {
                 setState(() {
@@ -50,28 +48,32 @@ class _NavBarState extends State<NavBar> {
                     activeIcon: SvgPicture.asset('assets/home.svg',
                         colorFilter:
                             ColorFilter.mode(AppColors.black, BlendMode.srcIn)),
-                    icon: SvgPicture.asset('assets/home.svg',colorFilter:
+                    icon: SvgPicture.asset('assets/home.svg',
+                        colorFilter:
                             ColorFilter.mode(AppColors.white, BlendMode.srcIn)),
                     label: 'Home'),
-                     BottomNavigationBarItem(
+                BottomNavigationBarItem(
                     activeIcon: SvgPicture.asset('assets/Profile.svg',
                         colorFilter:
                             ColorFilter.mode(AppColors.black, BlendMode.srcIn)),
-                    icon: SvgPicture.asset('assets/donate.svg',colorFilter:
+                    icon: SvgPicture.asset('assets/donate.svg',
+                        colorFilter:
                             ColorFilter.mode(AppColors.white, BlendMode.srcIn)),
                     label: 'Donate'),
                 BottomNavigationBarItem(
                     activeIcon: SvgPicture.asset('assets/search.svg',
                         colorFilter:
                             ColorFilter.mode(AppColors.black, BlendMode.srcIn)),
-                    icon: SvgPicture.asset('assets/cart.svg',colorFilter:
+                    icon: SvgPicture.asset('assets/cart.svg',
+                        colorFilter:
                             ColorFilter.mode(AppColors.white, BlendMode.srcIn)),
                     label: 'Cart'),
                 BottomNavigationBarItem(
                     activeIcon: SvgPicture.asset('assets/Profile.svg',
                         colorFilter:
                             ColorFilter.mode(AppColors.black, BlendMode.srcIn)),
-                    icon: SvgPicture.asset('assets/profile.svg',colorFilter:
+                    icon: SvgPicture.asset('assets/profile.svg',
+                        colorFilter:
                             ColorFilter.mode(AppColors.white, BlendMode.srcIn)),
                     label: 'Profile'),
               ]),

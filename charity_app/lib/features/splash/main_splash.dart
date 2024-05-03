@@ -1,10 +1,11 @@
 import 'package:charity_app/core/constants/assets_images.dart';
 import 'package:charity_app/core/functions/navigator.dart';
+import 'package:charity_app/core/services/local_storage.dart';
 import 'package:charity_app/core/utils/colors.dart';
+import 'package:charity_app/features/home/homeview.dart';
 import 'package:charity_app/features/splash/splach0.dart';
+import 'package:charity_app/features/upload/uploadview.dart';
 import 'package:flutter/material.dart';
-
-
 
 class MainSplash extends StatefulWidget {
   const MainSplash({super.key});
@@ -14,22 +15,22 @@ class MainSplash extends StatefulWidget {
 }
 
 class _MainSplashState extends State<MainSplash> {
+  bool splashDone = AppLocalStorage.getData('splashDone') ?? false;
+  bool isLogin = AppLocalStorage.getData('login') ?? false;
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 5),(){
-      navigateTowithReplacment(context, const Splash0());
+    Future.delayed(const Duration(seconds: 1), () {
+      navigateTowithReplacment(
+          context,isLogin? const HomeView(): splashDone ? const UploadView() : const Splash0());
     });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
+    return Scaffold(
       backgroundColor: AppColors.boneWhite,
-      body: const Column(
-          children: [
-            
-        ]
-      ),
+      body: const Column(children: []),
     );
   }
 }

@@ -15,7 +15,7 @@ class _CartViewState extends State<CartView> {
     return Scaffold(
       backgroundColor: AppColors.green,
       body: Center(
-        child: Text('إحسان',style: getehsan()),
+        child: Text('إحسان', style: getehsan()),
       ),
     );
   }
