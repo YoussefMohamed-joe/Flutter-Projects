@@ -4,4 +4,8 @@ class AssetsImage {
   static String image5 = 'assets/image 5.png';
   static String google = 'assets/google.png';
   static String facebook = 'assets/facebook.png';
+  static String food = 'assets/Food.png';
+  static String clothes = 'assets/Clothes.png';
+  static String money = 'assets/Money.png';
+  static String toys = 'assets/Toys.png';
 }

@@ -36,7 +36,7 @@ class LogCubit extends Cubit<LogStates> {
     emit(LogLoadingState());
 
     try {
-      ApiServices.postLogin(email,password).then((value) {
+      ApiServices.postLogin(email, password).then((value) {
         newModel = value!;
         emit(LogSuccessState());
         AppLocalStorage.cashData('name', newModel.data!.user!.name);

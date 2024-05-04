@@ -4,7 +4,6 @@ import 'package:charity_app/core/utils/colors.dart';
 import 'package:charity_app/core/utils/text_styles.dart';
 import 'package:charity_app/features/splash/splash1.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 
 class Splash0 extends StatefulWidget {

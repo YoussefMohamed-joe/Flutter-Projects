@@ -36,7 +36,6 @@ class _ProfileViewState extends State<ProfileView> {
                         color: AppColors.boneWhite,
                         borderRadius: BorderRadius.circular(10),
                         image: const DecorationImage(
-                            
                             image: AssetImage('assets/pp.png'),
                             fit: BoxFit.fill)),
                   ),
@@ -177,27 +176,32 @@ class _ProfileViewState extends State<ProfileView> {
                         return AlertDialog(
                             backgroundColor: AppColors.boneWhite,
                             title: Text(
-                                      'Are you sure you want to log out?',style: getbody(fontSize: 18),),
+                              'Are you sure you want to log out?',
+                              style: getbody(fontSize: 18),
+                            ),
                             content: Row(children: [
-                                    Expanded(
-                                      child: CustomButton(
-                                          onpressed: () {
-                                            AppLocalStorage.removeData('token');
-                                            AppLocalStorage.removeData('name');
-                                            AppLocalStorage.removeData('login');
-                                            navigateTowithReplacment(context, const UploadView());
-                                          },
-                                          text: 'Yes',
-                                    ),),
-                                    const Gap(10),
-                                    Expanded(
-                                      child: CustomButton(
-                                          onpressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          text: 'Cancel'),
-                                    ),
-                                  ]));
+                              Expanded(
+                                child: CustomButton(
+                                  onpressed: () {
+                                    AppLocalStorage.removeData('token');
+                                    AppLocalStorage.removeData('name');
+                                    AppLocalStorage.removeData('login');
+                                    navigateToPop(context);
+                                    navigateTowithReplacment(
+                                        context, const UploadView());
+                                  },
+                                  text: 'Yes',
+                                ),
+                              ),
+                              const Gap(10),
+                              Expanded(
+                                child: CustomButton(
+                                    onpressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    text: 'Cancel'),
+                              ),
+                            ]));
                       });
                 },
                 child: SizedBox(

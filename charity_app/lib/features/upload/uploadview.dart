@@ -101,7 +101,7 @@ class _UploadViewState extends State<UploadView> {
                           ],
                         ),
                         const Gap(10),
-                         CustomTextField(
+                        CustomTextField(
                           onChanged: (p0) {
                             email = p0;
                           },
@@ -238,7 +238,8 @@ class _UploadViewState extends State<UploadView> {
                                 },
                                 child: Text(
                                   'Create Account',
-                                  style: getbody(color: AppColors.green,decoration: true),
+                                  style: getbody(
+                                      color: AppColors.green, decoration: true),
                                 ))
                           ],
                         ),
@@ -258,7 +259,8 @@ class _UploadViewState extends State<UploadView> {
                                 },
                                 child: Text(
                                   'Guest',
-                                  style: getbody(color: AppColors.green,decoration: true),
+                                  style: getbody(
+                                      color: AppColors.green, decoration: true),
                                 ))
                           ],
                         )

@@ -31,6 +31,10 @@ flutter:
   assets:
     - assets/image 3.png
     - assets/pp.png
+    - assets/Food.png
+    - assets/Clothes.png
+    - assets/Money.png
+    - assets/Toys.png
     - assets/image 4.png
     - assets/image 5.png
     - assets/google.png

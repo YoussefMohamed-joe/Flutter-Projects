@@ -2,8 +2,10 @@ import 'package:charity_app/core/utils/colors.dart';
 import 'package:charity_app/features/cart/cart_view.dart';
 import 'package:charity_app/features/donate/donate_view.dart';
 import 'package:charity_app/features/home/homeview.dart';
+import 'package:charity_app/features/manager/Organisations/org_cubit.dart';
 import 'package:charity_app/features/profile/profile_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class NavBar extends StatefulWidget {
@@ -14,6 +16,15 @@ class NavBar extends StatefulWidget {
 }
 
 class _NavBarState extends State<NavBar> {
+
+  
+  @override
+  void initState() {
+    context.read<OrgCubit>().getOrg();
+    super.initState();
+  }
+
+
   int currenindex = 0;
   List<Widget> views = [
     const HomeView(),
@@ -21,6 +32,7 @@ class _NavBarState extends State<NavBar> {
     const CartView(),
     const ProfileView()
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
