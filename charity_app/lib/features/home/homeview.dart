@@ -166,6 +166,12 @@ class _HomeViewState extends State<HomeView> {
                               .toList(),
                           value: search,
                           onChanged: (String? value) {
+                            for(int i =0; i<OrgCubit.newModel.results!;i++){
+                              if(OrgCubit.newModel.data!.organizations![i].name == value){
+                                AppLocalStorage.cashData('OrgIndex', i);
+                                navigateTo(context, const OrgView());
+                              }
+                            }
                             setState(() {
                               search = value;
                             });

@@ -25,6 +25,8 @@ class _UploadViewState extends State<UploadView> {
   bool isChecked = true;
   String email = '';
   String password = '';
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return BlocConsumer<LogCubit, LogStates>(listener: (context, state) {
@@ -101,7 +103,8 @@ class _UploadViewState extends State<UploadView> {
                           ],
                         ),
                         const Gap(10),
-                        CustomTextField(
+                        CustomTextField(       
+                          controller: emailController,            
                           onChanged: (p0) {
                             email = p0;
                           },
@@ -110,6 +113,7 @@ class _UploadViewState extends State<UploadView> {
                         ),
                         const Gap(10),
                         CustomTextField(
+                          controller: passwordController,
                           onChanged: (p0) {
                             password = p0;
                           },
@@ -166,6 +170,7 @@ class _UploadViewState extends State<UploadView> {
                         CustomButton(
                           text: 'LOG IN',
                           onpressed: () {
+                            
                             context.read<LogCubit>().postLogin(email, password);
                           },
                           height: 47,
