@@ -3,6 +3,7 @@ import 'package:charity_app/core/utils/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
+  final String? Function(String?)? validator;
   final TextEditingController? controller;
   final String label;
   final IconData prefix;
@@ -17,12 +18,13 @@ class CustomTextField extends StatelessWidget {
     this.suffix,
     this.suffixOnPress,
     this.obsecure,
-    this.onChanged,  this.controller,
+    this.onChanged,  this.controller, this.validator,
   });
 
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      validator: validator,
       controller: controller,
       onChanged: onChanged ?? (value) {},
       obscureText: obsecure ?? false,

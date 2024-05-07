@@ -12,7 +12,6 @@ class OrgCubit extends Cubit<OrgStates> {
 
     try {
       ApiServices.getOrg().then((value) {
-      print('helloaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa');
         newModel = value!;
         emit(OrgSuccessState());        
       });

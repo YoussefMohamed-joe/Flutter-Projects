@@ -56,6 +56,7 @@ class Organizations {
   List<Locations>? locations;
   List<DonationOption>? donationOption;
   int? iV;
+  List<String>? sliderImages;
   String? email;
 
   Organizations(
@@ -68,6 +69,7 @@ class Organizations {
       this.locations,
       this.donationOption,
       this.iV,
+      this.sliderImages,
       this.email});
 
   Organizations.fromJson(Map<String, dynamic> json) {
@@ -90,6 +92,7 @@ class Organizations {
       });
     }
     iV = json['__v'];
+    sliderImages = json['sliderImages'].cast<String>();
     email = json['email'];
   }
 
@@ -109,6 +112,7 @@ class Organizations {
           donationOption!.map((v) => v.toJson()).toList();
     }
     data['__v'] = iV;
+    data['sliderImages'] = sliderImages;
     data['email'] = email;
     return data;
   }

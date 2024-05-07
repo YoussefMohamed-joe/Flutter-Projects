@@ -47,6 +47,7 @@ class _SignupViewState extends State<SignupView> {
       } else if (state is RegLoadingState) {
         showDialog(
             context: context,
+            barrierDismissible: false,
             builder: (context) {
               return Center(
                   child: CircularProgressIndicator(
