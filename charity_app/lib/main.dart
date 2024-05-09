@@ -1,8 +1,8 @@
 import 'package:charity_app/core/services/local_storage.dart';
-import 'package:charity_app/features/manager/Organisations/org_cubit.dart';
-import 'package:charity_app/features/manager/User/user_cubit.dart';
-import 'package:charity_app/features/manager/price/price_cubit.dart';
-import 'package:charity_app/features/splash/main_splash.dart';
+import 'package:charity_app/features/presentaion/manager/Organisations/org_cubit.dart';
+import 'package:charity_app/features/presentaion/manager/User/user_cubit.dart';
+import 'package:charity_app/features/presentaion/manager/price/price_cubit.dart';
+import 'package:charity_app/features/presentaion/views/splash/main_splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -17,21 +17,23 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => PriceCubit(),
-      child: BlocProvider(
-        create: (context) => OrgCubit(),
-        child: BlocProvider(
-          create: (context) => LogCubit(),
-          child: BlocProvider(
-            create: (context) => RegisterModelCubit(),
-            child: const MaterialApp(
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider(
+        create: (context) => OrgCubit(),),
+        BlocProvider(
+        create: (context) => PriceCubit(),),
+        BlocProvider(
+        create: (context) => LogCubit(),),
+        BlocProvider(
+        create: (context) => RegisterModelCubit(),),
+
+      ],
+          child: const MaterialApp(
               debugShowCheckedModeBanner: false,
               home: MainSplash(),
             ),
-          ),
-        ),
-      ),
+
     );
   }
 }

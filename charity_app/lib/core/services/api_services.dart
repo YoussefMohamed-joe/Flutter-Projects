@@ -1,7 +1,7 @@
 import 'package:charity_app/core/constants/app_constants.dart';
-import 'package:charity_app/features/Model/log_model/log_model.dart';
-import 'package:charity_app/features/Model/organisations_model/organisations_model.dart';
-import 'package:charity_app/features/Model/register_model/register_model.dart';
+import 'package:charity_app/features/data/Model/log_model/log_model.dart';
+import 'package:charity_app/features/data/Model/organisations_model/organisations_model.dart';
+import 'package:charity_app/features/data/Model/register_model/register_model.dart';
 import 'package:dio/dio.dart';
 
 class ApiServices {
@@ -39,6 +39,27 @@ class ApiServices {
 
   static Future<OrganisationsModel?> getOrg() async {
     var response = await Dio().get('${AppConstants.baseUrl}${AppConstants.organizations}');
+    if (response.statusCode == 200) {
+      return OrganisationsModel.fromJson(response.data);
+    }
+    return null;
+  }
+
+  static Future postCart(String organizationId, String donationItemId,int quantity) async {
+     await Dio().post(
+      '${AppConstants.baseUrl}${AppConstants.cart}',
+      data: {
+        "organizationId": organizationId,
+        "donationItemId": donationItemId,
+        "quantity": quantity
+      },
+    );
+    
+    return null;
+  }
+
+    static Future<OrganisationsModel?> getAllCarts() async {
+    var response = await Dio().get('${AppConstants.baseUrl}${AppConstants.cart}');
     if (response.statusCode == 200) {
       return OrganisationsModel.fromJson(response.data);
     }

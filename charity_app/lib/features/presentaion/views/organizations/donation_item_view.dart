@@ -1,11 +1,12 @@
+import 'package:charity_app/core/services/api_services.dart';
 import 'package:charity_app/core/services/local_storage.dart';
 import 'package:charity_app/core/utils/colors.dart';
 import 'package:charity_app/core/utils/text_styles.dart';
-import 'package:charity_app/features/manager/Organisations/org_cubit.dart';
-import 'package:charity_app/features/manager/Organisations/org_states.dart';
-import 'package:charity_app/features/manager/price/price_cubit.dart';
-import 'package:charity_app/features/manager/price/price_states.dart';
-import 'package:charity_app/features/widgets/custom_button.dart';
+import 'package:charity_app/features/presentaion/manager/Organisations/org_cubit.dart';
+import 'package:charity_app/features/presentaion/manager/Organisations/org_states.dart';
+import 'package:charity_app/features/presentaion/manager/price/price_cubit.dart';
+import 'package:charity_app/features/presentaion/manager/price/price_states.dart';
+import 'package:charity_app/features/presentaion/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -95,7 +96,7 @@ class _DonationItemViewState extends State<DonationItemView> {
       bottomNavigationBar: Container(
         margin:const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
         child: CustomButton(text:'Add To Cart',width: double.infinity ,onpressed: () {
-                
+                ApiServices.postCart(OrgCubit.newModel.data!.organizations![orgIndex].sId!,OrgCubit.newModel.data!.organizations![orgIndex].donationOption![itemIndex].sId!,context.read<PriceCubit>().counter);
               }),
       ),
       );

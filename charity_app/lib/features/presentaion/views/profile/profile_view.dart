@@ -2,10 +2,11 @@ import 'package:charity_app/core/functions/navigator.dart';
 import 'package:charity_app/core/services/local_storage.dart';
 import 'package:charity_app/core/utils/colors.dart';
 import 'package:charity_app/core/utils/text_styles.dart';
-import 'package:charity_app/features/profile/Help%20and%20support/help_support.dart';
-import 'package:charity_app/features/profile/settings/settings.dart';
-import 'package:charity_app/features/upload/uploadview.dart';
-import 'package:charity_app/features/widgets/custom_button.dart';
+import 'package:charity_app/features/presentaion/views/profile/Help%20and%20support/help_support.dart';
+import 'package:charity_app/features/presentaion/views/profile/settings/settings.dart';
+import 'package:charity_app/features/presentaion/views/upload/uploadview.dart';
+
+import 'package:charity_app/features/presentaion/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
@@ -36,7 +37,7 @@ class _ProfileViewState extends State<ProfileView> {
                         color: AppColors.boneWhite,
                         borderRadius: BorderRadius.circular(10),
                         image: const DecorationImage(
-                            image: AssetImage('assets/pp.png'),
+                            image: AssetImage('assets/images/pp.png'),
                             fit: BoxFit.fill)),
                   ),
                   const Gap(20),
@@ -63,7 +64,7 @@ class _ProfileViewState extends State<ProfileView> {
                   height: 50,
                   child: Row(
                     children: [
-                      SvgPicture.asset('assets/list.svg',
+                      SvgPicture.asset('assets/icons/list.svg',
                           width: 30, height: 30),
                       const Gap(15),
                       Text('My Donation history', style: getsubheadline()),
@@ -90,7 +91,7 @@ class _ProfileViewState extends State<ProfileView> {
                   height: 50,
                   child: Row(
                     children: [
-                      SvgPicture.asset('assets/wallet.svg',
+                      SvgPicture.asset('assets/icons/wallet.svg',
                           width: 30, height: 30),
                       const Gap(15),
                       Text('Payment Method', style: getsubheadline()),
@@ -119,7 +120,7 @@ class _ProfileViewState extends State<ProfileView> {
                   height: 50,
                   child: Row(
                     children: [
-                      SvgPicture.asset('assets/setting.svg',
+                      SvgPicture.asset('assets/icons/setting.svg',
                           width: 30, height: 30),
                       const Gap(15),
                       Text('Settings', style: getsubheadline()),
@@ -148,7 +149,7 @@ class _ProfileViewState extends State<ProfileView> {
                   height: 50,
                   child: Row(
                     children: [
-                      SvgPicture.asset('assets/support.svg',
+                      SvgPicture.asset('assets/icons/support.svg',
                           width: 30, height: 30),
                       const Gap(15),
                       Text('Help and support', style: getsubheadline()),
@@ -209,7 +210,7 @@ class _ProfileViewState extends State<ProfileView> {
                   height: 50,
                   child: Row(
                     children: [
-                      SvgPicture.asset('assets/logout.svg',
+                      SvgPicture.asset('assets/icons/logout.svg',
                           width: 30, height: 30),
                       const Gap(15),
                       Text('Log Out', style: getsubheadline()),

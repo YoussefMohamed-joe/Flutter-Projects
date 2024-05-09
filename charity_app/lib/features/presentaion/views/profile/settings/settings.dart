@@ -35,7 +35,7 @@ class SettingsView extends StatelessWidget {
                     children: [
                       const Gap(5),
                       SvgPicture.asset(
-                        'assets/Bell.svg',
+                        'assets/icons/Bell.svg',
                         width: 30,
                         height: 30,
                         colorFilter:
@@ -84,7 +84,7 @@ class SettingsView extends StatelessWidget {
                     children: [
                       const Gap(5),
                       SvgPicture.asset(
-                        'assets/lang.svg',
+                        'assets/icons/lang.svg',
                         width: 30,
                         height: 30,
                         colorFilter:
@@ -140,7 +140,7 @@ class SettingsView extends StatelessWidget {
                     children: [
                       const Gap(5),
                       SvgPicture.asset(
-                        'assets/location.svg',
+                        'assets/icons/location.svg',
                         width: 30,
                         height: 30,
                         colorFilter:
@@ -195,7 +195,7 @@ class SettingsView extends StatelessWidget {
                     children: [
                       const Gap(5),
                       SvgPicture.asset(
-                        'assets/password.svg',
+                        'assets/icons/password.svg',
                         width: 30,
                         height: 30,
                         colorFilter:

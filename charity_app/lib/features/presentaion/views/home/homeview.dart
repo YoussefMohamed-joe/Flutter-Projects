@@ -3,12 +3,11 @@ import 'package:charity_app/core/functions/navigator.dart';
 import 'package:charity_app/core/services/local_storage.dart';
 import 'package:charity_app/core/utils/colors.dart';
 import 'package:charity_app/core/utils/text_styles.dart';
-import 'package:charity_app/features/manager/Organisations/org_cubit.dart';
-import 'package:charity_app/features/manager/Organisations/org_states.dart';
-import 'package:charity_app/features/organizations/org_view.dart';
+import 'package:charity_app/features/presentaion/manager/Organisations/org_cubit.dart';
+import 'package:charity_app/features/presentaion/manager/Organisations/org_states.dart';
+import 'package:charity_app/features/presentaion/views/organizations/org_view.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
@@ -61,7 +60,7 @@ class _HomeViewState extends State<HomeView> {
                   const Gap(20),
                   Row(
                     children: [
-                      SvgPicture.asset('assets/location.svg',
+                      SvgPicture.asset('assets/icons/location.svg',
                           width: 25,
                           height: 25,
                           colorFilter: ColorFilter.mode(
@@ -120,7 +119,7 @@ class _HomeViewState extends State<HomeView> {
                         ),
                       ),
                       const Spacer(),
-                      SvgPicture.asset('assets/Bell.svg',
+                      SvgPicture.asset('assets/icons/Bell.svg',
                           width: 25,
                           height: 25,
                           colorFilter: ColorFilter.mode(
@@ -204,7 +203,7 @@ class _HomeViewState extends State<HomeView> {
                       const Spacer(),
                       const CircleAvatar(
                         radius: 15,
-                        backgroundImage: AssetImage('assets/pp.png'),
+                        backgroundImage: AssetImage('assets/images/pp.png'),
                       )
                     ],
                   ),

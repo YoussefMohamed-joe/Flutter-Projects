@@ -3,4 +3,5 @@ class AppConstants {
   static const String signUp = 'api/v1/users/signup';
   static const String login = 'api/v1/users/login';
   static const String organizations = 'api/v1/organization';
+  static const String cart = 'api/v1/cart';
 }

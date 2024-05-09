@@ -1,4 +1,4 @@
-import 'package:charity_app/features/manager/price/price_states.dart';
+import 'package:charity_app/features/presentaion/manager/price/price_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PriceCubit extends Cubit<PriceStates> {

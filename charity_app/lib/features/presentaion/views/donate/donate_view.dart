@@ -1,16 +1,14 @@
-import 'package:charity_app/core/constants/assets_images.dart';
+
 import 'package:charity_app/core/functions/navigator.dart';
 import 'package:charity_app/core/services/local_storage.dart';
 import 'package:charity_app/core/utils/colors.dart';
 import 'package:charity_app/core/utils/text_styles.dart';
-import 'package:charity_app/features/manager/Organisations/org_cubit.dart';
-import 'package:charity_app/features/manager/Organisations/org_states.dart';
-import 'package:charity_app/features/organizations/org_view.dart';
+import 'package:charity_app/features/presentaion/manager/Organisations/org_cubit.dart';
+import 'package:charity_app/features/presentaion/manager/Organisations/org_states.dart';
+import 'package:charity_app/features/presentaion/views/organizations/org_view.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
 
 class DonateView extends StatefulWidget {
@@ -119,7 +117,7 @@ class _DonateViewState extends State<DonateView> {
                       const Spacer(),
                       const CircleAvatar(
                         radius: 15,
-                        backgroundImage: AssetImage('assets/pp.png'),
+                        backgroundImage: AssetImage('assets/images/pp.png'),
                       )
                     ],
                   ),

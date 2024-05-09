@@ -1,21 +1,19 @@
 import 'package:charity_app/core/constants/assets_images.dart';
 import 'package:charity_app/core/functions/navigator.dart';
-import 'package:charity_app/core/services/local_storage.dart';
 import 'package:charity_app/core/utils/colors.dart';
-
 import 'package:charity_app/core/utils/text_styles.dart';
-import 'package:charity_app/features/upload/uploadview.dart';
+import 'package:charity_app/features/presentaion/views/splash/splash1.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-class Splash2 extends StatefulWidget {
-  const Splash2({super.key});
+class Splash0 extends StatefulWidget {
+  const Splash0({super.key});
 
   @override
-  State<Splash2> createState() => _Splash2State();
+  State<Splash0> createState() => _Splash0State();
 }
 
-class _Splash2State extends State<Splash2> {
+class _Splash0State extends State<Splash0> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,10 +22,10 @@ class _Splash2State extends State<Splash2> {
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Column(children: [
-            const Gap(100),
+            const Gap(120),
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image(image: AssetImage(AssetsImage.image5)),
+              child: Image(image: AssetImage(AssetsImage.image3)),
             ),
             const Gap(20),
             Text(
@@ -36,15 +34,15 @@ class _Splash2State extends State<Splash2> {
             ),
             const Gap(20),
             Text(
-              'It is unlock the power of giving and make a\ndifference with our donation app.',
+              'Discover and support charities , initiatives \nthat align with your values and create a \nbetter future for all',
               style: getbody(fontSize: 18),
             ),
-            const Gap(110),
+            const Gap(80),
             Row(
               children: [
                 const Gap(40),
                 Text(
-                  'Next',
+                  'Skip',
                   style: getsubheadline(fontSize: 24),
                 ),
                 const Spacer(),
@@ -52,8 +50,7 @@ class _Splash2State extends State<Splash2> {
                   height: 50,
                   child: ElevatedButton(
                       onPressed: () {
-                        navigateTowithReplacment(context, const UploadView());
-                        AppLocalStorage.cashData('splashDone', true);
+                        navigateTowithReplacment(context, const Splash1());
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.green,

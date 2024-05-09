@@ -1,8 +1,8 @@
 import 'package:charity_app/core/services/api_services.dart';
 import 'package:charity_app/core/services/local_storage.dart';
-import 'package:charity_app/features/Model/log_model/log_model.dart';
-import 'package:charity_app/features/Model/register_model/register_model.dart';
-import 'package:charity_app/features/manager/User/user_state.dart';
+import 'package:charity_app/features/data/Model/log_model/log_model.dart';
+import 'package:charity_app/features/data/Model/register_model/register_model.dart';
+import 'package:charity_app/features/presentaion/manager/User/user_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RegisterModelCubit extends Cubit<RegStates> {

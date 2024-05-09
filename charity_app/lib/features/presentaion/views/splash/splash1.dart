@@ -2,18 +2,18 @@ import 'package:charity_app/core/constants/assets_images.dart';
 import 'package:charity_app/core/functions/navigator.dart';
 import 'package:charity_app/core/utils/colors.dart';
 import 'package:charity_app/core/utils/text_styles.dart';
-import 'package:charity_app/features/splash/splash1.dart';
+import 'package:charity_app/features/presentaion/views/splash/splash2.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-class Splash0 extends StatefulWidget {
-  const Splash0({super.key});
+class Splash1 extends StatefulWidget {
+  const Splash1({super.key});
 
   @override
-  State<Splash0> createState() => _Splash0State();
+  State<Splash1> createState() => _Splash1State();
 }
 
-class _Splash0State extends State<Splash0> {
+class _Splash1State extends State<Splash1> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,7 +25,7 @@ class _Splash0State extends State<Splash0> {
             const Gap(120),
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
-              child: Image(image: AssetImage(AssetsImage.image3)),
+              child: Image(image: AssetImage(AssetsImage.image4)),
             ),
             const Gap(20),
             Text(
@@ -34,10 +34,10 @@ class _Splash0State extends State<Splash0> {
             ),
             const Gap(20),
             Text(
-              'Discover and support charities , initiatives \nthat align with your values and create a \nbetter future for all',
+              'Donation is the act of giving, whether it be\nfinancial assistance, goods, or services,\nto support a cause or help those in need.\nIt is a powerful way to make a positive\nimpact on individuals.',
               style: getbody(fontSize: 18),
             ),
-            const Gap(80),
+            const Gap(45),
             Row(
               children: [
                 const Gap(40),
@@ -50,7 +50,7 @@ class _Splash0State extends State<Splash0> {
                   height: 50,
                   child: ElevatedButton(
                       onPressed: () {
-                        navigateTowithReplacment(context, const Splash1());
+                        navigateTowithReplacment(context, const Splash2());
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: AppColors.green,

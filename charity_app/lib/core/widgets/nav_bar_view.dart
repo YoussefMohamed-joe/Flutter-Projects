@@ -1,9 +1,9 @@
 import 'package:charity_app/core/utils/colors.dart';
-import 'package:charity_app/features/cart/cart_view.dart';
-import 'package:charity_app/features/donate/donate_view.dart';
-import 'package:charity_app/features/home/homeview.dart';
-import 'package:charity_app/features/manager/Organisations/org_cubit.dart';
-import 'package:charity_app/features/profile/profile_view.dart';
+import 'package:charity_app/features/presentaion/views/cart/cart_view.dart';
+import 'package:charity_app/features/presentaion/views/donate/donate_view.dart';
+import 'package:charity_app/features/presentaion/views/home/homeview.dart';
+import 'package:charity_app/features/presentaion/manager/Organisations/org_cubit.dart';
+import 'package:charity_app/features/presentaion/views/profile/profile_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -57,34 +57,34 @@ class _NavBarState extends State<NavBar> {
               type: BottomNavigationBarType.fixed,
               items: [
                 BottomNavigationBarItem(
-                    activeIcon: SvgPicture.asset('assets/home.svg',
+                    activeIcon: SvgPicture.asset('assets/icons/home.svg',
                         colorFilter:
                             ColorFilter.mode(AppColors.black, BlendMode.srcIn)),
-                    icon: SvgPicture.asset('assets/home.svg',
+                    icon: SvgPicture.asset('assets/icons/home.svg',
                         colorFilter:
                             ColorFilter.mode(AppColors.white, BlendMode.srcIn)),
                     label: 'Home'),
                 BottomNavigationBarItem(
-                    activeIcon: SvgPicture.asset('assets/Profile.svg',
+                    activeIcon: SvgPicture.asset('assets/icons/Profile.svg',
                         colorFilter:
                             ColorFilter.mode(AppColors.black, BlendMode.srcIn)),
-                    icon: SvgPicture.asset('assets/donate.svg',
+                    icon: SvgPicture.asset('assets/icons/donate.svg',
                         colorFilter:
                             ColorFilter.mode(AppColors.white, BlendMode.srcIn)),
                     label: 'Donate'),
                 BottomNavigationBarItem(
-                    activeIcon: SvgPicture.asset('assets/search.svg',
+                    activeIcon: SvgPicture.asset('assets/icons/search.svg',
                         colorFilter:
                             ColorFilter.mode(AppColors.black, BlendMode.srcIn)),
-                    icon: SvgPicture.asset('assets/cart.svg',
+                    icon: SvgPicture.asset('assets/icons/cart.svg',
                         colorFilter:
                             ColorFilter.mode(AppColors.white, BlendMode.srcIn)),
                     label: 'Cart'),
                 BottomNavigationBarItem(
-                    activeIcon: SvgPicture.asset('assets/Profile.svg',
+                    activeIcon: SvgPicture.asset('assets/icons/Profile.svg',
                         colorFilter:
                             ColorFilter.mode(AppColors.black, BlendMode.srcIn)),
-                    icon: SvgPicture.asset('assets/profile.svg',
+                    icon: SvgPicture.asset('assets/icons/profile.svg',
                         colorFilter:
                             ColorFilter.mode(AppColors.white, BlendMode.srcIn)),
                     label: 'Profile'),

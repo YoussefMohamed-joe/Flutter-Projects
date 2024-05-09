@@ -29,29 +29,8 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/image 3.png
-    - assets/pp.png
-    - assets/Food.png
-    - assets/Clothes.png
-    - assets/Money.png
-    - assets/Toys.png
-    - assets/image 4.png
-    - assets/image 5.png
-    - assets/google.png
-    - assets/facebook.png
-    - assets/home.svg
-    - assets/donate.svg
-    - assets/profile.svg
-    - assets/cart.svg
-    - assets/location.svg
-    - assets/Bell.svg
-    - assets/logout.svg
-    - assets/support.svg
-    - assets/setting.svg
-    - assets/wallet.svg
-    - assets/list.svg
-    - assets/password.svg
-    - assets/lang.svg
+    - assets/images/
+    - assets/icons/
   fonts:
     - family: arslan
       fonts:
