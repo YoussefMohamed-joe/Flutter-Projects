@@ -18,7 +18,9 @@ class CustomTextField extends StatelessWidget {
     this.suffix,
     this.suffixOnPress,
     this.obsecure,
-    this.onChanged,  this.controller, this.validator,
+    this.onChanged,
+    this.controller,
+    this.validator,
   });
 
   @override

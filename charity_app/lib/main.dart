@@ -1,6 +1,7 @@
 import 'package:charity_app/core/services/local_storage.dart';
 import 'package:charity_app/features/presentaion/manager/Organisations/org_cubit.dart';
 import 'package:charity_app/features/presentaion/manager/User/user_cubit.dart';
+import 'package:charity_app/features/presentaion/manager/carts/cart_cubit.dart';
 import 'package:charity_app/features/presentaion/manager/price/price_cubit.dart';
 import 'package:charity_app/features/presentaion/views/splash/main_splash.dart';
 import 'package:flutter/material.dart';
@@ -20,20 +21,25 @@ class MainApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-        create: (context) => OrgCubit(),),
+          create: (context) => OrgCubit(),
+        ),
         BlocProvider(
-        create: (context) => PriceCubit(),),
+          create: (context) => PriceCubit(),
+        ),
         BlocProvider(
-        create: (context) => LogCubit(),),
+          create: (context) => LogCubit(),
+        ),
         BlocProvider(
-        create: (context) => RegisterModelCubit(),),
-
+          create: (context) => RegisterModelCubit(),
+        ),
+        BlocProvider(
+          create: (context) => CartCubit(),
+        ),
       ],
-          child: const MaterialApp(
-              debugShowCheckedModeBanner: false,
-              home: MainSplash(),
-            ),
-
+      child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
+        home: MainSplash(),
+      ),
     );
   }
 }

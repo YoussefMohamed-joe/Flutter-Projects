@@ -39,8 +39,7 @@ class Data {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     if (organizations != null) {
-      data['organizations'] =
-          organizations!.map((v) => v.toJson()).toList();
+      data['organizations'] = organizations!.map((v) => v.toJson()).toList();
     }
     return data;
   }
@@ -108,8 +107,7 @@ class Organizations {
       data['locations'] = locations!.map((v) => v.toJson()).toList();
     }
     if (donationOption != null) {
-      data['donationOption'] =
-          donationOption!.map((v) => v.toJson()).toList();
+      data['donationOption'] = donationOption!.map((v) => v.toJson()).toList();
     }
     data['__v'] = iV;
     data['sliderImages'] = sliderImages;

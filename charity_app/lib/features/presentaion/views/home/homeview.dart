@@ -26,13 +26,9 @@ class _HomeViewState extends State<HomeView> {
     AssetsImage.money,
     AssetsImage.toys
   ];
-  final List<String> titles = [
-    'Food',
-    'Clothes',
-    'Money',
-    'Toys'
-  ];
-  late List<String> searchItems = List.generate(OrgCubit.newModel.results!, (index) {
+  final List<String> titles = ['Food', 'Clothes', 'Money', 'Toys'];
+  late List<String> searchItems =
+      List.generate(OrgCubit.newModel.results!, (index) {
     return OrgCubit.newModel.data!.organizations![index].name!;
   }).toList();
   String? search;
@@ -165,8 +161,12 @@ class _HomeViewState extends State<HomeView> {
                               .toList(),
                           value: search,
                           onChanged: (String? value) {
-                            for(int i =0; i<OrgCubit.newModel.results!;i++){
-                              if(OrgCubit.newModel.data!.organizations![i].name == value){
+                            for (int i = 0;
+                                i < OrgCubit.newModel.results!;
+                                i++) {
+                              if (OrgCubit
+                                      .newModel.data!.organizations![i].name ==
+                                  value) {
                                 AppLocalStorage.cashData('OrgIndex', i);
                                 navigateTo(context, const OrgView());
                               }
@@ -224,37 +224,38 @@ class _HomeViewState extends State<HomeView> {
                   const Gap(10),
                   SizedBox(
                     width: double.infinity,
-                      height: 140,
+                    height: 140,
                     child: ListView.builder(
-                                        itemCount: OrgCubit.newModel.results,
-                                        scrollDirection: Axis.horizontal,
-                                        itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: () {
-                        AppLocalStorage.cashData('OrgIndex', index);
-                        navigateTo(context, const OrgView());
+                      itemCount: OrgCubit.newModel.results,
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {
+                            AppLocalStorage.cashData('OrgIndex', index);
+                            navigateTo(context, const OrgView());
+                          },
+                          child: Container(
+                            width: 100,
+                            height: 130,
+                            margin: const EdgeInsets.all(10),
+                            decoration: BoxDecoration(
+                              color: AppColors.white,
+                              borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Image.network(
+                                '${OrgCubit.newModel.data!.organizations![index].coverImage}'),
+                          ),
+                        );
                       },
-                      child: Container(
-                        width: 100,
-                        height: 130,
-                        margin: const EdgeInsets.all(10),
-                        decoration: BoxDecoration(
-                          color: AppColors.white,
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Image.network('${OrgCubit.newModel.data!.organizations![index].coverImage}'),
-                      ),
-                    );
-                                        },
-                                      ),
+                    ),
                   ),
                   const Gap(10),
                   Row(
                     children: [
                       Text(
-                            'Choose Your Donations',
-                            style: getheadline(fontSize: 20),
-                          ),
+                        'Choose Your Donations',
+                        style: getheadline(fontSize: 20),
+                      ),
                     ],
                   ),
                   const Gap(10),
@@ -284,13 +285,11 @@ class _HomeViewState extends State<HomeView> {
                       },
                     ),
                   )
-                  
                 ],
               ),
             )),
           );
-        }
-        else if (state is OrgLoadingState) {
+        } else if (state is OrgLoadingState) {
           return Center(
             child: CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation(AppColors.green),

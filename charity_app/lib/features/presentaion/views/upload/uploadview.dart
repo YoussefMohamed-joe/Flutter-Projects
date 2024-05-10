@@ -10,8 +10,6 @@ import 'package:charity_app/features/presentaion/views/upload/SignupView.dart';
 import 'package:charity_app/features/presentaion/widgets/custom_button.dart';
 import 'package:charity_app/features/presentaion/widgets/custon_textfield.dart';
 
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
@@ -77,7 +75,8 @@ class _UploadViewState extends State<UploadView> {
                   const Gap(10),
                   Text(
                     'USER!',
-                    style: getheadline(fontSize: 36, color: AppColors.semigreen),
+                    style:
+                        getheadline(fontSize: 36, color: AppColors.semigreen),
                   ),
                 ],
               ),
@@ -110,15 +109,14 @@ class _UploadViewState extends State<UploadView> {
                             ],
                           ),
                           const Gap(10),
-                          CustomTextField(       
+                          CustomTextField(
                             validator: (value) {
-                    if(value!.isEmpty){
-                      return 'Please Enter Your Email';
-                    }
-                    return null;
-                  },
-                           
-                            controller: emailController,            
+                              if (value!.isEmpty) {
+                                return 'Please Enter Your Email';
+                              }
+                              return null;
+                            },
+                            controller: emailController,
                             onChanged: (p0) {
                               email = p0;
                             },
@@ -128,11 +126,11 @@ class _UploadViewState extends State<UploadView> {
                           const Gap(10),
                           CustomTextField(
                             validator: (value) {
-                    if(value!.isEmpty){
-                      return 'Please Enter Your Password';
-                    }
-                    return null;
-                  },
+                              if (value!.isEmpty) {
+                                return 'Please Enter Your Password';
+                              }
+                              return null;
+                            },
                             controller: passwordController,
                             onChanged: (p0) {
                               password = p0;
@@ -140,8 +138,9 @@ class _UploadViewState extends State<UploadView> {
                             label: 'Password',
                             obsecure: passvis,
                             prefix: Icons.lock,
-                            suffix:
-                                passvis ? Icons.visibility_off : Icons.visibility,
+                            suffix: passvis
+                                ? Icons.visibility_off
+                                : Icons.visibility,
                             suffixOnPress: () {
                               setState(() {
                                 passvis = !passvis;
@@ -191,9 +190,10 @@ class _UploadViewState extends State<UploadView> {
                             text: 'LOG IN',
                             onpressed: () {
                               if (formKey.currentState!.validate()) {
-                                context.read<LogCubit>().postLogin(email, password);
-                            }
-                              
+                                context
+                                    .read<LogCubit>()
+                                    .postLogin(email, password);
+                              }
                             },
                             height: 47,
                             width: double.infinity,
@@ -266,7 +266,8 @@ class _UploadViewState extends State<UploadView> {
                                   child: Text(
                                     'Create Account',
                                     style: getbody(
-                                        color: AppColors.green, decoration: true),
+                                        color: AppColors.green,
+                                        decoration: true),
                                   ))
                             ],
                           ),
@@ -287,7 +288,8 @@ class _UploadViewState extends State<UploadView> {
                                   child: Text(
                                     'Guest',
                                     style: getbody(
-                                        color: AppColors.green, decoration: true),
+                                        color: AppColors.green,
+                                        decoration: true),
                                   ))
                             ],
                           )

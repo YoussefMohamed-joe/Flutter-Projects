@@ -1,4 +1,3 @@
-
 import 'package:charity_app/core/functions/navigator.dart';
 import 'package:charity_app/core/services/local_storage.dart';
 import 'package:charity_app/core/utils/colors.dart';
@@ -19,7 +18,8 @@ class DonateView extends StatefulWidget {
 }
 
 class _DonateViewState extends State<DonateView> {
-  late List<String> searchItems = List.generate(OrgCubit.newModel.results!, (index) {
+  late List<String> searchItems =
+      List.generate(OrgCubit.newModel.results!, (index) {
     return OrgCubit.newModel.data!.organizations![index].name!;
   }).toList();
   String? search;
@@ -39,7 +39,6 @@ class _DonateViewState extends State<DonateView> {
                   const Gap(40),
                   Text('إحسان', style: getehsan(color: AppColors.black)),
                   const Gap(20),
-                 
                   Row(
                     children: [
                       DropdownButtonHideUnderline(
@@ -79,8 +78,12 @@ class _DonateViewState extends State<DonateView> {
                               .toList(),
                           value: search,
                           onChanged: (String? value) {
-                            for(int i =0; i<OrgCubit.newModel.results!;i++){
-                              if(OrgCubit.newModel.data!.organizations![i].name == value){
+                            for (int i = 0;
+                                i < OrgCubit.newModel.results!;
+                                i++) {
+                              if (OrgCubit
+                                      .newModel.data!.organizations![i].name ==
+                                  value) {
                                 AppLocalStorage.cashData('OrgIndex', i);
                                 navigateTo(context, const OrgView());
                               }
@@ -124,39 +127,39 @@ class _DonateViewState extends State<DonateView> {
                   const Gap(10),
                   Expanded(
                     child: GridView.builder(
-                      
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    mainAxisSpacing: 20,
-                    crossAxisSpacing: 20,
-                    mainAxisExtent: 130,
-                    ), itemCount: OrgCubit.newModel.results,
-                    itemBuilder: (context, index) {
-                      return InkWell(
-                        onTap: () {
-                          AppLocalStorage.cashData('OrgIndex', index);
-                          navigateTo(context, const OrgView());
-                        },
-                        child: Container(
-                          height: 130,
-                          width: 50,
-                          decoration: BoxDecoration(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3,
+                        mainAxisSpacing: 20,
+                        crossAxisSpacing: 20,
+                        mainAxisExtent: 130,
+                      ),
+                      itemCount: OrgCubit.newModel.results,
+                      itemBuilder: (context, index) {
+                        return InkWell(
+                          onTap: () {
+                            AppLocalStorage.cashData('OrgIndex', index);
+                            navigateTo(context, const OrgView());
+                          },
+                          child: Container(
+                            height: 130,
+                            width: 50,
+                            decoration: BoxDecoration(
                               color: AppColors.white,
                               borderRadius: BorderRadius.circular(10),
+                            ),
+                            child: Image.network(
+                                '${OrgCubit.newModel.data!.organizations![index].coverImage}'),
                           ),
-                          child: Image.network('${OrgCubit.newModel.data!.organizations![index].coverImage}'),
-                        ),
-                      );
-                    },),
+                        );
+                      },
+                    ),
                   )
-                  
-                  
                 ],
               ),
             )),
           );
-        }
-        else if (state is OrgLoadingState) {
+        } else if (state is OrgLoadingState) {
           return Center(
             child: CircularProgressIndicator(
               valueColor: AlwaysStoppedAnimation(AppColors.green),

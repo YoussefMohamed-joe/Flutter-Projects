@@ -16,14 +16,11 @@ class NavBar extends StatefulWidget {
 }
 
 class _NavBarState extends State<NavBar> {
-
-  
   @override
   void initState() {
     context.read<OrgCubit>().getOrg();
     super.initState();
   }
-
 
   int currenindex = 0;
   List<Widget> views = [
