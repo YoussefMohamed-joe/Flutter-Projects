@@ -13,3 +13,9 @@ navigateTowithReplacment(context, Widget nextScreen) {
 navigateToPop(context) {
   Navigator.of(context).pop();
 }
+
+navigateUntilWithReplacment(context, Widget nextScreen) {
+  Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(builder: (context) => nextScreen),
+      (Route<dynamic> route) => false);
+}

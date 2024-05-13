@@ -9,8 +9,9 @@ class CartConstantState extends CartStates {}
 class CartLoadingState extends CartStates {}
 
 class CartSuccessState extends CartStates {
+  int totalPrice;
   late CartModel newModel;
-  CartSuccessState({required this.newModel});
+  CartSuccessState({required this.newModel,required this.totalPrice});
 }
 
 class CartErrorState extends CartStates {

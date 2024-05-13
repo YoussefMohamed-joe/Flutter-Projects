@@ -1,8 +1,12 @@
+import 'package:charity_app/core/functions/navigator.dart';
 import 'package:charity_app/core/services/api_services.dart';
+import 'package:charity_app/core/services/local_storage.dart';
 import 'package:charity_app/core/utils/colors.dart';
 import 'package:charity_app/core/utils/text_styles.dart';
+import 'package:charity_app/features/data/Model/cart_model/cart_model.dart';
 import 'package:charity_app/features/presentaion/manager/carts/cart_cubit.dart';
 import 'package:charity_app/features/presentaion/manager/carts/cart_stats.dart';
+import 'package:charity_app/features/presentaion/views/home/homeview.dart';
 import 'package:charity_app/features/presentaion/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -16,6 +20,8 @@ class CartView extends StatefulWidget {
 }
 
 class _CartViewState extends State<CartView> {
+
+
    @override
      void initState (){
     context.read<CartCubit>().getAllCarts();
@@ -82,7 +88,10 @@ class _CartViewState extends State<CartView> {
                                     ApiServices.deleteCart(state.newModel.userCarts![index].id!);
                                     Future.delayed(const Duration(seconds: 1), () {
                                       context.read<CartCubit>().getAllCarts();
+                                      
                                     });  
+                                    
+                                    
                                   }, icon: Icon(Icons.delete_outline_rounded,color: AppColors.red,))
                                  ],)
                                  
@@ -96,8 +105,8 @@ class _CartViewState extends State<CartView> {
                         }, itemCount: state.newModel.userCarts!.length, shrinkWrap: true,),
                       ),
                       const Gap(10),
-                      CustomButton(text: 'Donate',width: double.infinity,height: 45,onpressed: () {
-                        
+                      CustomButton(text: 'Donate ${state.totalPrice} LE',width: double.infinity,height: 45,onpressed: () {
+                        ApiServices.makePayment(context,state.totalPrice,'egp');
                       },),
                       const Gap(10),
                     ],

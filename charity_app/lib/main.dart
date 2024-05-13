@@ -1,3 +1,4 @@
+import 'package:charity_app/core/constants/app_constants.dart';
 import 'package:charity_app/core/services/local_storage.dart';
 import 'package:charity_app/features/presentaion/manager/Organisations/org_cubit.dart';
 import 'package:charity_app/features/presentaion/manager/User/user_cubit.dart';
@@ -6,8 +7,10 @@ import 'package:charity_app/features/presentaion/manager/price/price_cubit.dart'
 import 'package:charity_app/features/presentaion/views/splash/main_splash.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 
 void main() async {
+  Stripe.publishableKey=AppConstants.publishKey;
   WidgetsFlutterBinding.ensureInitialized();
   await AppLocalStorage().init();
   runApp(const MainApp());

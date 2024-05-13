@@ -1,10 +1,14 @@
 import 'package:charity_app/core/constants/app_constants.dart';
+import 'package:charity_app/core/functions/navigator.dart';
 import 'package:charity_app/core/services/local_storage.dart';
+import 'package:charity_app/core/widgets/nav_bar_view.dart';
 import 'package:charity_app/features/data/Model/cart_model/cart_model.dart';
 import 'package:charity_app/features/data/Model/log_model/log_model.dart';
 import 'package:charity_app/features/data/Model/organisations_model/organisations_model.dart';
 import 'package:charity_app/features/data/Model/register_model/register_model.dart';
+import 'package:charity_app/features/presentaion/views/home/homeview.dart';
 import 'package:dio/dio.dart';
+import 'package:flutter_stripe/flutter_stripe.dart';
 
 class ApiServices {
   static Future<LogModel?> postLogin(String email, String password) async {
@@ -89,5 +93,56 @@ class ApiServices {
   },
     ));
     
+  }
+
+
+  static Future<void> makePayment(context,int amount,String currency) async {
+    try{
+    String clientSecret = await getClientSecret((amount*100).toString(),currency);
+    await initializePaymentSheet(clientSecret);
+    await Stripe.instance.presentPaymentSheet();
+    navigateTo(context, const NavBar());
+    }
+    catch(e){
+      throw Exception(e.toString());
+    }
+    
+  }
+ static Future<void> initializePaymentSheet(String clientSecret) async {
+    
+    await Stripe.instance.initPaymentSheet(paymentSheetParameters: SetupPaymentSheetParameters(
+      paymentIntentClientSecret: clientSecret,
+      merchantDisplayName: "joe",
+    ));
+
+  }
+
+  static Future<String> getClientSecret(String amount,String currency) async {
+    var response = await Dio().post(
+      'https://api.stripe.com/v1/payment_intents',
+      data: {
+        "amount": amount,
+        "currency": currency
+      },
+      options: Options(
+  headers: {
+    'Authorization': 'Bearer ${AppConstants.secretKey}',
+    'Content-Type': 'application/x-www-form-urlencoded',
+  },
+    ));
+    return response.data['client_secret'];
+  }
+
+  static Future getPayment() async {
+    await Dio().get(
+      'https://checkout.stripe.com/c/pay/cs_test_a1rm5nMhid7ZbjLrn4niIhrMAiDQG5U4ISko3OmNWywzGxzSSno3mn6Q70#fidkdWxOYHwnPyd1blpxYHZxWjA0VTFqfDNDfTx8VHJIfXFBc1xMdE1yYGxtMjRwaXZ3d3R3PDJXSTNvMEJrVjd9SENLZ0BdMWlPf21fazJWMFY3dHF%2FXURQPGxGUX91MFxoR09pb3VzNU4xNTVPV2dLRkFfTicpJ2N3amhWYHdzYHcnP3F3cGApJ2lkfGpwcVF8dWAnPyd2bGtiaWBabHFgaCcpJ2BrZGdpYFVpZGZgbWppYWB3dic%2FcXdwYHgl',
+
+      options: Options(
+  headers: {
+    'Authorization': 'Bearer ${AppLocalStorage.getData('token')}',
+  },
+    ));
+
+    return null;
   }
 }

@@ -188,7 +188,7 @@ class _ProfileViewState extends State<ProfileView> {
                                     AppLocalStorage.removeData('name');
                                     AppLocalStorage.removeData('login');
                                     navigateToPop(context);
-                                    navigateTowithReplacment(
+                                    navigateUntilWithReplacment(
                                         context, const UploadView());
                                   },
                                   text: 'Yes',
