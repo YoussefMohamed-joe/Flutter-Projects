@@ -37,6 +37,7 @@ class _UploadViewState extends State<UploadView> {
         AppLocalStorage.cashData('login', isChecked ? false : true);
         navigateTowithReplacment(context, const NavBar());
       } else if (state is LogErrorState) {
+        navigateToPop(context) ;
         showDialog(
             context: context,
             builder: (context) {

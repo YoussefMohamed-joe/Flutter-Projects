@@ -1,3 +1,6 @@
+
+import 'dart:developer';
+
 import 'package:charity_app/core/constants/app_constants.dart';
 import 'package:charity_app/core/functions/navigator.dart';
 import 'package:charity_app/core/services/local_storage.dart';
@@ -6,7 +9,7 @@ import 'package:charity_app/features/data/Model/cart_model/cart_model.dart';
 import 'package:charity_app/features/data/Model/log_model/log_model.dart';
 import 'package:charity_app/features/data/Model/organisations_model/organisations_model.dart';
 import 'package:charity_app/features/data/Model/register_model/register_model.dart';
-import 'package:charity_app/features/presentaion/views/home/homeview.dart';
+
 import 'package:dio/dio.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 
@@ -20,9 +23,12 @@ class ApiServices {
       },
     );
     if (response.statusCode == 200) {
+      log(response.data.toString());
       return LogModel.fromJson(response.data);
-    }
+    }else if (response.statusCode == 400) {
+     log(response.data.toString());
     return null;
+    }
   }
 
   static Future<RegisterModel?> postSignUp(String email, String password,
