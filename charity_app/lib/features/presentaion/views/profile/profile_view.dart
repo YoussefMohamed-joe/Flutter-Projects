@@ -4,7 +4,7 @@ import 'package:charity_app/core/utils/colors.dart';
 import 'package:charity_app/core/utils/text_styles.dart';
 import 'package:charity_app/features/presentaion/views/profile/Help%20and%20support/help_support.dart';
 import 'package:charity_app/features/presentaion/views/profile/settings/settings.dart';
-import 'package:charity_app/features/presentaion/views/upload/uploadview.dart';
+import 'package:charity_app/features/presentaion/views/upload/login_view.dart';
 
 import 'package:charity_app/features/presentaion/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
@@ -189,7 +189,7 @@ class _ProfileViewState extends State<ProfileView> {
                                     AppLocalStorage.removeData('login');
                                     navigateToPop(context);
                                     navigateUntilWithReplacment(
-                                        context, const UploadView());
+                                        context, const LoginView());
                                   },
                                   text: 'Yes',
                                 ),

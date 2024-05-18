@@ -10,7 +10,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 
 void main() async {
-  Stripe.publishableKey=AppConstants.publishKey;
+  Stripe.publishableKey = AppConstants.publishKey;
   WidgetsFlutterBinding.ensureInitialized();
   await AppLocalStorage().init();
   runApp(const MainApp());

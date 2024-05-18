@@ -1,4 +1,5 @@
 import 'package:charity_app/core/constants/assets_images.dart';
+import 'package:charity_app/core/functions/email_validation.dart';
 import 'package:charity_app/core/functions/navigator.dart';
 import 'package:charity_app/core/services/local_storage.dart';
 import 'package:charity_app/core/utils/colors.dart';
@@ -6,26 +7,23 @@ import 'package:charity_app/core/utils/text_styles.dart';
 import 'package:charity_app/core/widgets/nav_bar_view.dart';
 import 'package:charity_app/features/presentaion/manager/User/user_cubit.dart';
 import 'package:charity_app/features/presentaion/manager/User/user_state.dart';
-import 'package:charity_app/features/presentaion/views/upload/SignupView.dart';
+import 'package:charity_app/features/presentaion/views/upload/signup_view.dart';
 import 'package:charity_app/features/presentaion/widgets/custom_button.dart';
 import 'package:charity_app/features/presentaion/widgets/custon_textfield.dart';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 
-class UploadView extends StatefulWidget {
-  const UploadView({super.key});
+class LoginView extends StatefulWidget {
+  const LoginView({super.key});
 
   @override
-  State<UploadView> createState() => _UploadViewState();
+  State<LoginView> createState() => _LoginViewState();
 }
 
-class _UploadViewState extends State<UploadView> {
+class _LoginViewState extends State<LoginView> {
   bool passvis = true;
   bool isChecked = true;
-  String email = '';
-  String password = '';
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   var formKey = GlobalKey<FormState>();
@@ -37,14 +35,13 @@ class _UploadViewState extends State<UploadView> {
         AppLocalStorage.cashData('login', isChecked ? false : true);
         navigateTowithReplacment(context, const NavBar());
       } else if (state is LogErrorState) {
-        navigateToPop(context) ;
-        showDialog(
-            context: context,
-            builder: (context) {
-              return AlertDialog(
-                content: Text(state.error),
-              );
-            });
+        navigateToPop(context);
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(state.error,style: getbody(color:AppColors.white),),
+          backgroundColor: AppColors.green,
+
+          )
+        );
       } else if (state is LogLoadingState) {
         showDialog(
             context: context,
@@ -114,13 +111,13 @@ class _UploadViewState extends State<UploadView> {
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Please Enter Your Email';
+                              }else if (!emailValidate(emailController.text)) {
+                                return 'Please Enter A Valid Email';
                               }
                               return null;
                             },
                             controller: emailController,
-                            onChanged: (p0) {
-                              email = p0;
-                            },
+                            
                             label: 'Email',
                             prefix: Icons.email,
                           ),
@@ -133,9 +130,7 @@ class _UploadViewState extends State<UploadView> {
                               return null;
                             },
                             controller: passwordController,
-                            onChanged: (p0) {
-                              password = p0;
-                            },
+                            
                             label: 'Password',
                             obsecure: passvis,
                             prefix: Icons.lock,
@@ -193,7 +188,7 @@ class _UploadViewState extends State<UploadView> {
                               if (formKey.currentState!.validate()) {
                                 context
                                     .read<LogCubit>()
-                                    .postLogin(email, password);
+                                    .postLogin(emailController.text, passwordController.text);
                               }
                             },
                             height: 47,

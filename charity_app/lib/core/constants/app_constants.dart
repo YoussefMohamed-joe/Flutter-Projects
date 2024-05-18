@@ -4,7 +4,9 @@ class AppConstants {
   static const String login = 'api/v1/users/login';
   static const String organizations = 'api/v1/organization';
   static const String cart = 'api/v1/cart';
-  static const String payment = 'api/v1/bookings/checkout-session/662928031738b14629900d27/donationOption/662928031738b14629900d2b';
-  static const String publishKey = 'pk_test_51PFE8KRxKKnC83VAmw5ZnM6N5wLsbFC5USeYRHF9I852Mei9qPnthwxbMMWaGFatYoCxoahD51NnxtFLqSetSkEc00pL5Ok3SR';
-  static const String secretKey = 'sk_test_51PFE8KRxKKnC83VAdMqhFIh87jpBWMXErl0qdKG7FaERS8TqpmpjDj0izUs9uyZeCw2qNsfVKranoGFw2vEr95oa00X10H6kLL';
+  static const String payment = 'api/v1/payment/payment-intent';
+  static const String publishKey =
+      'pk_test_51P4oy6Fx9yQwMxtDvYIqHweih71ulsrrqr97RL6j5GnS2xMFNbEX4lJzhZn7S5S2qtzXAU9iCTzp5YmBJljpv0K400JRbNCDZK';
+  static const String secretKey =
+      'sk_test_51P4oy6Fx9yQwMxtDP8Qb4suR4g32Eo0L8nqYvqbP0BT9NMhq8ET4JOwCf7yQyo2vdk0xnHPLrElMCwVsbJYtZ5VO00J24wabb5';
 }

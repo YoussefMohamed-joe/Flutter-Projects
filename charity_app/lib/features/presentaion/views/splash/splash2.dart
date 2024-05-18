@@ -4,7 +4,7 @@ import 'package:charity_app/core/services/local_storage.dart';
 import 'package:charity_app/core/utils/colors.dart';
 
 import 'package:charity_app/core/utils/text_styles.dart';
-import 'package:charity_app/features/presentaion/views/upload/uploadview.dart';
+import 'package:charity_app/features/presentaion/views/upload/login_view.dart';
 
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -53,7 +53,7 @@ class _Splash2State extends State<Splash2> {
                   height: 50,
                   child: ElevatedButton(
                       onPressed: () {
-                        navigateTowithReplacment(context, const UploadView());
+                        navigateTowithReplacment(context, const LoginView());
                         AppLocalStorage.cashData('splashDone', true);
                       },
                       style: ElevatedButton.styleFrom(

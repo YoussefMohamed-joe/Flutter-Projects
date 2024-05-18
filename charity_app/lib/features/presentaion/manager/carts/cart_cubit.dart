@@ -5,21 +5,18 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CartCubit extends Cubit<CartStates> {
   CartCubit() : super(CartrgInitialState());
-   static CartModel? newModel;
+  static CartModel? newModel;
   int totalPrice = 0;
   getAllCarts() {
-          
     emit(CartConstantState());
     try {
-
-      ApiServices.getAllCarts()
-          .then((value) {
+      ApiServices.getAllCarts().then((value) {
         newModel = value!;
         totalPrice = 0;
-        for(int i = 0;i<newModel!.userCarts!.length;i++){
+        for (int i = 0; i < newModel!.userCarts!.length; i++) {
           totalPrice += newModel!.userCarts![i].totalPrice!;
         }
-        emit(CartSuccessState(newModel: newModel!,totalPrice: totalPrice));
+        emit(CartSuccessState(newModel: newModel!, totalPrice: totalPrice));
       });
     } catch (e) {
       emit(CartErrorState(error: e.toString()));

@@ -70,7 +70,7 @@ class _NavBarState extends State<NavBar> {
                             ColorFilter.mode(AppColors.white, BlendMode.srcIn)),
                     label: 'Donate'),
                 BottomNavigationBarItem(
-                    activeIcon: SvgPicture.asset('assets/icons/search.svg',
+                    activeIcon: SvgPicture.asset('assets/icons/cart.svg',
                         colorFilter:
                             ColorFilter.mode(AppColors.black, BlendMode.srcIn)),
                     icon: SvgPicture.asset('assets/icons/cart.svg',
