@@ -20,7 +20,7 @@ class _MainSplashState extends State<MainSplash> {
   bool isLogin = AppLocalStorage.getData('login') ?? false;
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 4), () {
+    Future.delayed(const Duration(seconds: 3, milliseconds: 500), () {
       navigateTowithReplacment(
           context,
           isLogin
