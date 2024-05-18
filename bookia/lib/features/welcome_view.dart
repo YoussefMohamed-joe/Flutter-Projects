@@ -5,7 +5,6 @@ import 'package:bookia/core/utils/text_styles.dart';
 import 'package:bookia/features/auth/presentation/views/login_view.dart';
 import 'package:bookia/features/auth/presentation/views/register_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 
 class WelcomeView extends StatelessWidget {
