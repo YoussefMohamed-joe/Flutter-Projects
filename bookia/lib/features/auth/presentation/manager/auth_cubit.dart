@@ -9,9 +9,25 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class AuthCubit extends Cubit<AuthStates> {
   AuthCubit() : super(AuthInitialState());
 
-  void login() {
+  void login({
+    required String email,
+    required String password,}) async{
     emit(LoginLoadingState());
+    try{
+      await Dio().post('${ApiConstat.baseUrl}${ApiConstat.login}',
+      data: 
+      {
+        'email': email,
+        'password': password,
+      }
+      ).then((value){
+        var res = PostAuthResponse.fromJson(value.data);
+        emit(LoginSuccessState(res));
+      });
+    }catch(e){
+      emit(LoginErrorState(e.toString()));
   }
+}
 
   void register({
     required String name,
@@ -20,7 +36,7 @@ class AuthCubit extends Cubit<AuthStates> {
     required String passwordConfirmation}) async{
     emit(RegisterLoadingState());
     try{
-      await Dio().post('$ApiConstat.baseUrl$ApiConstat.register',
+      await Dio().post('${ApiConstat.baseUrl}${ApiConstat.register}',
       data: 
       {
         'name': name,
@@ -33,7 +49,7 @@ class AuthCubit extends Cubit<AuthStates> {
         emit(RegisterSuccessState(res));
       });
     }catch(e){
-
+      emit(RegisterErrorState(e.toString()));
   }
 }
 

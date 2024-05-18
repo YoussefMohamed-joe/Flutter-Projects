@@ -5,6 +5,7 @@ import 'package:bookia/core/widgets/cutom_back_button.dart';
 import 'package:bookia/features/auth/presentation/manager/auth_cubit.dart';
 import 'package:bookia/features/auth/presentation/manager/auth_states.dart';
 import 'package:bookia/features/auth/presentation/views/login_view.dart';
+import 'package:bookia/features/home/presantaion/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -38,7 +39,14 @@ class _RegisterViewState extends State<RegisterView> {
               ),
             );
           } else if (state is RegisterSuccessState) {
-            
+            navigateAndRemoveUntil(context, const HomeView());
+          } else if (state is RegisterLoadingState) {
+            showDialog(
+                context: context,
+                builder: (context) => Center(
+                        child: CircularProgressIndicator(
+                      valueColor: AlwaysStoppedAnimation(AppColors.primary),
+                    )));
           }
         },
         child: Center(
@@ -85,8 +93,10 @@ class _RegisterViewState extends State<RegisterView> {
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your password';
-                        }else if(value.length < 8){
+                        } else if (value.length < 8) {
                           return 'Password must be at least 8 characters';
+                        } else if (value != confirmPasswordController.text) {
+                          return 'Passwords do not match';
                         }
 
                         return null;
@@ -117,8 +127,10 @@ class _RegisterViewState extends State<RegisterView> {
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please enter your password';
-                        }else if(value.length < 8){
+                        } else if (value.length < 8) {
                           return 'Password must be at least 8 characters';
+                        } else if (value != passwordController.text) {
+                          return 'Passwords do not match';
                         }
                         return null;
                       },
@@ -138,33 +150,18 @@ class _RegisterViewState extends State<RegisterView> {
                       ],
                     ),
                     const Gap(30),
-                    BlocBuilder<AuthCubit,AuthStates>(builder: (context, state) {
-                      if(state is RegisterLoadingState){
-                        return  CircularProgressIndicator(
-                          color: AppColors.primary,
-                        );
-                      }else {
-                        return SizedBox(
+                    SizedBox(
                       height: 60,
                       width: double.infinity,
                       child: ElevatedButton(
                           onPressed: () {
                             if (formKey.currentState!.validate()) {
-                              if(passwordController.text == confirmPasswordController.text){
-                                context.read<AuthCubit>().register(
+                              context.read<AuthCubit>().register(
                                   name: userNameController.text,
                                   email: emailController.text,
                                   password: passwordController.text,
-                                  passwordConfirmation: confirmPasswordController.text
-                                );
-                                //navigateAndRemoveUntil(context, );
-                              } else {
-                                 ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
-                                  backgroundColor: AppColors.red,
-                                  content: const Text('Passwords do not match')));
-                              }
-                              
+                                  passwordConfirmation:
+                                      confirmPasswordController.text);
                             }
                           },
                           style: ElevatedButton.styleFrom(
@@ -176,9 +173,7 @@ class _RegisterViewState extends State<RegisterView> {
                             'Register',
                             style: getBodyStyle(color: AppColors.white),
                           )),
-                    );
-                      }
-                    }),
+                    ),
                     const Gap(35),
                     Row(
                       children: [
