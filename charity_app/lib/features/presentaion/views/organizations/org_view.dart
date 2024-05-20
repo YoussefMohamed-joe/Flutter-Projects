@@ -32,7 +32,9 @@ class _OrgViewState extends State<OrgView> {
               backgroundColor: AppColors.boneWhite,
               title: Text(
                   OrgCubit.newModel.data!.organizations![orgindex].name!,
-                  style: getheadline(color: AppColors.black)),
+                  style: getheadline(color: AppColors.black),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis),
               leading: IconButton(
                   onPressed: () {
                     Navigator.pop(context);
@@ -42,75 +44,76 @@ class _OrgViewState extends State<OrgView> {
             body: Center(
               child: Padding(
                 padding: const EdgeInsets.all(12),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Stack(children: [
-                      CarouselSlider.builder(
-                          itemCount: OrgCubit.newModel.data!
-                              .organizations![orgindex].sliderImages!.length,
-                          itemBuilder: (BuildContext context, int itemIndex,
-                                  int pageViewIndex) =>
-                              Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(20),
-                                    color: AppColors.boneWhite,
-                                    image: DecorationImage(
-                                      image: NetworkImage(OrgCubit
-                                          .newModel
-                                          .data!
-                                          .organizations![orgindex]
-                                          .sliderImages![itemIndex]),
-                                      fit: BoxFit.fill,
-                                    )),
-                              ),
-                          options: CarouselOptions(
-                            height: 170,
-                            viewportFraction: 0.75,
-                            autoPlayInterval: const Duration(seconds: 2),
-                            autoPlayAnimationDuration:
-                                const Duration(milliseconds: 800),
-                            autoPlayCurve: Curves.fastOutSlowIn,
-                            enlargeCenterPage: true,
-                            enlargeFactor: 0.3,
-                            onPageChanged: (index, reason) {
-                              setState(() {
-                                page = index;
-                              });
-                            },
-                            autoPlay: true,
-                            scrollDirection: Axis.horizontal,
-                          )),
-                      Positioned(
-                        bottom: 10,
-                        left: 155,
-                        child: SmoothPageIndicator(
-                          controller: PageController(
-                              initialPage: page), // PageController
-                          count: OrgCubit.newModel.data!
-                              .organizations![orgindex].sliderImages!.length,
-                          effect: ScrollingDotsEffect(
-                              activeDotColor: AppColors.lgreen,
-                              dotColor: Colors.grey,
-                              dotHeight: 12,
-                              dotWidth: 12), // your preferred effect
-                        ),
-                      )
-                    ]),
-                    const Gap(20),
-                    Text('Description',
-                        style: getheadline(color: AppColors.black)),
-                    const Gap(10),
-                    Text(
-                        OrgCubit.newModel.data!.organizations![orgindex]
-                            .description!,
-                        style: getbody(color: AppColors.dgrey)),
-                    const Gap(20),
-                    Text('Items to donate in',
-                        style: getheadline(color: AppColors.black)),
-                    const Gap(10),
-                    Expanded(
-                      child: ListView.separated(
+                child: SingleChildScrollView(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Stack(children: [
+                        CarouselSlider.builder(
+                            itemCount: OrgCubit.newModel.data!
+                                .organizations![orgindex].sliderImages!.length,
+                            itemBuilder: (BuildContext context, int itemIndex,
+                                    int pageViewIndex) =>
+                                Container(
+                                  decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(20),
+                                      color: AppColors.boneWhite,
+                                      image: DecorationImage(
+                                        image: NetworkImage(OrgCubit
+                                            .newModel
+                                            .data!
+                                            .organizations![orgindex]
+                                            .sliderImages![itemIndex]),
+                                        fit: BoxFit.fill,
+                                      )),
+                                ),
+                            options: CarouselOptions(
+                              height: 170,
+                              viewportFraction: 0.75,
+                              autoPlayInterval: const Duration(seconds: 2),
+                              autoPlayAnimationDuration:
+                                  const Duration(milliseconds: 800),
+                              autoPlayCurve: Curves.fastOutSlowIn,
+                              enlargeCenterPage: true,
+                              enlargeFactor: 0.3,
+                              onPageChanged: (index, reason) {
+                                setState(() {
+                                  page = index;
+                                });
+                              },
+                              autoPlay: true,
+                              scrollDirection: Axis.horizontal,
+                            )),
+                        Positioned(
+                          bottom: 10,
+                          left: 155,
+                          child: SmoothPageIndicator(
+                            controller: PageController(
+                                initialPage: page), // PageController
+                            count: OrgCubit.newModel.data!
+                                .organizations![orgindex].sliderImages!.length,
+                            effect: ScrollingDotsEffect(
+                                activeDotColor: AppColors.lgreen,
+                                dotColor: Colors.grey,
+                                dotHeight: 12,
+                                dotWidth: 12), // your preferred effect
+                          ),
+                        )
+                      ]),
+                      const Gap(20),
+                      Text('Description',
+                          style: getheadline(color: AppColors.black)),
+                      const Gap(10),
+                      Text(
+                          OrgCubit.newModel.data!.organizations![orgindex]
+                              .description!,
+                          style: getbody(color: AppColors.dgrey)),
+                      const Gap(20),
+                      Text('Items to donate in',
+                          style: getheadline(color: AppColors.black)),
+                      const Gap(10),
+                      ListView.separated(
+                          shrinkWrap: true,
                           itemBuilder: (context, index) {
                             return InkWell(
                               onTap: () {
@@ -177,9 +180,9 @@ class _OrgViewState extends State<OrgView> {
                           itemCount: OrgCubit.newModel.data!
                               .organizations![orgindex].donationOption!.length,
                           scrollDirection: Axis.vertical,
-                          shrinkWrap: true),
-                    ),
-                  ],
+                          physics: const NeverScrollableScrollPhysics()),
+                    ],
+                  ),
                 ),
               ),
             ),

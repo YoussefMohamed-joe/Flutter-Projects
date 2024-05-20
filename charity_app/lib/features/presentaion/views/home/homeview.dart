@@ -3,6 +3,7 @@ import 'package:charity_app/core/functions/navigator.dart';
 import 'package:charity_app/core/services/local_storage.dart';
 import 'package:charity_app/core/utils/colors.dart';
 import 'package:charity_app/core/utils/text_styles.dart';
+import 'package:charity_app/core/widgets/nav_bar_view.dart';
 import 'package:charity_app/features/presentaion/manager/Organisations/org_cubit.dart';
 import 'package:charity_app/features/presentaion/manager/Organisations/org_states.dart';
 import 'package:charity_app/features/presentaion/views/organizations/org_view.dart';
@@ -215,9 +216,15 @@ class _HomeViewState extends State<HomeView> {
                         style: getheadline(fontSize: 20),
                       ),
                       const Spacer(),
-                      Text(
-                        'See all',
-                        style: getsubheadline(fontSize: 14),
+                      TextButton(
+                        onPressed: () {
+                          NavBar.index = 1;
+                          navigateTowithReplacment(context, const NavBar());
+                        },
+                        child: Text(
+                          'See all',
+                          style: getsubheadline(fontSize: 14),
+                        ),
                       ),
                     ],
                   ),

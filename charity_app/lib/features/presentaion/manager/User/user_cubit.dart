@@ -1,9 +1,11 @@
 
+import 'package:charity_app/core/constants/app_constants.dart';
 import 'package:charity_app/core/services/api_services.dart';
 import 'package:charity_app/core/services/local_storage.dart';
 import 'package:charity_app/features/data/Model/log_model/log_model.dart';
 import 'package:charity_app/features/data/Model/register_model/register_model.dart';
 import 'package:charity_app/features/presentaion/manager/User/user_state.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class RegisterModelCubit extends Cubit<RegStates> {
@@ -11,25 +13,29 @@ class RegisterModelCubit extends Cubit<RegStates> {
   late RegisterModel newModel;
 
   postSignUp(String email, String password, String name, String phoneNumber,
-      String confirmPassword) {
+      String confirmPassword) async{
     emit(RegLoadingState());
 
-    try {
-      ApiServices.postSignUp(
-              email, password, name, phoneNumber, confirmPassword)
-          .then((value) {
-        if (value == null) {
-          emit(RegErrorState(error: 'Something went wrong. Please try again.'));
-        } else {
-          newModel = value;
+
+      await Dio().post(
+      '${AppConstants.baseUrl}${AppConstants.signUp}',
+      data: {
+        "name": name,
+        "email": email,
+        "password": password,
+        "passwordConfirm": confirmPassword,
+        "phoneNumber": phoneNumber
+      }
+      ).then((value) {
+        if (value.statusCode == 201) {
+          newModel = RegisterModel.fromJson(value.data);
           emit(RegSuccessState());
-          AppLocalStorage.cashData('name', newModel.data!.user!.name);
-          AppLocalStorage.cashData('token', newModel.token);
+        }else if ('${value.statusCode}' == '422') {
+          emit(RegErrorState(error: 'The email has already been taken.'));
         }
-      });
-    } catch (e) {
-      emit(RegErrorState(error: e.toString()));
-    }
+        });
+      
+
   }
 }
 

@@ -9,8 +9,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class NavBar extends StatefulWidget {
+  static int index = 0;
   const NavBar({super.key});
-
   @override
   State<NavBar> createState() => _NavBarState();
 }
@@ -22,14 +22,13 @@ class _NavBarState extends State<NavBar> {
     super.initState();
   }
 
-  int currenindex = 0;
+  int currenindex = NavBar.index;
   List<Widget> views = [
     const HomeView(),
     const DonateView(),
     const CartView(),
     const ProfileView()
   ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +61,7 @@ class _NavBarState extends State<NavBar> {
                             ColorFilter.mode(AppColors.white, BlendMode.srcIn)),
                     label: 'Home'),
                 BottomNavigationBarItem(
-                    activeIcon: SvgPicture.asset('assets/icons/Profile.svg',
+                    activeIcon: SvgPicture.asset('assets/icons/donate.svg',
                         colorFilter:
                             ColorFilter.mode(AppColors.black, BlendMode.srcIn)),
                     icon: SvgPicture.asset('assets/icons/donate.svg',
@@ -91,3 +90,4 @@ class _NavBarState extends State<NavBar> {
     );
   }
 }
+
