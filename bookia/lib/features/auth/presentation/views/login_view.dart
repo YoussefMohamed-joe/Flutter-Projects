@@ -1,12 +1,13 @@
 import 'package:bookia/core/functions/email_validation.dart';
 import 'package:bookia/core/functions/routing.dart';
+import 'package:bookia/core/services/local_storage.dart';
 import 'package:bookia/core/utils/colors.dart';
 import 'package:bookia/core/utils/text_styles.dart';
 import 'package:bookia/core/widgets/cutom_back_button.dart';
+import 'package:bookia/core/widgets/nav_bar_view.dart';
 import 'package:bookia/features/auth/presentation/manager/auth_cubit.dart';
 import 'package:bookia/features/auth/presentation/manager/auth_states.dart';
 import 'package:bookia/features/auth/presentation/views/register_view.dart';
-import 'package:bookia/features/home/presantaion/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -41,9 +42,15 @@ class _LoginViewState extends State<LoginView> {
                   ),
                 );
               } else if (state is LoginSuccessState) {
-                navigateToWithReplacment(context, const HomeView());
+                AppLocalStorage.cashData('token', state.postAuthResponse.data!.token);
+                navigateToWithReplacment(context, const NavBar());
               } else if (state is LoginLoadingState) {
-                showDialog(context: context, builder: (context) =>  Center(child: CircularProgressIndicator(valueColor: AlwaysStoppedAnimation(AppColors.primary),)));
+                showDialog(
+                    context: context,
+                    builder: (context) => Center(
+                            child: CircularProgressIndicator(
+                          valueColor: AlwaysStoppedAnimation(AppColors.primary),
+                        )));
               }
             },
             child: Form(
@@ -61,7 +68,8 @@ class _LoginViewState extends State<LoginView> {
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please Enter Your Email';
-                        } else if (emailValidate(emailController.text) == false) {
+                        } else if (emailValidate(emailController.text) ==
+                            false) {
                           return 'Please Enter Valid Email';
                         }
                         return null;
@@ -76,7 +84,7 @@ class _LoginViewState extends State<LoginView> {
                       validator: (value) {
                         if (value == null || value.isEmpty) {
                           return 'Please Enter Your Password';
-                        }else if (value.length < 8) {
+                        } else if (value.length < 8) {
                           return 'Password must be at least 8 characters';
                         }
                         return null;
@@ -120,8 +128,7 @@ class _LoginViewState extends State<LoginView> {
                             if (formKey.currentState!.validate()) {
                               context.read<AuthCubit>().login(
                                   email: emailController.text,
-                                  password: passwordController.text
-                              );
+                                  password: passwordController.text);
                             }
                           },
                           style: ElevatedButton.styleFrom(

@@ -1,11 +1,12 @@
 import 'package:bookia/core/functions/routing.dart';
+import 'package:bookia/core/services/local_storage.dart';
 import 'package:bookia/core/utils/colors.dart';
 import 'package:bookia/core/utils/text_styles.dart';
 import 'package:bookia/core/widgets/cutom_back_button.dart';
+import 'package:bookia/core/widgets/nav_bar_view.dart';
 import 'package:bookia/features/auth/presentation/manager/auth_cubit.dart';
 import 'package:bookia/features/auth/presentation/manager/auth_states.dart';
 import 'package:bookia/features/auth/presentation/views/login_view.dart';
-import 'package:bookia/features/home/presantaion/views/home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
@@ -39,7 +40,8 @@ class _RegisterViewState extends State<RegisterView> {
               ),
             );
           } else if (state is RegisterSuccessState) {
-            navigateAndRemoveUntil(context, const HomeView());
+            AppLocalStorage.cashData('token', state.postAuthResponse.data!.token);
+            navigateAndRemoveUntil(context, const NavBar());
           } else if (state is RegisterLoadingState) {
             showDialog(
                 context: context,

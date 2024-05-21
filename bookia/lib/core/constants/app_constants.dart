@@ -4,7 +4,5 @@ class AssetsImages {
 }
 
 class ApiConstat {
-  static const String baseUrl = 'https://api.codingarabic.online/api/';
-  static const String login = 'auth/login';
-  static const String register = 'auth/register';
+  static const String baseUrl = 'https://codingarabic.online/api/';
 }
