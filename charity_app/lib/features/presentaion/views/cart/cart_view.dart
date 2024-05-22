@@ -1,4 +1,4 @@
-
+import 'package:charity_app/core/constants/assets_images.dart';
 import 'package:charity_app/core/services/api_services.dart';
 
 import 'package:charity_app/core/utils/colors.dart';
@@ -31,10 +31,25 @@ class _CartViewState extends State<CartView> {
     return BlocBuilder<CartCubit, CartStates>(builder: (context, state) {
       if (state is CartErrorState) {
         return Center(child: Text(state.error));
+      } else if (state is CartLoadingState) {
+        return Center(
+            child: CircularProgressIndicator(
+          color: AppColors.green,
+        ));
       } else if (state is CartConstantState) {
         return Scaffold(
-          backgroundColor: AppColors.boneWhite,
-        );
+            backgroundColor: AppColors.boneWhite,
+            body: Center(
+                child: Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          AssetsImage.noCart,
+                        ),
+                      ],
+                    ))));
       } else if (state is CartSuccessState) {
         return Scaffold(
           backgroundColor: AppColors.boneWhite,

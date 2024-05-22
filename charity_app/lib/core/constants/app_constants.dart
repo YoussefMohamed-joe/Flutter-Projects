@@ -5,6 +5,7 @@ class AppConstants {
   static const String organizations = 'api/v1/organization';
   static const String cart = 'api/v1/cart';
   static const String payment = 'api/v1/payment/payment-intent';
+  static const String donation = 'api/v1/payment/donation-history';
   static const String publishKey =
       'pk_test_51P4oy6Fx9yQwMxtDvYIqHweih71ulsrrqr97RL6j5GnS2xMFNbEX4lJzhZn7S5S2qtzXAU9iCTzp5YmBJljpv0K400JRbNCDZK';
   static const String secretKey =

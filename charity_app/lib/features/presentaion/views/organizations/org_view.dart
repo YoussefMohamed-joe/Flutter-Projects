@@ -69,7 +69,7 @@ class _OrgViewState extends State<OrgView> {
                                 ),
                             options: CarouselOptions(
                               height: 170,
-                              viewportFraction: 0.75,
+                              viewportFraction: 1,
                               autoPlayInterval: const Duration(seconds: 2),
                               autoPlayAnimationDuration:
                                   const Duration(milliseconds: 800),
@@ -88,15 +88,14 @@ class _OrgViewState extends State<OrgView> {
                           bottom: 10,
                           left: 155,
                           child: SmoothPageIndicator(
-                            controller: PageController(
-                                initialPage: page), // PageController
+                            controller: PageController(initialPage: page),
                             count: OrgCubit.newModel.data!
                                 .organizations![orgindex].sliderImages!.length,
                             effect: ScrollingDotsEffect(
                                 activeDotColor: AppColors.lgreen,
                                 dotColor: Colors.grey,
                                 dotHeight: 12,
-                                dotWidth: 12), // your preferred effect
+                                dotWidth: 12),
                           ),
                         )
                       ]),

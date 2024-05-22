@@ -18,3 +18,16 @@ class CartErrorState extends CartStates {
   final String error;
   CartErrorState({required this.error});
 }
+
+class CartPostStates {}
+
+class CartPostInitialState extends CartPostStates {}
+
+class CartPostLoadingState extends CartPostStates {}
+
+class CartPostSuccessState extends CartPostStates {}
+
+class CartPostErrorState extends CartPostStates {
+  final String error;
+  CartPostErrorState({required this.error});
+}

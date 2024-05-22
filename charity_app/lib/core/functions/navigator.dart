@@ -1,4 +1,3 @@
-import 'package:charity_app/core/widgets/nav_bar_view.dart';
 import 'package:flutter/material.dart';
 
 navigateTo(context, Widget nextScreen) {
@@ -20,4 +19,3 @@ navigateUntilWithReplacment(context, Widget nextScreen) {
       MaterialPageRoute(builder: (context) => nextScreen),
       (Route<dynamic> route) => false);
 }
-

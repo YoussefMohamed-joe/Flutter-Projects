@@ -36,12 +36,13 @@ class _LoginViewState extends State<LoginView> {
         navigateTowithReplacment(context, const NavBar());
       } else if (state is LogErrorState) {
         navigateToPop(context);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(state.error,style: getbody(color:AppColors.white),),
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(
+            state.error,
+            style: getbody(color: AppColors.white),
+          ),
           backgroundColor: AppColors.green,
-
-          )
-        );
+        ));
       } else if (state is LogLoadingState) {
         showDialog(
             context: context,
@@ -111,13 +112,12 @@ class _LoginViewState extends State<LoginView> {
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Please Enter Your Email';
-                              }else if (!emailValidate(emailController.text)) {
+                              } else if (!emailValidate(emailController.text)) {
                                 return 'Please Enter A Valid Email';
                               }
                               return null;
                             },
                             controller: emailController,
-                            
                             label: 'Email',
                             prefix: Icons.email,
                           ),
@@ -130,7 +130,6 @@ class _LoginViewState extends State<LoginView> {
                               return null;
                             },
                             controller: passwordController,
-                            
                             label: 'Password',
                             obsecure: passvis,
                             prefix: Icons.lock,
@@ -186,9 +185,9 @@ class _LoginViewState extends State<LoginView> {
                             text: 'LOG IN',
                             onpressed: () {
                               if (formKey.currentState!.validate()) {
-                                context
-                                    .read<LogCubit>()
-                                    .postLogin(emailController.text, passwordController.text);
+                                context.read<LogCubit>().postLogin(
+                                    emailController.text,
+                                    passwordController.text);
                               }
                             },
                             height: 47,

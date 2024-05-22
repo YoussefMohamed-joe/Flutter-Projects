@@ -1,3 +1,4 @@
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:charity_app/core/constants/assets_images.dart';
 import 'package:charity_app/core/functions/navigator.dart';
 import 'package:charity_app/core/services/local_storage.dart';
@@ -8,10 +9,12 @@ import 'package:charity_app/features/presentaion/manager/Organisations/org_cubit
 import 'package:charity_app/features/presentaion/manager/Organisations/org_states.dart';
 import 'package:charity_app/features/presentaion/views/organizations/org_view.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:gap/gap.dart';
+import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
@@ -21,6 +24,13 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  int page = 0;
+  final List<String> sliders = [
+    AssetsImage.slider1,
+    AssetsImage.slider2,
+    AssetsImage.slider3,
+    AssetsImage.slider4
+  ];
   final List<String> images = [
     AssetsImage.food,
     AssetsImage.clothes,
@@ -209,89 +219,140 @@ class _HomeViewState extends State<HomeView> {
                     ],
                   ),
                   const Gap(10),
-                  Row(
-                    children: [
-                      Text(
-                        'Nearby charities',
-                        style: getheadline(fontSize: 20),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          Stack(children: [
+                            CarouselSlider.builder(
+                                itemCount: 4,
+                                itemBuilder: (BuildContext context, int itemIndex,
+                                        int pageViewIndex) =>
+                                    Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(10),
+                                          color: AppColors.boneWhite,
+                                          image: DecorationImage(
+                                            image: AssetImage(sliders[itemIndex]),
+                                            fit: BoxFit.fill,
+                                          )),
+                                    ),
+                                options: CarouselOptions(
+                                  height: 170,
+                                  viewportFraction: 1,
+                                  autoPlayInterval: const Duration(seconds: 2),
+                                  autoPlayAnimationDuration:
+                                      const Duration(milliseconds: 800),
+                                  autoPlayCurve: Curves.fastOutSlowIn,
+                                  enlargeCenterPage: true,
+                                  enlargeFactor: 0.3,
+                                  onPageChanged: (index, reason) {
+                                    setState(() {
+                                      page = index;
+                                    });
+                                  },
+                                  autoPlay: true,
+                                  scrollDirection: Axis.horizontal,
+                                )),
+                            Positioned(
+                              bottom: 10,
+                              left: 155,
+                              child: SmoothPageIndicator(
+                                controller: PageController(initialPage: page),
+                                count: 4,
+                                effect: ScrollingDotsEffect(
+                                    activeDotColor: AppColors.green,
+                                    dotColor: Colors.grey,
+                                    dotHeight: 12,
+                                    dotWidth: 12),
+                              ),
+                            )
+                          ]),
+                      Row(
+                        children: [
+                          Text(
+                            'Nearby charities',
+                            style: getheadline(fontSize: 20),
+                          ),
+                          const Spacer(),
+                          TextButton(
+                            onPressed: () {
+                              NavBar.index = 1;
+                              navigateTowithReplacment(context, const NavBar());
+                            },
+                            child: Text(
+                              'See all',
+                              style: getsubheadline(fontSize: 14),
+                            ),
+                          ),
+                        ],
                       ),
-                      const Spacer(),
-                      TextButton(
-                        onPressed: () {
-                          NavBar.index = 1;
-                          navigateTowithReplacment(context, const NavBar());
-                        },
-                        child: Text(
-                          'See all',
-                          style: getsubheadline(fontSize: 14),
+                      const Gap(10),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 140,
+                        child: ListView.builder(
+                          itemCount: OrgCubit.newModel.results,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return InkWell(
+                              onTap: () {
+                                AppLocalStorage.cashData('OrgIndex', index);
+                                navigateTo(context, const OrgView());
+                              },
+                              child: Container(
+                                width: 100,
+                                height: 130,
+                                margin: const EdgeInsets.all(10),
+                                decoration: BoxDecoration(
+                                  color: AppColors.white,
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: Image.network(
+                                    '${OrgCubit.newModel.data!.organizations![index].coverImage}'),
+                              ),
+                            );
+                          },
                         ),
                       ),
-                    ],
-                  ),
-                  const Gap(10),
-                  SizedBox(
-                    width: double.infinity,
-                    height: 140,
-                    child: ListView.builder(
-                      itemCount: OrgCubit.newModel.results,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return InkWell(
-                          onTap: () {
-                            AppLocalStorage.cashData('OrgIndex', index);
-                            navigateTo(context, const OrgView());
-                          },
-                          child: Container(
-                            width: 100,
-                            height: 130,
-                            margin: const EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                              color: AppColors.white,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Image.network(
-                                '${OrgCubit.newModel.data!.organizations![index].coverImage}'),
+                      const Gap(10),
+                      Row(
+                        children: [
+                          Text(
+                            'Choose Your Donations',
+                            style: getheadline(fontSize: 20),
                           ),
-                        );
-                      },
-                    ),
-                  ),
-                  const Gap(10),
-                  Row(
-                    children: [
-                      Text(
-                        'Choose Your Donations',
-                        style: getheadline(fontSize: 20),
+                        ],
                       ),
-                    ],
-                  ),
-                  const Gap(10),
-                  SizedBox(
-                    height: 140,
-                    width: double.infinity,
-                    child: ListView.separated(
-                      separatorBuilder: (context, index) {
-                        return const Gap(20);
-                      },
-                      itemCount: 4,
-                      scrollDirection: Axis.horizontal,
-                      itemBuilder: (context, index) {
-                        return Column(
-                          children: [
-                            CircleAvatar(
-                              radius: 40,
-                              child: Image.asset(images[index]),
-                            ),
-                            const Gap(10),
-                            Text(
-                              titles[index],
-                              style: getsubheadline(),
-                            ),
-                          ],
-                        );
-                      },
+                      const Gap(10),
+                      SizedBox(
+                        height: 140,
+                        width: double.infinity,
+                        child: ListView.separated(
+                          separatorBuilder: (context, index) {
+                            return const Gap(20);
+                          },
+                          itemCount: 4,
+                          scrollDirection: Axis.horizontal,
+                          itemBuilder: (context, index) {
+                            return Column(
+                              children: [
+                                CircleAvatar(
+                                  radius: 40,
+                                  child: Image.asset(images[index]),
+                                ),
+                                const Gap(10),
+                                Text(
+                                  titles[index],
+                                  style: getsubheadline(),
+                                ),
+                              ],
+                            );
+                          },
+                        ),
+                      )]),
                     ),
-                  )
+                  ),
                 ],
               ),
             )),

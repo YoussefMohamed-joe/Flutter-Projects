@@ -39,12 +39,13 @@ class _SignupViewState extends State<SignupView> {
         navigateTowithReplacment(context, const NavBar());
       } else if (state is RegErrorState) {
         navigateToPop(context);
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(state.error,style: getbody(color:AppColors.white),),
+        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          content: Text(
+            state.error,
+            style: getbody(color: AppColors.white),
+          ),
           backgroundColor: AppColors.green,
-
-          )
-        );
+        ));
       } else if (state is RegLoadingState) {
         showDialog(
             context: context,
@@ -89,7 +90,6 @@ class _SignupViewState extends State<SignupView> {
                     controller: nameController,
                     label: 'UserName',
                     prefix: Icons.person,
-                    
                   ),
                   const Gap(10),
                   Row(
@@ -98,30 +98,30 @@ class _SignupViewState extends State<SignupView> {
                         width: 63,
                         height: 64,
                         decoration: BoxDecoration(
-                        color: AppColors.white,
-                        borderRadius: BorderRadius.circular(10),
-                      ),child: Center(
-                        child: Text('+20', style: getheadline(color: AppColors.grey)
+                          color: AppColors.white,
+                          borderRadius: BorderRadius.circular(10),
                         ),
-                      ),),
+                        child: Center(
+                          child: Text('+20',
+                              style: getheadline(color: AppColors.grey)),
+                        ),
+                      ),
                       const Gap(5),
                       SizedBox(
                         width: 300,
-                        
                         child: CustomTextField(
                           validator: (p0) {
                             if (p0!.isEmpty) {
                               return 'Please Enter Your Phone Number';
-                            }else if (phoneNumberController.text.length != 10) {
-                        
-                        return 'Invalid Phone Number';
-                      }
+                            } else if (phoneNumberController.text.length !=
+                                10) {
+                              return 'Invalid Phone Number';
+                            }
                             return null;
                           },
                           controller: phoneNumberController,
                           label: 'Phone Number',
                           prefix: Icons.phone,
-                          
                         ),
                       ),
                     ],
@@ -145,10 +145,10 @@ class _SignupViewState extends State<SignupView> {
                     validator: (p0) {
                       if (p0!.isEmpty) {
                         return 'Please Enter Your Password';
-                      }else if (passwordController.text.length < 8) {
-                        
+                      } else if (passwordController.text.length < 8) {
                         return 'Password Must Be At Least 8 Characters';
-                      }else if (passwordController.text != confirmPasswordController.text) {
+                      } else if (passwordController.text !=
+                          confirmPasswordController.text) {
                         return 'Password Does Not Match';
                       }
                       return null;
@@ -169,10 +169,10 @@ class _SignupViewState extends State<SignupView> {
                     validator: (p0) {
                       if (p0!.isEmpty) {
                         return 'Please Enter Your Password';
-                      }else if (passwordController.text.length < 8) {
-                        
+                      } else if (passwordController.text.length < 8) {
                         return 'Password Must Be At Least 8 Characters';
-                      }else if (passwordController.text != confirmPasswordController.text) {
+                      } else if (passwordController.text !=
+                          confirmPasswordController.text) {
                         return 'Password Does Not Match';
                       }
                       return null;
@@ -186,10 +186,15 @@ class _SignupViewState extends State<SignupView> {
                   CustomButton(
                     text: 'SIGN UP',
                     onpressed: () {
-                      if  (formKey.currentState!.validate()){
-                      context.read<RegisterModelCubit>().postSignUp(
-                          emailController.text, passwordController.text, nameController.text, '+20${phoneNumberController.text}', confirmPasswordController.text);
-                    }},
+                      if (formKey.currentState!.validate()) {
+                        context.read<RegisterModelCubit>().postSignUp(
+                            emailController.text,
+                            passwordController.text,
+                            nameController.text,
+                            '+20${phoneNumberController.text}',
+                            confirmPasswordController.text);
+                      }
+                    },
                     height: 47,
                     width: double.infinity,
                   ),

@@ -38,9 +38,7 @@ class _MainSplashState extends State<MainSplash> {
     return Scaffold(
       backgroundColor: AppColors.boneWhite,
       body: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
         Image.asset(
           AssetsImage.logo,
           height: 270,

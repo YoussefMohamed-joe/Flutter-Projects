@@ -1,5 +1,6 @@
 import 'package:charity_app/core/constants/app_constants.dart';
 import 'package:charity_app/core/services/local_storage.dart';
+import 'package:charity_app/features/presentaion/manager/Donation%20History/donation_history_cubit.dart';
 import 'package:charity_app/features/presentaion/manager/Organisations/org_cubit.dart';
 import 'package:charity_app/features/presentaion/manager/User/user_cubit.dart';
 import 'package:charity_app/features/presentaion/manager/carts/cart_cubit.dart';
@@ -37,6 +38,12 @@ class MainApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => CartCubit(),
+        ),
+        BlocProvider(
+          create: (context) => CartPostCubit(),
+        ),
+        BlocProvider(
+          create: (context) => DoantionHistoryCubit(),
         ),
       ],
       child: const MaterialApp(

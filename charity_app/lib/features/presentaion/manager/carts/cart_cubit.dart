@@ -8,18 +8,42 @@ class CartCubit extends Cubit<CartStates> {
   static CartModel? newModel;
   int totalPrice = 0;
   getAllCarts() {
-    emit(CartConstantState());
+    if (newModel == null || newModel!.userCarts!.isEmpty) {
+      emit(CartConstantState());
+    } else {
+      emit(CartLoadingState());
+    }
+
     try {
       ApiServices.getAllCarts().then((value) {
-        newModel = value!;
-        totalPrice = 0;
-        for (int i = 0; i < newModel!.userCarts!.length; i++) {
-          totalPrice += newModel!.userCarts![i].totalPrice!;
+        if (value == null) {
+          emit(CartConstantState());
+        } else {
+          newModel = value;
+          totalPrice = 0;
+          for (int i = 0; i < newModel!.userCarts!.length; i++) {
+            totalPrice += newModel!.userCarts![i].totalPrice!;
+          }
+          emit(CartSuccessState(newModel: newModel!, totalPrice: totalPrice));
         }
-        emit(CartSuccessState(newModel: newModel!, totalPrice: totalPrice));
       });
     } catch (e) {
       emit(CartErrorState(error: e.toString()));
+    }
+  }
+}
+
+class CartPostCubit extends Cubit<CartPostStates> {
+  CartPostCubit() : super(CartPostInitialState());
+
+  addCarts(String orgId, String donationId, int count) {
+    emit(CartPostLoadingState());
+    try {
+      ApiServices.postCart(orgId, donationId, count).then((value) {
+        emit(CartPostSuccessState());
+      });
+    } catch (e) {
+      emit(CartPostErrorState(error: e.toString()));
     }
   }
 }

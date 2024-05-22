@@ -1,4 +1,3 @@
-
 import 'package:charity_app/core/constants/app_constants.dart';
 import 'package:charity_app/core/services/api_services.dart';
 import 'package:charity_app/core/services/local_storage.dart';
@@ -13,29 +12,23 @@ class RegisterModelCubit extends Cubit<RegStates> {
   late RegisterModel newModel;
 
   postSignUp(String email, String password, String name, String phoneNumber,
-      String confirmPassword) async{
+      String confirmPassword) async {
     emit(RegLoadingState());
 
-
-      await Dio().post(
-      '${AppConstants.baseUrl}${AppConstants.signUp}',
-      data: {
-        "name": name,
-        "email": email,
-        "password": password,
-        "passwordConfirm": confirmPassword,
-        "phoneNumber": phoneNumber
+    await Dio().post('${AppConstants.baseUrl}${AppConstants.signUp}', data: {
+      "name": name,
+      "email": email,
+      "password": password,
+      "passwordConfirm": confirmPassword,
+      "phoneNumber": phoneNumber
+    }).then((value) {
+      if (value.statusCode == 201) {
+        newModel = RegisterModel.fromJson(value.data);
+        emit(RegSuccessState());
+      } else if ('${value.statusCode}' == '422') {
+        emit(RegErrorState(error: 'The email has already been taken.'));
       }
-      ).then((value) {
-        if (value.statusCode == 201) {
-          newModel = RegisterModel.fromJson(value.data);
-          emit(RegSuccessState());
-        }else if ('${value.statusCode}' == '422') {
-          emit(RegErrorState(error: 'The email has already been taken.'));
-        }
-        });
-      
-
+    });
   }
 }
 

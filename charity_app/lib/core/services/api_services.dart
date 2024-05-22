@@ -3,6 +3,7 @@ import 'package:charity_app/core/functions/navigator.dart';
 import 'package:charity_app/core/services/local_storage.dart';
 import 'package:charity_app/core/widgets/nav_bar_view.dart';
 import 'package:charity_app/features/data/Model/cart_model/cart_model.dart';
+import 'package:charity_app/features/data/Model/get_donation_history_response/get_donation_history_response.dart';
 import 'package:charity_app/features/data/Model/log_model/log_model.dart';
 import 'package:charity_app/features/data/Model/organisations_model/organisations_model.dart';
 import 'package:charity_app/features/data/Model/payment_stripe/payment_stripe.dart';
@@ -10,47 +11,44 @@ import 'package:charity_app/features/data/Model/register_model/register_model.da
 import 'package:dio/dio.dart';
 import 'package:flutter_stripe/flutter_stripe.dart';
 
-
 class ApiServices {
   static Future<LogModel?> postLogin(String email, String password) async {
-    try{
-    var response = await Dio().post(
-      '${AppConstants.baseUrl}${AppConstants.login}',
-      data: {
-        "email": email,
-        "password": password,
-      },
-    );
-  
-    if (response.statusCode == 200) {
-      return LogModel.fromJson(response.data);
-    }
-    }
-     catch (e){
-        return null;
+    try {
+      var response = await Dio().post(
+        '${AppConstants.baseUrl}${AppConstants.login}',
+        data: {
+          "email": email,
+          "password": password,
+        },
+      );
+
+      if (response.statusCode == 200) {
+        return LogModel.fromJson(response.data);
+      }
+    } catch (e) {
+      return null;
     }
     return null;
   }
 
   static Future<RegisterModel?> postSignUp(String email, String password,
       String name, String phoneNumber, String confirmPassword) async {
-        try{
-    var response = await Dio().post(
-      '${AppConstants.baseUrl}${AppConstants.signUp}',
-      data: {
-        "name": name,
-        "email": email,
-        "password": password,
-        "passwordConfirm": confirmPassword,
-        "phoneNumber": phoneNumber
-      },
-    );
-    if (response.statusCode == 201) {
-      return RegisterModel.fromJson(response.data);
-    }
-    }
-     catch (e){
-        return null;
+    try {
+      var response = await Dio().post(
+        '${AppConstants.baseUrl}${AppConstants.signUp}',
+        data: {
+          "name": name,
+          "email": email,
+          "password": password,
+          "passwordConfirm": confirmPassword,
+          "phoneNumber": phoneNumber
+        },
+      );
+      if (response.statusCode == 201) {
+        return RegisterModel.fromJson(response.data);
+      }
+    } catch (e) {
+      return null;
     }
     return null;
   }
@@ -82,16 +80,18 @@ class ApiServices {
   }
 
   static Future<CartModel?> getAllCarts() async {
-    var response =
-        await Dio().get('${AppConstants.baseUrl}${AppConstants.cart}',
-            options: Options(
-              headers: {
-                'Authorization': 'Bearer ${AppLocalStorage.getData('token')}',
-              },
-            ));
-    if (response.statusCode == 200) {
-      return CartModel.fromJson(response.data);
-    } else if (response.statusCode == 404) {
+    try {
+      var response =
+          await Dio().get('${AppConstants.baseUrl}${AppConstants.cart}',
+              options: Options(
+                headers: {
+                  'Authorization': 'Bearer ${AppLocalStorage.getData('token')}',
+                },
+              ));
+      if (response.statusCode == 200) {
+        return CartModel.fromJson(response.data);
+      }
+    } catch (e) {
       return null;
     }
     return null;
@@ -116,17 +116,16 @@ class ApiServices {
   }
 
   static Future<void> makePayment(context) async {
-      String? clientSecret;
-       await
-      getClientSecret().then((value) {
-         clientSecret = value!.paymentIntent!.clientSecret;
-      });
-      
-      await initializePaymentSheet(clientSecret!);
-      await Stripe.instance.presentPaymentSheet();
-      //deleteAllCart();
-      navigateTo(context, const NavBar());
+    String? clientSecret;
+    await getClientSecret().then((value) {
+      clientSecret = value!.paymentIntent!.clientSecret;
+    });
 
+    await initializePaymentSheet(clientSecret!);
+    await Stripe.instance.presentPaymentSheet();
+    deleteAllCart();
+    NavBar.index = 0;
+    navigateTo(context, const NavBar());
   }
 
   static Future<void> initializePaymentSheet(String clientSecret) async {
@@ -138,15 +137,30 @@ class ApiServices {
   }
 
   static Future<PaymentStripe?> getClientSecret() async {
-    var response = await Dio().get('${AppConstants.baseUrl}${AppConstants.payment}',
-        options: Options(
-          headers: {
-            'Authorization': 'Bearer ${AppLocalStorage.getData('token')}',
-          },
-        ));
-        if (response.statusCode == 200) {
-          return PaymentStripe.fromJson(response.data);
-        }
+    var response =
+        await Dio().get('${AppConstants.baseUrl}${AppConstants.payment}',
+            options: Options(
+              headers: {
+                'Authorization': 'Bearer ${AppLocalStorage.getData('token')}',
+              },
+            ));
+    if (response.statusCode == 200) {
+      return PaymentStripe.fromJson(response.data);
+    }
+    return null;
+  }
+
+    static Future<GetDonationHistoryResponse?> getDonationHistoryResponse() async {
+    var response =
+        await Dio().get('${AppConstants.baseUrl}${AppConstants.donation}',
+            options: Options(
+              headers: {
+                'Authorization': 'Bearer ${AppLocalStorage.getData('token')}',
+              },
+            ));
+    if (response.statusCode == 200) {
+      return GetDonationHistoryResponse.fromJson(response.data);
+    }
     return null;
   }
 }
