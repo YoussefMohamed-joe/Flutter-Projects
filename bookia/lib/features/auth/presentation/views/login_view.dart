@@ -42,7 +42,8 @@ class _LoginViewState extends State<LoginView> {
                   ),
                 );
               } else if (state is LoginSuccessState) {
-                AppLocalStorage.cashData('token', state.postAuthResponse.data!.token);
+                AppLocalStorage.cashData(
+                    'token', state.postAuthResponse.data!.token);
                 navigateToWithReplacment(context, const NavBar());
               } else if (state is LoginLoadingState) {
                 showDialog(

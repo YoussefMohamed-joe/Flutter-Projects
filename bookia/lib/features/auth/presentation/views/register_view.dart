@@ -40,7 +40,8 @@ class _RegisterViewState extends State<RegisterView> {
               ),
             );
           } else if (state is RegisterSuccessState) {
-            AppLocalStorage.cashData('token', state.postAuthResponse.data!.token);
+            AppLocalStorage.cashData(
+                'token', state.postAuthResponse.data!.token);
             navigateAndRemoveUntil(context, const NavBar());
           } else if (state is RegisterLoadingState) {
             showDialog(

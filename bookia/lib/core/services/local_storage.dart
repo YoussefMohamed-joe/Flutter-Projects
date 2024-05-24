@@ -2,7 +2,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 class AppLocalStorage {
   static late SharedPreferences prefs;
-   init() async {
+  init() async {
     prefs = await SharedPreferences.getInstance();
   }
 

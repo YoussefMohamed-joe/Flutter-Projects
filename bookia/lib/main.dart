@@ -4,6 +4,7 @@ import 'package:bookia/core/utils/colors.dart';
 import 'package:bookia/core/utils/text_styles.dart';
 import 'package:bookia/core/widgets/nav_bar_view.dart';
 import 'package:bookia/features/auth/presentation/manager/auth_cubit.dart';
+import 'package:bookia/features/cart/presentation/manager/cart_cubit.dart';
 import 'package:bookia/features/home/presantaion/manager/home_cubit.dart';
 import 'package:bookia/features/welcome_view.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,9 @@ class MainApp extends StatelessWidget {
         BlocProvider(
           create: (context) => HomeCubit(),
         ),
+        BlocProvider(
+          create: (context) => CartCubit(),
+        ),
       ],
       child: MaterialApp(
         theme: ThemeData(
@@ -48,9 +52,9 @@ class MainApp extends StatelessWidget {
               ),
             )),
         debugShowCheckedModeBanner: false,
-        home: AppLocalStorage.getData('token') == null?
-        const WelcomeView():
-        const NavBar(),
+        home: AppLocalStorage.getData('token') == null
+            ? const WelcomeView()
+            : const NavBar(),
       ),
     );
   }
