@@ -126,6 +126,8 @@ class _LoginViewState extends State<LoginView> {
                             validator: (value) {
                               if (value!.isEmpty) {
                                 return 'Please Enter Your Password';
+                              } else if (passwordController.text.length < 8) {
+                                return 'Password must be at least 8 characters';
                               }
                               return null;
                             },
@@ -255,7 +257,7 @@ class _LoginViewState extends State<LoginView> {
                               const Gap(10),
                               InkWell(
                                   onTap: () {
-                                    navigateTowithReplacment(
+                                    navigateTo(
                                         context, const SignupView());
                                   },
                                   child: Text(
@@ -267,27 +269,27 @@ class _LoginViewState extends State<LoginView> {
                             ],
                           ),
                           const Gap(10),
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Text(
-                                'Open as a',
-                                style: getbody(color: AppColors.dgrey),
-                              ),
-                              const Gap(10),
-                              InkWell(
-                                  onTap: () {
-                                    navigateTowithReplacment(
-                                        context, const SignupView());
-                                  },
-                                  child: Text(
-                                    'Guest',
-                                    style: getbody(
-                                        color: AppColors.green,
-                                        decoration: true),
-                                  ))
-                            ],
-                          )
+                          // Row(
+                          //   mainAxisAlignment: MainAxisAlignment.center,
+                          //   children: [
+                          //     Text(
+                          //       'Open as a',
+                          //       style: getbody(color: AppColors.dgrey),
+                          //     ),
+                          //     const Gap(10),
+                          //     InkWell(
+                          //         onTap: () {
+                          //           navigateTowithReplacment(
+                          //               context, const SignupView());
+                          //         },
+                          //         child: Text(
+                          //           'Guest',
+                          //           style: getbody(
+                          //               color: AppColors.green,
+                          //               decoration: true),
+                          //         ))
+                          //   ],
+                          // )
                         ],
                       ),
                     ),

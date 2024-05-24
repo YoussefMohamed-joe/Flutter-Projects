@@ -25,7 +25,9 @@ class RegisterModelCubit extends Cubit<RegStates> {
       if (value.statusCode == 201) {
         newModel = RegisterModel.fromJson(value.data);
         emit(RegSuccessState());
-      } else if ('${value.statusCode}' == '422') {
+          AppLocalStorage.cashData('name', newModel.data!.user!.name);
+          AppLocalStorage.cashData('token', newModel.token);
+      } else if ('${value.statusCode}' == '400') {
         emit(RegErrorState(error: 'The email has already been taken.'));
       }
     });

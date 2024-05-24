@@ -7,7 +7,6 @@ import 'package:charity_app/core/utils/text_styles.dart';
 import 'package:charity_app/core/widgets/nav_bar_view.dart';
 import 'package:charity_app/features/presentaion/manager/User/user_cubit.dart';
 import 'package:charity_app/features/presentaion/manager/User/user_state.dart';
-import 'package:charity_app/features/presentaion/views/upload/login_view.dart';
 import 'package:charity_app/features/presentaion/widgets/custom_button.dart';
 import 'package:charity_app/features/presentaion/widgets/custon_textfield.dart';
 import 'package:flutter/material.dart';
@@ -262,8 +261,8 @@ class _SignupViewState extends State<SignupView> {
                         children: [
                           InkWell(
                               onTap: () {
-                                navigateTowithReplacment(
-                                    context, const LoginView());
+                                navigateToPop(
+                                    context);
                               },
                               child: Text(
                                 'LOGIN',

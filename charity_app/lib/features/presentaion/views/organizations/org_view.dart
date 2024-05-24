@@ -94,8 +94,8 @@ class _OrgViewState extends State<OrgView> {
                             effect: ScrollingDotsEffect(
                                 activeDotColor: AppColors.lgreen,
                                 dotColor: Colors.grey,
-                                dotHeight: 12,
-                                dotWidth: 12),
+                                dotHeight: 8,
+                                dotWidth: 8),
                           ),
                         )
                       ]),
