@@ -15,6 +15,7 @@ class RegisterModelCubit extends Cubit<RegStates> {
       String confirmPassword) async {
     emit(RegLoadingState());
 
+    try{
     await Dio().post('${AppConstants.baseUrl}${AppConstants.signUp}', data: {
       "name": name,
       "email": email,
@@ -22,15 +23,14 @@ class RegisterModelCubit extends Cubit<RegStates> {
       "passwordConfirm": confirmPassword,
       "phoneNumber": phoneNumber
     }).then((value) {
-      if (value.statusCode == 201) {
         newModel = RegisterModel.fromJson(value.data);
         emit(RegSuccessState());
           AppLocalStorage.cashData('name', newModel.data!.user!.name);
           AppLocalStorage.cashData('token', newModel.token);
-      } else if ('${value.statusCode}' == '400') {
-        emit(RegErrorState(error: 'The email has already been taken.'));
-      }
     });
+    } on DioException catch(e) {
+      emit(RegErrorState(error: e.response!.data['message']));
+    }
   }
 }
 

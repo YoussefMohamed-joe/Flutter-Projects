@@ -44,7 +44,7 @@ class _DonationHistoryViewState extends State<DonationHistoryView> {
             );
           }
           else if (state is DonationHistoryErrorState) {
-            return Center(child: Text('Soething went wrong',style: getheadline(color: AppColors.black),));
+            return Center(child: Text('Something went wrong',style: getheadline(color: AppColors.black),));
           }
           else if (state is DonationHistorySuccessState) {
             return ListView.builder(
