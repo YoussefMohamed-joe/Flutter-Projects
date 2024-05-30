@@ -5,6 +5,8 @@ import 'package:bookia/features/home/data/Models/get_products_response/product.d
 import 'package:bookia/features/home/presantaion/manager/home_cubit.dart';
 import 'package:bookia/features/home/presantaion/manager/home_states.dart';
 import 'package:bookia/features/home/presantaion/views/book_details_view.dart';
+import 'package:bookia/features/home/presantaion/views/search_view.dart';
+import 'package:bookia/features/home/presantaion/widgets/home_categoreis_widget.dart';
 import 'package:bookia/features/home/presantaion/widgets/home_slider_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,6 +22,8 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   List<Product>? product = [];
+
+  @override
   @override
   Widget build(BuildContext context) {
     context.read<HomeCubit>().getProducts();
@@ -35,7 +39,9 @@ class _HomeViewState extends State<HomeView> {
               onPressed: () {},
               icon: SvgPicture.asset('assets/icons/notification.svg')),
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                navigateTo(context, const SearchView());
+              },
               icon: SvgPicture.asset('assets/icons/search.svg')),
         ],
       ),
@@ -45,7 +51,16 @@ class _HomeViewState extends State<HomeView> {
           child: Column(
             children: [
               const SliderWidget(),
-              const Gap(30),
+              const Gap(20),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text('Categories', style: getTitleStyle()),
+                ],
+              ),
+              const Gap(15),
+              const CategoriesWidget(),
+              const Gap(20),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -57,6 +72,8 @@ class _HomeViewState extends State<HomeView> {
               ),
               const Gap(15),
               BlocConsumer<HomeCubit, HomeStates>(
+                buildWhen: (previous, state) =>
+                    state is GetProductsSuccess || state is GetProductsLoading,
                 listener: (context, state) {
                   if (state is GetProductsSuccess) {
                     product = state.getProductsResponse.data?.products;

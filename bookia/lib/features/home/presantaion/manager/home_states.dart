@@ -1,5 +1,8 @@
 import 'package:bookia/features/bookmark/data/get_wishlist_response/get_wishlist_response.dart';
+import 'package:bookia/features/home/data/Models/get_categories_response/get_categories_response.dart';
 import 'package:bookia/features/home/data/Models/get_products_response/get_products_response.dart';
+import 'package:bookia/features/home/data/Models/get_sliders_response/get_sliders_response.dart';
+import 'package:bookia/features/home/data/Models/show_categories_response/show_categories_response.dart';
 
 class HomeStates {}
 
@@ -47,3 +50,58 @@ class GetWhishListError extends HomeStates {
 }
 
 class GetWhishListLoading extends HomeStates {}
+
+class GetSlidersSuccess extends HomeStates {
+  final GetSlidersResponse getSlidersResponse;
+  GetSlidersSuccess(this.getSlidersResponse);
+}
+
+class GetSlidersError extends HomeStates {
+  final String error;
+  GetSlidersError(this.error);
+}
+
+class GetSlidersLoading extends HomeStates {}
+
+class GetCategoriesLoading extends HomeStates {}
+
+class GetCategoriesSuccess extends HomeStates {
+  final GetCategoriesResponse getCategoriesResponse;
+  GetCategoriesSuccess(this.getCategoriesResponse);
+}
+
+class GetCategoriesError extends HomeStates {
+  final String error;
+  GetCategoriesError(this.error);
+}
+
+class GetCategoriesViewLoading extends HomeStates {}
+
+class GetCategoriesViewSuccess extends HomeStates {
+  final ShowCategoriesResponse showCategoriesResponse;
+  GetCategoriesViewSuccess(this.showCategoriesResponse);
+}
+
+class GetCategoriesViewError extends HomeStates {
+  final String error;
+  GetCategoriesViewError(this.error);
+}
+
+class PlaceOrderLoading extends HomeStates {}
+
+class PlaceOrderSuccess extends HomeStates {}
+
+class PlaceOrderError extends HomeStates {
+  final String error;
+  PlaceOrderError(this.error);
+}
+
+
+class SearchLoading extends HomeStates {}
+
+class SearchSuccess extends HomeStates {}
+
+class SearchError extends HomeStates {
+  final String error;
+  SearchError(this.error);
+} 

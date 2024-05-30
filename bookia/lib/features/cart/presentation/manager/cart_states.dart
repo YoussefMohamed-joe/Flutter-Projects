@@ -1,4 +1,5 @@
 import 'package:bookia/features/cart/data/get_cart_response/get_cart_response.dart';
+import 'package:bookia/features/cart/data/get_gover_response/get_gover_response.dart';
 
 class CartStates {}
 
@@ -39,8 +40,13 @@ class CartQuantitySuccess extends CartStates {}
 class CartQuantityError extends CartStates {
   final String error;
   CartQuantityError({required this.error});
-} 
+}
 
 class CartQuantityLoading extends CartStates {}
 
 class QuantityUpdatedState extends CartStates {}
+
+class GoveenaratedState extends CartStates {
+  GetGoverResponse governorate;
+  GoveenaratedState({required this.governorate});
+}

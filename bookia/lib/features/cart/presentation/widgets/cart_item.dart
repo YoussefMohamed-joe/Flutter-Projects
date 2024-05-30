@@ -15,22 +15,22 @@ class CartlistItem extends StatefulWidget {
     required this.list,
     required this.index,
   });
-  
+
   @override
   State<CartlistItem> createState() => _CartlistItemState();
-
-  
 }
 
 class _CartlistItemState extends State<CartlistItem> {
   @override
   void initState() {
-    context.read<CartCubit>().setQuantity(widget.index, widget.list[widget.index].itemQuantity!);
+    context
+        .read<CartCubit>()
+        .setQuantity(widget.index, widget.list[widget.index].itemQuantity!);
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-    
     return Row(children: [
       ClipRRect(
         borderRadius: BorderRadius.circular(10),
@@ -56,7 +56,9 @@ class _CartlistItemState extends State<CartlistItem> {
                 ),
                 IconButton(
                     onPressed: () {
-                      context.read<CartCubit>().removeCart(widget.list[widget.index].itemId!);
+                      context
+                          .read<CartCubit>()
+                          .removeCart(widget.list[widget.index].itemId!);
                       Future.delayed(const Duration(milliseconds: 500), () {
                         context.read<CartCubit>().getAllCart();
                       });
@@ -79,7 +81,6 @@ class _CartlistItemState extends State<CartlistItem> {
                   children: [
                     FloatingActionButton.small(
                       onPressed: () {
-                        
                         context.read<CartCubit>().removeQuntity(widget.index);
                         context.read<CartCubit>().postQuantity(
                             widget.list[widget.index].itemId!,
@@ -91,7 +92,10 @@ class _CartlistItemState extends State<CartlistItem> {
                     ),
                     const Gap(10),
                     Text(
-                      context.read<CartCubit>().quantity[widget.index].toString(),
+                      context
+                          .read<CartCubit>()
+                          .quantity[widget.index]
+                          .toString(),
                       style: getTitleStyle(fontWeight: FontWeight.normal),
                     ),
                     const Gap(10),

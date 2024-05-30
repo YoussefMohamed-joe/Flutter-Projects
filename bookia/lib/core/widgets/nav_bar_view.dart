@@ -1,10 +1,9 @@
 import 'package:bookia/core/utils/colors.dart';
+import 'package:bookia/features/Profile/presentation/views/profile_view.dart';
 import 'package:bookia/features/bookmark/presentation/views/bookmark_view.dart';
 import 'package:bookia/features/cart/presentation/views/cart_view.dart';
 import 'package:bookia/features/home/presantaion/views/home_view.dart';
-import 'package:bookia/features/profile/presentation/views/profile_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class NavBar extends StatefulWidget {

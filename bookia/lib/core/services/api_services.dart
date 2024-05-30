@@ -23,13 +23,16 @@ class ApiServices {
     return res.data;
   }
 
-  static post(
-      {required String url,
-      Map<String, dynamic>? headers,
-      Map<String, dynamic>? body}) async {
+  static post({
+    required String url,
+    Map<String, dynamic>? headers,
+    Map<String, dynamic>? body,
+    var data,
+  }) async {
     var res = await dio.post(
       url,
       queryParameters: body,
+      data: data,
       options: Options(headers: headers),
     );
     return res.data;

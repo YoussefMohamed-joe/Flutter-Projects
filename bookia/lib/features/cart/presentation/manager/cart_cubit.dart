@@ -1,6 +1,7 @@
 import 'package:bookia/core/services/api_services.dart';
 import 'package:bookia/core/services/local_storage.dart';
 import 'package:bookia/features/cart/data/get_cart_response/get_cart_response.dart';
+import 'package:bookia/features/cart/data/get_gover_response/get_gover_response.dart';
 import 'package:bookia/features/cart/presentation/manager/cart_states.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,14 +15,14 @@ class CartCubit extends Cubit<CartStates> {
         'Authorization': 'Bearer ${AppLocalStorage.getData('token')}',
       }).then((value) {
         getCartResponse = GetCartResponse.fromJson(value);
-        emit(CartSuccess(getCartResponse:getCartResponse));
+        emit(CartSuccess(getCartResponse: getCartResponse));
       });
     } catch (e) {
       emit(CartError(error: e.toString()));
     }
   }
 
-    addCart(int id) {
+  addCart(int id) {
     emit(AddToCartLoading());
     try {
       ApiServices.post(url: 'add-to-cart', body: {
@@ -36,7 +37,7 @@ class CartCubit extends Cubit<CartStates> {
     }
   }
 
-    removeCart(int id) {
+  removeCart(int id) {
     emit(RemoveFromCartLoading());
     try {
       ApiServices.post(url: 'remove-from-cart', body: {
@@ -51,7 +52,7 @@ class CartCubit extends Cubit<CartStates> {
     }
   }
 
-  postQuantity(int id,int quantity) {
+  postQuantity(int id, int quantity) {
     emit(CartQuantityLoading());
     try {
       ApiServices.post(url: 'update-cart', body: {
@@ -66,20 +67,21 @@ class CartCubit extends Cubit<CartStates> {
       emit(CartQuantityError(error: e.toString()));
     }
   }
+
   List<int> quantity = [];
-  setQuantity(int index,int quant) {
-    if(quantity.length<index+1){
+
+  setQuantity(int index, int quant) {
+    if (quantity.length < index + 1) {
       quantity.add(quant);
-    }else{
-    quantity[index] = quant;
+    } else {
+      quantity[index] = quant;
     }
     emit(QuantityUpdatedState());
   }
 
-    int getQuantity(int index) {
+  int getQuantity(int index) {
     return quantity[index];
   }
-  
 
   addQuntity(int index) {
     quantity[index]++;
@@ -91,5 +93,13 @@ class CartCubit extends Cubit<CartStates> {
       quantity[index]--;
     }
     emit(QuantityUpdatedState());
+  }
+
+  getGover() {
+    ApiServices.get(
+      url: 'governorates',
+    ).then((value) {
+      emit(GoveenaratedState(governorate: GetGoverResponse.fromJson(value)));
+    });
   }
 }
