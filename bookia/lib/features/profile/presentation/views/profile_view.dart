@@ -1,10 +1,13 @@
 import 'package:bookia/core/functions/routing.dart';
+import 'package:bookia/core/services/local_storage.dart';
 import 'package:bookia/core/utils/colors.dart';
 import 'package:bookia/core/utils/text_styles.dart';
+import 'package:bookia/core/widgets/custom_btn.dart';
 import 'package:bookia/features/Profile/presentation/manager/profile_cubit.dart';
 import 'package:bookia/features/Profile/presentation/manager/profile_states.dart';
 import 'package:bookia/features/Profile/presentation/views/edit_profile_view.dart';
 import 'package:bookia/features/Profile/presentation/views/my_orders_view.dart';
+import 'package:bookia/features/welcome_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -31,9 +34,41 @@ class _ProfileViewState extends State<ProfileView> {
         title: const Text('Profile'),
         actions: [
           IconButton(
-              onPressed: () {},
+              onPressed: () {
+                showDialog(
+                      context: context,
+                      builder: (context) {
+                        return AlertDialog(
+                            backgroundColor: AppColors.white,
+                            title: Text(
+                              'Are you sure you want to log out?',
+                              style: getBodyStyle(fontSize: 18),
+                            ),
+                            content: Row(children: [
+                              Expanded(
+                                child: CustomButton(
+                                  onPressed: () {
+                                    AppLocalStorage.removeData('token');
+
+                                    navigateAndRemoveUntil(
+                                        context, const WelcomeView());
+                                  },
+                                  text: 'Yes',
+                                ),
+                              ),
+                              const Gap(10),
+                              Expanded(
+                                child: CustomButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
+                                    },
+                                    text: 'Cancel'),
+                              ),
+                            ]));
+                      });
+              },
               icon: SvgPicture.asset(
-                'assets/icons/LogOut.svg',
+                'assets/icons/Logout.svg',
                 colorFilter: ColorFilter.mode(AppColors.red, BlendMode.srcIn),
               )),
           const Gap(5)
