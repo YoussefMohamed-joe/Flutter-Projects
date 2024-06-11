@@ -24,7 +24,7 @@ class _MainSplashState extends State<MainSplash> {
       navigateTowithReplacment(
           context,
           isLogin
-              ? const NavBar()
+              ? const NavBar(index: 0,)
               : splashDone
                   ? const LoginView()
                   : const Splash0());

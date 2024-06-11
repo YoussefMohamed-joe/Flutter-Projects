@@ -33,7 +33,7 @@ class _LoginViewState extends State<LoginView> {
       if (state is LogSuccessState) {
         navigateToPop(context);
         AppLocalStorage.cashData('login', isChecked ? false : true);
-        navigateTowithReplacment(context, const NavBar());
+        navigateTowithReplacment(context, const NavBar(index: 0,));
       } else if (state is LogErrorState) {
         navigateToPop(context);
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(

@@ -2,7 +2,6 @@ import 'package:charity_app/core/functions/navigator.dart';
 import 'package:charity_app/core/services/local_storage.dart';
 import 'package:charity_app/core/utils/colors.dart';
 import 'package:charity_app/core/utils/text_styles.dart';
-import 'package:charity_app/core/widgets/nav_bar_view.dart';
 import 'package:charity_app/features/presentaion/views/profile/Donation%20History/donation_history_view.dart';
 import 'package:charity_app/features/presentaion/views/profile/Help%20and%20support/help_support.dart';
 import 'package:charity_app/features/presentaion/views/profile/settings/settings.dart';
@@ -190,7 +189,6 @@ class _ProfileViewState extends State<ProfileView> {
                                     AppLocalStorage.removeData('token');
                                     AppLocalStorage.removeData('name');
                                     AppLocalStorage.removeData('login');
-                                    NavBar.index = 0;
                                     navigateToPop(context);
                                     navigateUntilWithReplacment(
                                         context, const LoginView());

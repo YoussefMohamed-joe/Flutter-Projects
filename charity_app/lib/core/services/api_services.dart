@@ -124,8 +124,10 @@ class ApiServices {
     await initializePaymentSheet(clientSecret!);
     await Stripe.instance.presentPaymentSheet();
     deleteAllCart();
-    NavBar.index = 0;
-    navigateTo(context, const NavBar());
+    Future.delayed(const Duration(seconds: 1, milliseconds: 500)).then((value) {
+      navigateTo(context, const NavBar(index: 0,));
+    });
+    
   }
 
   static Future<void> initializePaymentSheet(String clientSecret) async {

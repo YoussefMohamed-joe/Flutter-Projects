@@ -2,35 +2,37 @@ import 'package:charity_app/core/utils/colors.dart';
 import 'package:charity_app/features/presentaion/views/cart/cart_view.dart';
 import 'package:charity_app/features/presentaion/views/donate/donate_view.dart';
 import 'package:charity_app/features/presentaion/views/home/homeview.dart';
-import 'package:charity_app/features/presentaion/manager/Organisations/org_cubit.dart';
 import 'package:charity_app/features/presentaion/views/profile/profile_view.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class NavBar extends StatefulWidget {
-  static int index = 0;
-  const NavBar({super.key});
+  final int index;
+   const NavBar({super.key,required this.index,});
   @override
   State<NavBar> createState() => _NavBarState();
 }
 
 class _NavBarState extends State<NavBar> {
+
   @override
   void initState() {
-    context.read<OrgCubit>().getOrg();
+    setState(() {
+      currenindex = widget.index;
+    });
     super.initState();
   }
-
-  int currenindex = NavBar.index;
+  int currenindex = 0;
   List<Widget> views = [
     const HomeView(),
     const DonateView(),
     const CartView(),
     const ProfileView()
   ];
+  
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
       body: views[currenindex],
       bottomNavigationBar: Container(

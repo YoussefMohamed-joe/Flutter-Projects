@@ -35,7 +35,7 @@ class _SignupViewState extends State<SignupView> {
       if (state is RegSuccessState) {
         navigateToPop(context);
         AppLocalStorage.cashData('login', true);
-        navigateTowithReplacment(context, const NavBar());
+        navigateTowithReplacment(context, const NavBar(index: 0,));
       } else if (state is RegErrorState) {
         navigateToPop(context);
         ScaffoldMessenger.of(context).showSnackBar(SnackBar(

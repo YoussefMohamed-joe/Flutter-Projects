@@ -23,6 +23,12 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  @override
+  void initState() {
+    context.read<OrgCubit>().getOrg();
+    super.initState();
+  }
+
   int page = 0;
   final List<String> sliders = [
     AssetsImage.slider1,
@@ -49,6 +55,7 @@ class _HomeViewState extends State<HomeView> {
     'Alex',
   ];
   String? selectedValue;
+
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<OrgCubit, OrgStates>(
@@ -220,136 +227,136 @@ class _HomeViewState extends State<HomeView> {
                   const Gap(10),
                   Expanded(
                     child: SingleChildScrollView(
-                      child: Column(
-                        children: [
-                          Stack(children: [
-                            CarouselSlider.builder(
-                                itemCount: 4,
-                                itemBuilder: (BuildContext context, int itemIndex,
-                                        int pageViewIndex) =>
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(10),
-                                          color: AppColors.boneWhite,
-                                          image: DecorationImage(
-                                            image: AssetImage(sliders[itemIndex]),
-                                            fit: BoxFit.fill,
-                                          )),
-                                    ),
-                                options: CarouselOptions(
-                                  height: 170,
-                                  viewportFraction: 1,
-                                  autoPlayInterval: const Duration(seconds: 2),
-                                  autoPlayAnimationDuration:
-                                      const Duration(milliseconds: 800),
-                                  autoPlayCurve: Curves.fastOutSlowIn,
-                                  enlargeCenterPage: true,
-                                  enlargeFactor: 0.3,
-                                  onPageChanged: (index, reason) {
-                                    setState(() {
-                                      page = index;
-                                    });
-                                  },
-                                  autoPlay: true,
-                                  scrollDirection: Axis.horizontal,
-                                )),
-                            Positioned(
-                              bottom: 10,
-                              left: 155,
-                              child: SmoothPageIndicator(
-                                controller: PageController(initialPage: page),
-                                count: 4,
-                                effect: ScrollingDotsEffect(
-                                    activeDotColor: AppColors.green,
-                                    dotColor: Colors.grey,
-                                    dotHeight: 12,
-                                    dotWidth: 12),
-                              ),
-                            )
-                          ]),
-                      Row(
-                        children: [
-                          Text(
-                            'Nearby charities',
-                            style: getheadline(fontSize: 20),
-                          ),
-                          const Spacer(),
-                          TextButton(
-                            onPressed: () {
-                              NavBar.index = 1;
-                              navigateTowithReplacment(context, const NavBar());
-                            },
-                            child: Text(
-                              'See all',
-                              style: getsubheadline(fontSize: 14),
+                      child: Column(children: [
+                        Stack(children: [
+                          CarouselSlider.builder(
+                              itemCount: 4,
+                              itemBuilder: (BuildContext context, int itemIndex,
+                                      int pageViewIndex) =>
+                                  Container(
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color: AppColors.boneWhite,
+                                        image: DecorationImage(
+                                          image: AssetImage(sliders[itemIndex]),
+                                          fit: BoxFit.fill,
+                                        )),
+                                  ),
+                              options: CarouselOptions(
+                                height: 170,
+                                viewportFraction: 1,
+                                autoPlayInterval: const Duration(seconds: 2),
+                                autoPlayAnimationDuration:
+                                    const Duration(milliseconds: 800),
+                                autoPlayCurve: Curves.fastOutSlowIn,
+                                enlargeCenterPage: true,
+                                enlargeFactor: 0.3,
+                                onPageChanged: (index, reason) {
+                                  setState(() {
+                                    page = index;
+                                  });
+                                },
+                                autoPlay: true,
+                                scrollDirection: Axis.horizontal,
+                              )),
+                          Positioned(
+                            bottom: 10,
+                            left: 155,
+                            child: SmoothPageIndicator(
+                              controller: PageController(initialPage: page),
+                              count: 4,
+                              effect: ScrollingDotsEffect(
+                                  activeDotColor: AppColors.green,
+                                  dotColor: Colors.grey,
+                                  dotHeight: 12,
+                                  dotWidth: 12),
                             ),
-                          ),
-                        ],
-                      ),
-                      const Gap(10),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 140,
-                        child: ListView.builder(
-                          itemCount: OrgCubit.newModel.results,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            return InkWell(
-                              onTap: () {
-                                AppLocalStorage.cashData('OrgIndex', index);
-                                navigateTo(context, const OrgView());
+                          )
+                        ]),
+                        Row(
+                          children: [
+                            Text(
+                              'Nearby charities',
+                              style: getheadline(fontSize: 20),
+                            ),
+                            const Spacer(),
+                            TextButton(
+                              onPressed: () {
+                                navigateTowithReplacment(
+                                    context, const NavBar(index: 1,));
                               },
-                              child: Container(
-                                width: 100,
-                                height: 130,
-                                margin: const EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                  color: AppColors.white,
-                                  borderRadius: BorderRadius.circular(10),
-                                ),
-                                child: Image.network(
-                                    '${OrgCubit.newModel.data!.organizations![index].coverImage}'),
+                              child: Text(
+                                'See all',
+                                style: getsubheadline(fontSize: 14),
                               ),
-                            );
-                          },
+                            ),
+                          ],
                         ),
-                      ),
-                      const Gap(10),
-                      Row(
-                        children: [
-                          Text(
-                            'Choose Your Donations',
-                            style: getheadline(fontSize: 20),
+                        const Gap(10),
+                        SizedBox(
+                          width: double.infinity,
+                          height: 140,
+                          child: ListView.builder(
+                            itemCount: OrgCubit.newModel.results,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              return InkWell(
+                                onTap: () {
+                                  AppLocalStorage.cashData('OrgIndex', index);
+                                  navigateTo(context, const OrgView());
+                                },
+                                child: Container(
+                                  width: 100,
+                                  height: 130,
+                                  margin: const EdgeInsets.all(10),
+                                  decoration: BoxDecoration(
+                                    color: AppColors.white,
+                                    borderRadius: BorderRadius.circular(10),
+                                  ),
+                                  child: Image.network(
+                                      '${OrgCubit.newModel.data!.organizations![index].coverImage}'),
+                                ),
+                              );
+                            },
                           ),
-                        ],
-                      ),
-                      const Gap(10),
-                      SizedBox(
-                        height: 140,
-                        width: double.infinity,
-                        child: ListView.separated(
-                          separatorBuilder: (context, index) {
-                            return const Gap(20);
-                          },
-                          itemCount: 4,
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context, index) {
-                            return Column(
-                              children: [
-                                CircleAvatar(
-                                  radius: 40,
-                                  child: Image.asset(images[index]),
-                                ),
-                                const Gap(10),
-                                Text(
-                                  titles[index],
-                                  style: getsubheadline(),
-                                ),
-                              ],
-                            );
-                          },
                         ),
-                      )]),
+                        const Gap(10),
+                        Row(
+                          children: [
+                            Text(
+                              'Choose Your Donations',
+                              style: getheadline(fontSize: 20),
+                            ),
+                          ],
+                        ),
+                        const Gap(10),
+                        SizedBox(
+                          height: 140,
+                          width: double.infinity,
+                          child: ListView.separated(
+                            separatorBuilder: (context, index) {
+                              return const Gap(20);
+                            },
+                            itemCount: 4,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              return Column(
+                                children: [
+                                  CircleAvatar(
+                                    radius: 40,
+                                    child: Image.asset(images[index]),
+                                  ),
+                                  const Gap(10),
+                                  Text(
+                                    titles[index],
+                                    style: getsubheadline(),
+                                  ),
+                                ],
+                              );
+                            },
+                          ),
+                        )
+                      ]),
                     ),
                   ),
                 ],

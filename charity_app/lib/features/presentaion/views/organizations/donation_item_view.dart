@@ -82,8 +82,7 @@ class _DonationItemViewState extends State<DonationItemView> {
                     actions: [
                       IconButton(
                         onPressed: () {
-                          NavBar.index = 2;
-                          navigateTowithReplacment(context, const NavBar());
+                          navigateTowithReplacment(context, const NavBar(index: 2,));
                         },
                         icon: SvgPicture.asset('assets/icons/cart.svg',
                             colorFilter: ColorFilter.mode(
